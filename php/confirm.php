@@ -5,7 +5,7 @@ include("file.php");
 $experiment = new Experiment($_REQUEST['exp']);
 
 $user = new User($experiment->owner);
-print_r($_REQUEST['timeslot']);
+
 foreach ($experiment->getCalendar() as $date=>$slots) {
   foreach ($slots as $slot) {
     if ($slot[1] == $_REQUEST['timeslot']) {
