@@ -2,12 +2,21 @@
 
 class Experiment {
 
-  use File_Opener, Element_Extractor;
+  use File_Opener, File_Writer, Element_Extractor;
 
   public function __construct($experiment_id) {
     $this->id = $experiment_id;
     $this->owner = $this->extractElement($this->id, $this->openFile('data/experiments.data'));
     $this->data = $this->openFile('data/users/'. $this->owner .'/'. $this->id .'.data');
+  }
+
+  public function saveExperimentData() {
+    foreach ($this->changed_data as $parameter) {
+      $old_piece = $parameter . ' = {' . $this->extractElement($parameter, $this->data) . '}';
+      $new_piece = $parameter . ' = {' . $this->$parameter . '}';
+      $this->data = str_replace($old_piece, $new_piece, $this->data);
+      $this->writeFile('data/users/'. $this->owner .'/'. $this->id .'.data', $this->data);
+    }
   }
 
   public function getName() {
