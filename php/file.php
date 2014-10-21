@@ -33,14 +33,14 @@ class Experiment {
 
   public function getRequirements() {
     if (isset($this->requirements) == False) {
-      $this->requirements = explode(';', $this->extractElement('requirements', $this->data));
+      $this->requirements = explode('; ', $this->extractElement('requirements', $this->data));
     }
     return $this->requirements;
   }
 
   public function getExclusions() {
     if (isset($this->exclusions) == False) {
-      $this->exclusions = explode(';', $this->extractElement('exclusions', $this->data));
+      $this->exclusions = explode('; ', $this->extractElement('exclusions', $this->data));
     }
     return $this->exclusions;
   }
@@ -86,6 +86,13 @@ class Experiment {
     return $this->calendar;
   }
 
+  public function getExclusionEmails() {
+    if (isset($this->exclusion_emails) == False) {
+      $this->exclusion_emails = explode('; ', $this->extractElement('exclusion_emails', $this->data));
+    }
+    return $this->exclusion_emails;
+  }
+
   public function printRequirements() {
     $requirements = $this->getRequirements();
     foreach ($requirements as $requirement) {
@@ -95,9 +102,12 @@ class Experiment {
 
   public function printRequirementCheckboxes() {
     $requirements = $this->getRequirements();
+    $i = 0;
     foreach ($requirements as $requirement) {
-      echo '<p><input type="checkbox" name="confirm" /> ' . $requirement . '</p>';
+      echo '<p><input type="checkbox" name="confirm" id="require' . $i . '"" /> ' . $requirement . '</p>';
+      $i++;
     }
+    $this->total_requirements = $i;
   }
 
 public function printCalendar() {
@@ -151,15 +161,39 @@ class User {
 
   use File_Opener, Element_Extractor, Value_Extractor;
 
-  function __construct($username) {
+  public function __construct($username) {
     $this->username = $username;
-    $userfile = $this->openFile('data/users.data');
-    $this->userdata = $this->extractElement($this->username, $userfile);
-    $this->password = $this->extractValue('password', $this->userdata);
-    $this->name = $this->extractValue('name', $this->userdata);
-    $this->email = $this->extractValue('email', $this->userdata);
-    $this->phone = $this->extractValue('phone', $this->userdata);
+    $this->data = $this->extractElement($this->username, $this->openFile('data/users.data'));
   }
+
+  public function getPassword() {
+    if (isset($this->password) == False) {
+      $this->password = $this->extractValue('password', $this->data);
+    }
+    return $this->password;
+  }
+
+  public function getName() {
+    if (isset($this->name) == False) {
+      $this->name = $this->extractValue('name', $this->data);
+    }
+    return $this->name;
+  }
+
+  public function getEmail() {
+    if (isset($this->email) == False) {
+      $this->email = $this->extractValue('email', $this->data);
+    }
+    return $this->email;
+  }
+
+  public function getPhone() {
+    if (isset($this->phone) == False) {
+      $this->phone = $this->extractValue('phone', $this->data);
+    }
+    return $this->phone;
+  }
+
 }
 
 trait File_Opener {
@@ -224,7 +258,7 @@ trait Element_Extractor {
   public function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/';
     preg_match($pattern, $data, $matches);
-    return $matches[1];
+    return trim($matches[1]);
   }
 }
 
@@ -232,7 +266,7 @@ trait Value_Extractor {
   public function extractValue($value, $data) {
     $pattern = '/' . $value . ' = \[(.*?)\]/';
     preg_match($pattern, $data, $matches);
-    return $matches[1];
+    return trim($matches[1]);
   }
 
 }
