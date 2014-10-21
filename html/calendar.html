@@ -13,10 +13,9 @@
     <input type='hidden' name='phone' value='<?php echo $_REQUEST['phone']; ?>' />
 
     <h2>Date and time</h2>
-    <p>Please select a suitable time when you are free to take part in this experiment.
-      <?php if ($experiment->getPerSlot() > 1) { echo "<strong>This experiment requires {$experiment->getPerSlot()} participants per slot.</strong> You will not be guaranteed a place on the experiment until {$experiment->getPerSlot()} people have signed up for your slot. Where possible, please choose a slot that someone else has already signed up for (highlighted in orange). You’ll receive an email to confirm when your slot has been filled."; } ?></p>
+    <p>Please select a suitable time when you are free to take part in this experiment. <?php echo $additional_message; ?></p>
 
-      <?php $experiment->printCalendar(); ?>
+    <?php $experiment->printCalendar(); ?>
 
     <p><input type='submit' id='button' name='signup' value='Next' /></p>
   </form>
