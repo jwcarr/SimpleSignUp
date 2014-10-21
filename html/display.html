@@ -14,9 +14,9 @@
   <ol><?php $experiment->printRequirements(); ?></ol>
 
   <h2>Contact details</h2>
-  <p>Experimenter: <?php echo $user->name; ?><br />
-  Email: <a href='mailto:<?php echo $user->email; ?>'><?php echo $user->email; ?></a><br />
-  Phone: <?php echo $user->phone; ?></p>
+  <p>Experimenter: <?php echo $user->getName(); ?><br />
+  Email: <a href='mailto:<?php echo $user->getEmail(); ?>'><?php echo $user->getEmail(); ?></a><br />
+  Phone: <?php echo $user->getPhone(); ?></p>
 
   <form name='signup' action='index.php' method='POST'>
     <input type='hidden' name='page' value='signup' />
