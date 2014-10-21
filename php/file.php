@@ -4,7 +4,7 @@ class Experiment {
 
   use File_Opener, Element_Extractor;
 
-  function __construct($experiment_id) {
+  public function __construct($experiment_id) {
     $this->id = $experiment_id;
     $this->owner = $this->extractElement($this->id, $this->openFile('data/experiments.data'));
     $this->data = $this->openFile('data/users/'. $this->owner .'/'. $this->id .'.data');
@@ -17,11 +17,21 @@ class Experiment {
     return $this->name;
   }
 
+  public function setName($name) {
+    $this->name = $name;
+    $this->changed_data[] = 'name';
+  }
+
   public function getDescription() {
     if (isset($this->description) == False) {
       $this->description = $this->extractElement('description', $this->data);
     }
     return $this->description;
+  }
+
+  public function setDescription($description) {
+    $this->description = $description;
+    $this->changed_data[] = 'description';
   }
 
   public function getLocation() {
@@ -31,11 +41,21 @@ class Experiment {
     return $this->location;
   }
 
+  public function setLocation($location) {
+    $this->location = $location;
+    $this->changed_data[] = 'location';
+  }
+
   public function getRequirements() {
     if (isset($this->requirements) == False) {
       $this->requirements = explode('; ', $this->extractElement('requirements', $this->data));
     }
     return $this->requirements;
+  }
+
+  public function setRequirements($requirements) {
+    $this->requirements = $requirements;
+    $this->changed_data[] = 'requirements';
   }
 
   public function getExclusions() {
@@ -45,11 +65,21 @@ class Experiment {
     return $this->exclusions;
   }
 
+  public function setExclusions($exclusions) {
+    $this->exclusions = $exclusions;
+    $this->changed_data[] = 'exclusions';
+  }
+
   public function getMaxParticipants() {
     if (isset($this->max_participants) == False) {
       $this->max_participants = $this->extractElement('max_participants', $this->data);
     }
     return $this->max_participants;
+  }
+
+  public function setMaxParticipants($max_participants) {
+    $this->max_participants = $max_participants;
+    $this->changed_data[] = 'max_participants';
   }
 
   public function getPerSlot() {
@@ -59,11 +89,21 @@ class Experiment {
     return $this->per_slot;
   }
 
+  public function setPerSlot($per_slot) {
+    $this->per_slot = $per_slot;
+    $this->changed_data[] = 'per_slot';
+  }
+
   public function getSlotTime() {
     if (isset($this->slot_time) == False) {
       $this->slot_time = $this->extractElement('slot_time', $this->data);
     }
     return $this->slot_time;
+  }
+
+  public function setSlotTime($slot_time) {
+    $this->slot_time = $slot_time;
+    $this->changed_data[] = 'slot_time';
   }
 
   public function getCalendar() {
@@ -86,11 +126,21 @@ class Experiment {
     return $this->calendar;
   }
 
+  public function setCalendar($calendar) {
+    $this->calendar = $calendar;
+    $this->changed_data[] = 'calendar';
+  }
+
   public function getExclusionEmails() {
     if (isset($this->exclusion_emails) == False) {
       $this->exclusion_emails = explode('; ', $this->extractElement('exclusion_emails', $this->data));
     }
     return $this->exclusion_emails;
+  }
+
+  public function setExclusionEmails($exclusion_emails) {
+    $this->exclusion_emails = $exclusion_emails;
+    $this->changed_data[] = 'exclusion_emails';
   }
 
   public function printRequirements() {
