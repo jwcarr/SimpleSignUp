@@ -1,0 +1,26 @@
+<h1>
+  <?php echo $experiment->getName(); ?>
+</h1>
+
+<div id='content'>
+
+  <form name='signup' action='index.php' method='POST'>
+    <input type='hidden' name='page' value='calendar' />
+    <input type='hidden' name='own' value='<?php echo $experiment->owner; ?>' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
+
+    <h2>Your details</h2>
+    <p>Please input your details in the boxes below. If you leave your phone number, you will receive a text reminder on the day of the experiment.</p>
+
+    <p><input type='text' name='name' placeholder='name' /></p>
+    <p><input type='text' name='email' placeholder='email' /></p>
+    <p><input type='text' name='phone' placeholder='phone (optional)' /></p>
+
+    <h2>Requirements</h2>
+    <p>Please indicate that you meet the requirements for this experiment.</p>
+    <?php $experiment->printRequirementCheckboxes(); ?>
+
+    <p><input type='submit' id='button' name='signup' value='Next' /></p>
+  </form>
+
+</div>

@@ -1,0 +1,24 @@
+<h1>
+  <?php echo $experiment->getName(); ?>
+</h1>
+
+<div id='content'>
+
+  <form name='signup' action='index.php' method='POST'>
+    <input type='hidden' name='page' value='summary' />
+    <input type='hidden' name='own' value='<?php echo $experiment->owner; ?>' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
+    <input type='hidden' name='name' value='<?php echo $_REQUEST['name']; ?>' />
+    <input type='hidden' name='email' value='<?php echo $_REQUEST['email']; ?>' />
+    <input type='hidden' name='phone' value='<?php echo $_REQUEST['phone']; ?>' />
+
+    <h2>Date and time</h2>
+    <p>Please select a suitable time when you are free to take part in this experiment.
+      <?php if ($experiment->getPerSlot() > 1) { echo "<strong>This experiment requires {$experiment->getPerSlot()} participants per slot.</strong> You will not be guaranteed a place on the experiment until {$experiment->getPerSlot()} people have signed up for your slot. Where possible, please choose a slot that someone else has already signed up for (highlighted in orange). You’ll receive an email to confirm when your slot has been filled."; } ?></p>
+
+      <?php $experiment->printCalendar(); ?>
+
+    <p><input type='submit' id='button' name='signup' value='Next' /></p>
+  </form>
+
+</div>

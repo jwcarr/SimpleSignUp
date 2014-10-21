@@ -1,0 +1,26 @@
+<h1>
+  <?php echo $experiment->getName(); ?>
+</h1>
+
+<div id='content'>
+
+  <form name='signup' action='index.php' method='POST'>
+    <input type='hidden' name='page' value='confirm' />
+    <input type='hidden' name='own' value='<?php echo $experiment->owner; ?>' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
+    <input type='hidden' name='name' value='<?php echo $_REQUEST['name']; ?>' />
+    <input type='hidden' name='email' value='<?php echo $_REQUEST['email']; ?>' />
+    <input type='hidden' name='phone' value='<?php echo $_REQUEST['phone']; ?>' />
+    <input type='hidden' name='timeslot' value='<?php echo $timeslot[0] ?>' />
+
+    <h2>Summary</h2>
+    <p>Please check the following details are correct and click the Sign Up button below.</p>
+    <p>Name: <?php echo $_REQUEST['name']; ?></p>
+    <p>Email: <?php echo $_REQUEST['email']; ?></p>
+    <p>Phone: <?php echo $_REQUEST['phone']; ?></p>
+    <p>Time slot: <?php echo $timeslot[1] . ' @ ' . $timeslot[2]; ?></p>
+
+    <p><input type='submit' id='button' name='signup' value='Sign Up' /></p>
+  </form>
+
+</div>

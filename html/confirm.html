@@ -1,0 +1,22 @@
+<h1>
+  <?php echo $experiment->getName(); ?>
+</h1>
+
+<div id='content'>
+
+  <h2>Thanks for signing up</h2>
+  <p>The details of the experiment are provided below. You will also receive a confirmation email. If you need to cancel or change your slot, please use the link in the email as soon as possible.</p>
+
+  <p>
+  Location: <?php echo $experiment->getLocation(); ?><br />
+  Date: <?php echo $slot_date; ?><br />
+  Time: <?php echo $slot_time; ?>
+  </p>
+
+  <p>
+  Experimenter: <?php echo $user->name; ?><br />
+  Email: <a href='mailto:<?php echo $user->email; ?>'><?php echo $user->email; ?></a><br />
+  Phone: <?php echo $user->phone; ?>
+  </p>
+
+</div>
