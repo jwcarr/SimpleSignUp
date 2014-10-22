@@ -9,6 +9,9 @@
   <h2>Requirements</h2>
   <ul><?php $experiment->printRequirements(); ?></ul>
 
+</div>
+
+<div id='menu'>
 
 <?php
 if ($experiment->getStatus() == 'open') {
@@ -16,6 +19,7 @@ if ($experiment->getStatus() == 'open') {
   <form name='signup' action='index.php' method='POST'>
     <input type='hidden' name='page' value='signup' />
     <input type='hidden' name='own' value='{$experiment->owner}' />
+    <input type='hidden' name='exp' value='{$experiment->id}' />
     <p><input type='submit' id='button' name='signup' value='Sign up for this experiment' /></p>
   </form>
 
