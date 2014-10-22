@@ -201,25 +201,31 @@ class Experiment {
     $this->total_requirements = $i;
   }
 
-public function printCalendar() {
-  foreach ($this->getCalendar() as $date=>$slots) {
-    echo '<h3>' . $date . '</h3>';
-    echo '<table><tr>';
-    foreach ($slots as $slot) {
-      echo '<td align="center" width="50px">' . $slot[0] . '</td>';
-    }
-    echo '</tr><tr>';
-    foreach ($slots as $slot) {
-      $this->getSlots(16);
-      $num = count($this->slots[$slot[1]]);
-      if ($num == 0) {
-        echo '<td align="center"><input type="radio" name="time" value="'. $slot[1] . '|' . $date . '|' . $slot[0] .'" /></td>';
+  public function printCalendar() {
+    foreach ($this->getCalendar() as $date=>$slots) {
+      $unix_date = strtotime($date);
+      if ($unix_date-86400 > strtotime(date('Y-m-d'))) {
+        echo '<h3>' . date('l, jS F Y', $unix_date) . '</h3>';
+        echo '<table><tr>';
+        foreach ($slots as $slot) {
+          echo '<td align="center" width="50px">' . $slot[0] . '</td>';
+        }
+        echo '</tr><tr>';
+        foreach ($slots as $slot) {
+          $this->getSlots();
+          $num = count($this->slots[$slot[1]]);
+          if ($num == 0) {
+            echo '<td align="center"><input type="radio" name="time" value="'. $slot[1] . '|' . $date . '|' . $slot[0] .'" /></td>';
+          }
+          elseif ($num == $this->getPerSlot()) {
+            echo '<td align="center">-</td>';
+          }
+          else {
+            echo '<td align="center" style="background-color: #C3D9BC;"><input type="radio" name="time" value="'. $slot[1] . '|' . $date . '|' . $slot[0] .'" /></td>';
+          }
+        }
+        echo '</tr></table>';
       }
-      elseif ($num == $this->getPerSlot()) {
-        echo '<td align="center">-</td>';
-      }
-      else {
-        echo '<td align="center" style="background-color: orange;"><input type="radio" name="time" value="'. $slot[1] . '|' . $date . '|' . $slot[0] .'" /></td>';
     }
   }
 
@@ -240,9 +246,8 @@ public function printCalendar() {
         }
       }
     }
-    echo '</tr></table>';
+    return implode(', ', $available_dates);
   }
-}
 
   private function getSlots() {
     $this->slots = array();
