@@ -47,7 +47,7 @@ elseif ($page == 'display') { include('html/display.html'); }
 
 elseif ($page == 'signup') { include('html/signup.html'); include('js/signup.js'); }
 
-elseif ($page == 'calendar') { include('html/calendar.html'); }
+elseif ($page == 'calendar') { include('html/calendar.html'); include('js/calendar.js'); }
 
 elseif ($page == 'summary') { include('html/summary.html'); }
 
