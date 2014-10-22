@@ -30,6 +30,8 @@ elseif ($page == 'calendar') { include('php/calendar.php'); }
 
 <body>
 
+<div id='header'><?php echo $page_header; ?></div>
+
 <?php
 
 if ($page == 'login') { include('html/login.html'); }

@@ -4,6 +4,8 @@ include("file.php");
 
 $experiment = new Experiment($_REQUEST['exp']);
 
+$page_header = "<h1>{$experiment->getName()}</h1>";
+
 $excluded_email_addresses = $experiment->getExclusionEmails();
 
 foreach ($experiment->getExclusions() as $exclusion) {
