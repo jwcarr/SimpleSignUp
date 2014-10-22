@@ -28,6 +28,6 @@ else {
   $warning_message = True;
 }
 
-// If so,
+//$a = mail($_REQUEST['email'], $experiment->getName(), "Dear Jon", "From: {$user->getName()} <{$user->getEmail()}>");
 
 ?>
