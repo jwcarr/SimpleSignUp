@@ -208,6 +208,24 @@ public function printCalendar() {
       }
       else {
         echo '<td align="center" style="background-color: orange;"><input type="radio" name="time" value="'. $slot[1] . '|' . $date . '|' . $slot[0] .'" /></td>';
+    }
+  }
+
+  public function printAvailableDates() {
+    $available_dates = array();
+    foreach ($this->getCalendar() as $date=>$slots) {
+      $unix_date = strtotime($date);
+      if ($unix_date-86400 > strtotime(date('Y-m-d'))) {
+        $total = 0;
+        foreach ($slots as $slot) {
+          $count = count(explode('; ', $this->extractElement('slot'.$slot[1], $this->data)));
+          if ($count < $this->getPerSlot()) {
+            $total += 1 ;
+          }
+        }
+        if ($total > 0) {
+          $available_dates[] = date('jS M', $unix_date);
+        }
       }
     }
     echo '</tr></table>';

@@ -23,6 +23,8 @@ if ($experiment->getStatus() == 'open') {
     <p><input type='submit' id='button' name='signup' value='Sign up for this experiment' /></p>
   </form>
 
+  <h3>Available dates</h3>
+  {$experiment->printAvailableDates()}
   ";
 }
 else {
