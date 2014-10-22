@@ -22,7 +22,7 @@ if (in_array($target_email, $excluded_email_addresses)) {
 
 else {
   if ($experiment->getPerSlot() > 1) {
-    $additional_message = "<strong>This experiment requires {$experiment->getPerSlot()} participants per timeslot.</strong> You will not be guaranteed a place on the experiment until {$experiment->getPerSlot()} people have signed up for your slot. Where possible, please choose a slot that someone else has already signed up for (highlighted in orange). You’ll receive an email to confirm when your slot has been filled.";
+    $additional_message = "<strong>This experiment requires {$experiment->getPerSlot()} participants per timeslot.</strong> You will not be guaranteed a place on the experiment until {$experiment->getPerSlot()} people have signed up for your slot. If possible, please choose a slot that someone else has already signed up for (highlighted in green). You’ll receive an email to confirm when your slot has been filled.";
   }
 }
 
