@@ -49,7 +49,7 @@ elseif ($page == 'signup') { include('html/signup.html'); include('js/signup.js'
 
 elseif ($page == 'calendar') { include('html/calendar.html'); include('js/calendar.js'); }
 
-elseif ($page == 'summary') { include('html/summary.html'); }
+elseif ($page == 'summary') { include('html/summary.html'); include('js/summary.js'); }
 
 elseif ($page == 'confirm') { include('html/confirm.html'); }
 

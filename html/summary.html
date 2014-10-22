@@ -1,6 +1,6 @@
 <div id='content'>
 
-  <form name='signup' action='index.php' method='POST'>
+  <form name='signup' id='signup' action='index.php' method='POST'>
     <input type='hidden' name='page' value='confirm' />
     <input type='hidden' name='own' value='<?php echo $experiment->owner; ?>' />
     <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
@@ -17,7 +17,7 @@
     <p><strong>Date:</strong> <?php echo date('l, jS F Y', strtotime($timeslot[1])); ?></p>
     <p><strong>Time:</strong> <?php echo $timeslot[2]; ?></p>
 
-    <p><input type='submit' id='button' name='signup' value='Sign Up' />
+    <p><input type='submit' id='button' name='button' value='Sign Up' />
     <input type='button' id='edit-button' name='edit-button' value='Edit Details' onclick='window.location = "<?php echo $edit_details_link; ?>"' /></p>
   </form>
 
