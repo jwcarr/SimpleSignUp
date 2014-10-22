@@ -16,7 +16,8 @@
     <p>Phone: <?php echo $_REQUEST['phone']; ?></p>
     <p>Time slot: <?php echo $timeslot[1] . ' @ ' . $timeslot[2]; ?></p>
 
-    <p><input type='submit' id='button' name='signup' value='Sign Up' /></p>
+    <p><input type='submit' id='button' name='signup' value='Sign Up' />
+    <input type='button' id='edit-button' name='edit-button' value='Edit Details' onclick='window.location = "<?php echo $edit_details_link; ?>"' /></p>
   </form>
 
 </div>

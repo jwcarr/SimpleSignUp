@@ -162,9 +162,17 @@ class Experiment {
   public function printRequirementCheckboxes() {
     $requirements = $this->getRequirements();
     $i = 0;
-    foreach ($requirements as $requirement) {
-      echo '<p><input type="checkbox" name="confirm" id="require' . $i . '"" /> ' . $requirement . '</p>';
-      $i++;
+    if ($_REQUEST['name'] == '') {
+      foreach ($requirements as $requirement) {
+        echo '<p><input type="checkbox" name="confirm" id="require' . $i . '"" /> ' . $requirement . '</p>';
+        $i++;
+      }
+    }
+    else {
+      foreach ($requirements as $requirement) {
+        echo '<p><input type="checkbox" name="confirm" id="require' . $i . '"" checked /> ' . $requirement . '</p>';
+        $i++;
+      }
     }
     $this->total_requirements = $i;
   }

@@ -8,9 +8,9 @@
     <h2>Your details</h2>
     <p>Please input your details in the boxes below. If you leave your phone number, you will receive a text reminder on the day of the experiment.</p>
 
-    <p><input type='text' name='name' id='name' placeholder='full name' /></p>
-    <p><input type='text' name='email' id='email' placeholder='email' /></p>
-    <p><input type='text' name='phone' id='phone' placeholder='phone (optional)' /></p>
+    <p><input type='text' name='name' size='30' id='name' placeholder='full name' value='<?php echo $_REQUEST['name']; ?>' /></p>
+    <p><input type='text' name='email' size='30' id='email' placeholder='email' value='<?php echo $_REQUEST['email']; ?>' /></p>
+    <p><input type='text' name='phone' size='30' id='phone' placeholder='mobile number (optional)' value='<?php echo $_REQUEST['phone']; ?>' /></p>
 
     <h2>Requirements</h2>
     <p>Please indicate that you meet the requirements for this experiment.</p>
