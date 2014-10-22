@@ -24,6 +24,9 @@ else {
 
 if ($page == 'signup') { include('php/signup.php'); }
 elseif ($page == 'calendar') { include('php/calendar.php'); }
+elseif ($page == 'display') { include('php/display.php'); }
+elseif ($page == 'summary') { include('php/summary.php'); }
+elseif ($page == 'confirm') { include('php/confirm.php'); }
 
 
 ?>
@@ -38,15 +41,15 @@ elseif ($page == 'calendar') { include('php/calendar.php'); }
 
 if ($page == 'login') { include('html/login.html'); }
 
-elseif ($page == 'display') { include('php/display.php'); include('html/display.html'); }
+elseif ($page == 'display') { include('html/display.html'); }
 
 elseif ($page == 'signup') { include('html/signup.html'); include('js/signup.js'); }
 
 elseif ($page == 'calendar') { include('html/calendar.html'); }
 
-elseif ($page == 'summary') { include('php/summary.php'); include('html/summary.html'); }
+elseif ($page == 'summary') { include('html/summary.html'); }
 
-elseif ($page == 'confirm') { include('php/confirm.php'); include('html/confirm.html'); }
+elseif ($page == 'confirm') { include('html/confirm.html'); }
 
 elseif ($page == 'not_eligible') { include('html/not_eligible.html'); }
 
