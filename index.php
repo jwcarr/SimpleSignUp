@@ -8,6 +8,8 @@
 
 <?php
 
+include('globals.php');
+
 if ($_REQUEST['page'] == '') {
   if ($_REQUEST['exp'] != '') {
     $page = 'display';
