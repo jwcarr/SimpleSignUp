@@ -26,7 +26,8 @@ $("#signup").submit( function() {
     return false;
   }
 
-  var phone = $("#phone").val();
+  var phone = $("#phone").val().replace(/ /g, '');
+  $("#phone").val(phone);
 
   if (phone != "") {
     if (validatePhone(phone) == false) {
