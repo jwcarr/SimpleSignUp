@@ -4,15 +4,15 @@
   <p>The details of the experiment are provided below. You will also receive a confirmation email. If you need to cancel or change your slot, please contact the experimenter as soon as possible.</p>
 
   <p>
-  Location: <?php echo $experiment->getLocation(); ?><br />
-  Date: <?php echo $slot_date; ?><br />
-  Time: <?php echo $slot_time; ?>
+  <strong>Location:</strong> <?php echo $experiment->getLocation(); ?><br />
+  <strong>Date:</strong> <?php echo date('l, jS F Y', strtotime($slot_date)); ?><br />
+  <strong>Time:</strong> <?php echo $slot_time; ?>
   </p>
 
   <p>
-  Experimenter: <?php echo $user->getName(); ?><br />
-  Email: <a href='mailto:<?php echo $user->getEmail(); ?>'><?php echo $user->getEmail(); ?></a><br />
-  Phone: <?php echo $user->getPhone(); ?>
+  <strong>Experimenter:</strong> <?php echo $user->getName(); ?><br />
+  <strong>Email:</strong> <a href='mailto:<?php echo $user->getEmail(); ?>'><?php echo $user->getEmail(); ?></a><br />
+  <strong>Phone:</strong> <?php echo $user->getPhone(); ?>
   </p>
 
 </div>

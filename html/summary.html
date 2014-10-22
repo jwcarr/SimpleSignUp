@@ -11,10 +11,11 @@
 
     <h2>Summary</h2>
     <p>Please check the following details are correct and click the Sign Up button below.</p>
-    <p>Name: <?php echo $_REQUEST['name']; ?></p>
-    <p>Email: <?php echo $_REQUEST['email']; ?></p>
-    <p>Phone: <?php echo $_REQUEST['phone']; ?></p>
-    <p>Time slot: <?php echo $timeslot[1] . ' @ ' . $timeslot[2]; ?></p>
+    <p><strong>Name:</strong> <?php echo $_REQUEST['name']; ?></p>
+    <p><strong>Email:</strong> <?php echo $_REQUEST['email']; ?></p>
+    <?php if ($_REQUEST['phone'] != '') { echo "<p><strong>Phone:</strong> {$_REQUEST['phone']}</p>"; } ?>
+    <p><strong>Date:</strong> <?php echo date('l, jS F Y', strtotime($timeslot[1])); ?></p>
+    <p><strong>Time:</strong> <?php echo $timeslot[2]; ?></p>
 
     <p><input type='submit' id='button' name='signup' value='Sign Up' />
     <input type='button' id='edit-button' name='edit-button' value='Edit Details' onclick='window.location = "<?php echo $edit_details_link; ?>"' /></p>
