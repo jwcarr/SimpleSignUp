@@ -9,10 +9,6 @@
   <h2>Requirements</h2>
   <ul><?php $experiment->printRequirements(); ?></ul>
 
-  <h2>Contact details</h2>
-  <p>Experimenter: <?php echo $user->getName(); ?><br />
-  Email: <a href='mailto:<?php echo $user->getEmail(); ?>'><?php echo $user->getEmail(); ?></a><br />
-  Phone: <?php echo $user->getPhone(); ?></p>
 
 <?php
 if ($experiment->getStatus() == 'open') {
@@ -31,4 +27,10 @@ else {
   echo "<div id='status-closed'>CLOSED</div>";
 }
 ?>
+
+  <h3>Contact details</h3>
+  <p><?php echo $user->getName(); ?><br />
+  <a href='mailto:<?php echo $user->getEmail(); ?>'><?php echo $user->getEmail(); ?></a><br />
+  <?php echo $user->getPhone(); ?></p>
+
 </div>
