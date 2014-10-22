@@ -14,11 +14,19 @@
   Email: <a href='mailto:<?php echo $user->getEmail(); ?>'><?php echo $user->getEmail(); ?></a><br />
   Phone: <?php echo $user->getPhone(); ?></p>
 
+<?php
+if ($experiment->getStatus() == 'open') {
+  echo "
   <form name='signup' action='index.php' method='POST'>
     <input type='hidden' name='page' value='signup' />
-    <input type='hidden' name='own' value='<?php echo $experiment->owner; ?>' />
-    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
+    <input type='hidden' name='own' value='{$experiment->owner}' />
     <p><input type='submit' id='button' name='signup' value='Sign up for this experiment' /></p>
   </form>
 
+  ";
+}
+else {
+  echo "<div id='status-closed'>CLOSED</div>";
+}
+?>
 </div>
