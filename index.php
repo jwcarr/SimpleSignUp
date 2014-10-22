@@ -20,11 +20,11 @@ if ($_REQUEST['page'] == '') {
 }
 else {
   $page = $_REQUEST['page'];
+}
 
 if ($page == 'signup') { include('php/signup.php'); }
 elseif ($page == 'calendar') { include('php/calendar.php'); }
 
-}
 
 ?>
 
