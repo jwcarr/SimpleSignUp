@@ -31,6 +31,18 @@ class Experiment {
     $this->changed_data[] = 'name';
   }
 
+  public function getStatus() {
+    if (isset($this->status) == False) {
+      $this->status = $this->extractElement('status', $this->data);
+    }
+    return $this->status;
+  }
+
+  public function setStatus($status) {
+    $this->status = $status;
+    $this->changed_data[] = 'status';
+  }
+
   public function getDescription() {
     if (isset($this->description) == False) {
       $this->description = $this->extractElement('description', $this->data);
