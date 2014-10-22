@@ -37,6 +37,8 @@ elseif ($page == 'confirm') { include('php/confirm.php'); }
 
 <div id='header'><?php echo $page_header; ?></div>
 
+<div id='body'>
+
 <?php
 
 if ($page == 'login') { include('html/login.html'); }
@@ -56,6 +58,8 @@ elseif ($page == 'not_eligible') { include('html/not_eligible.html'); }
 else { include('html/error.html'); }
 
 ?>
+
+</div>
 
 </body>
 
