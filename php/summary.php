@@ -10,4 +10,9 @@ $timeslot = explode('|', $_REQUEST['time']);
 
 $edit_details_link = "index.php?page=signup&exp={$experiment->id}&name={$_REQUEST['name']}&email={$_REQUEST['email']}&phone={$_REQUEST['phone']}";
 
+if (count($experiment->getSlot($timeslot[0])) >= $experiment->getPerSlot()) {
+  $page = 'calendar';
+  $warning_message = True;
+}
+
 ?>

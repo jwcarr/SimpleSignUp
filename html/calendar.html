@@ -9,7 +9,12 @@
     <input type='hidden' name='phone' value='<?php echo $_REQUEST['phone']; ?>' />
 
     <h2>Date and time</h2>
-    <p>Please select a suitable time when you are free to take part in this experiment. <?php echo $additional_message; ?></p>
+
+    <?php if ($warning_message == True) {
+      echo '<p style="color: #B22B3B">Sorry... someone else has just taken your chosen timeslot. Please choose another one.</p>';
+    } else {
+      echo "<p>Please select a suitable time when you are free to take part in this experiment. $additional_message</p>";
+    } ?>
 
     <?php $experiment->printCalendar(); ?>
 
