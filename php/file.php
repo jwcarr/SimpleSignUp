@@ -207,7 +207,6 @@ class Experiment {
     foreach ($this->getCalendar() as $date=>$slots) {
       $unix_date = strtotime($date);
       if ($unix_date-86400 > strtotime(date('Y-m-d'))) {
-        $available_slots[$unix_date] = array();
         foreach ($slots as $slot) {
           $num = count($this->slots[$slot[1]]);
           if ($num < $this->getPerSlot()) {
