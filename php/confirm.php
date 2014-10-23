@@ -19,8 +19,8 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
 
 // Double check that the timeslot is still free
 if (count($experiment->getSlot($_REQUEST['timeslot'])) < $experiment->getPerSlot()) {
-  //$experiment->setSlot($_REQUEST['timeslot'], $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone']);
-  //$experiment->saveExperimentData();
+  $experiment->setSlot($_REQUEST['timeslot'], $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone']);
+  $experiment->saveExperimentData();
 }
 else {
   // If not, send back to calendar page

@@ -269,6 +269,18 @@ class Experiment {
     return $subjects;
   }
 
+  public function setSlot($slot_id, $name, $email, $phone) {
+    $slot_subjects = $this->getSlot($slot_id);
+    $slot_subjects[] = array($name, $email, $phone);
+    $new_slot_subjects = array();
+    foreach ($slot_subjects as $subject) {
+      $new_slot_subjects[] = implode(', ', $subject);
+    }
+    $slot_key = 'slot' . $slot_id;
+    $this->$slot_key = implode('; ', $new_slot_subjects);
+    $this->changed_data[] = $slot_key;
+  }
+
 }
 
 class User {
