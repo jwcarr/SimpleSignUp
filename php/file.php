@@ -201,27 +201,39 @@ class Experiment {
     $this->total_requirements = $i;
   }
 
-  public function printCalendar() {
+  private function getAvailableSlots() {
+    $this->getSlots();
+    $available_slots = array();
     foreach ($this->getCalendar() as $date=>$slots) {
       $unix_date = strtotime($date);
       if ($unix_date-86400 > strtotime(date('Y-m-d'))) {
+        $available_slots[$unix_date] = array();
+        foreach ($slots as $slot) {
+          $num = count($this->slots[$slot[1]]);
+          if ($num < $this->getPerSlot()) {
+            $available_slots[$unix_date][$slot[0]] = array($slot[1], $num);
+          }
+        }
+      }
+    }
+    return $available_slots;
+  }
+
+  public function printCalendar() {
+    foreach ($this->getAvailableSlots() as $unix_date=>$slots) {
+      if (count($slots) > 0) {
         echo '<h3>' . date('l, jS F Y', $unix_date) . '</h3>';
         echo '<table><tr>';
-        foreach ($slots as $slot) {
-          echo '<td align="center" width="50px">' . $slot[0] . '</td>';
+        foreach ($slots as $time=>$slot) {
+          echo '<td align="center" width="50px">' . $time . '</td>';
         }
         echo '</tr><tr>';
-        foreach ($slots as $slot) {
-          $this->getSlots();
-          $num = count($this->slots[$slot[1]]);
-          if ($num == 0) {
-            echo '<td align="center"><input type="radio" name="time" value="'. $slot[1] . '|' . $date . '|' . $slot[0] .'" /></td>';
-          }
-          elseif ($num == $this->getPerSlot()) {
-            echo '<td align="center">-</td>';
+        foreach ($slots as $time=>$slot) {
+          if ($slot[1] == 0) {
+            echo '<td align="center"><input type="radio" name="time" value="'. $slot[0] . '" /></td>';
           }
           else {
-            echo '<td align="center" style="background-color: #C3D9BC;"><input type="radio" name="time" value="'. $slot[1] . '|' . $date . '|' . $slot[0] .'" /></td>';
+            echo '<td align="center" style="background-color: #C3D9BC;"><input type="radio" name="time" value="'. $slot[0] . '" /></td>';
           }
         }
         echo '</tr></table>';
@@ -231,20 +243,8 @@ class Experiment {
 
   public function printAvailableDates() {
     $available_dates = array();
-    foreach ($this->getCalendar() as $date=>$slots) {
-      $unix_date = strtotime($date);
-      if ($unix_date-86400 > strtotime(date('Y-m-d'))) {
-        $total = 0;
-        foreach ($slots as $slot) {
-          $count = count(explode('; ', $this->extractElement('slot'.$slot[1], $this->data)));
-          if ($count < $this->getPerSlot()) {
-            $total += 1 ;
-          }
-        }
-        if ($total > 0) {
-          $available_dates[] = date('jS M', $unix_date);
-        }
-      }
+    foreach ($this->getAvailableSlots() as $unix_date=>$slots) {
+      $available_dates[] = date('jS M', $unix_date);
     }
     return implode(', ', $available_dates);
   }
