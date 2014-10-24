@@ -229,10 +229,10 @@ class Experiment {
         echo '</tr><tr>';
         foreach ($slots as $time=>$slot) {
           if ($slot[1] == 0) {
-            echo '<td align="center"><input type="radio" name="time" value="'. $slot[0] . '" /></td>';
+            echo '<td align="center"><input type="radio" name="timeslot" value="'. $slot[0] . '" /></td>';
           }
           else {
-            echo '<td align="center" style="background-color: #C3D9BC;"><input type="radio" name="time" value="'. $slot[0] . '" /></td>';
+            echo '<td align="center" style="background-color: #EAF2E8;"><input type="radio" name="timeslot" value="'. $slot[0] . '" /></td>';
           }
         }
         echo '</tr></table>';
