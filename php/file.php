@@ -2,26 +2,29 @@
 
 class Experiment {
 
-  use File_Opener, File_Writer, Element_Extractor;
+  use Element_Extractor;
 
-  public function __construct($experiment_id) {
+  public function __construct($experiment_id, $write_access=False) {
     $this->id = $experiment_id;
-    $this->owner = $this->extractElement($this->id, $this->openFile('data/experiments.data'));
-    $this->data = $this->openFile('data/users/'. $this->owner .'/'. $this->id .'.data');
+
+    $experiments_file = new File('data/experiments.data', False);
+    $this->owner = $this->extractElement($this->id, $experiments_file->data);
+
+    $this->file = new File('data/users/'. $this->owner .'/'. $this->id .'.data', $write_access);
   }
 
   public function saveExperimentData() {
     foreach ($this->changed_data as $parameter) {
-      $old_piece = $parameter . ' = {' . $this->extractElement($parameter, $this->data) . '}';
+      $old_piece = $parameter . ' = {' . $this->extractElement($parameter, $this->file->data) . '}';
       $new_piece = $parameter . ' = {' . $this->$parameter . '}';
-      $this->data = str_replace($old_piece, $new_piece, $this->data);
-      $this->writeFile('data/users/'. $this->owner .'/'. $this->id .'.data', $this->data);
+      $this->file->data = str_replace($old_piece, $new_piece, $this->file->data);
     }
+    $this->file->overwrite();
   }
 
   public function getName() {
     if (isset($this->name) == False) {
-      $this->name = $this->extractElement('name', $this->data);
+      $this->name = $this->extractElement('name', $this->file->data);
     }
     return $this->name;
   }
@@ -33,7 +36,7 @@ class Experiment {
 
   public function getStatus() {
     if (isset($this->status) == False) {
-      $this->status = $this->extractElement('status', $this->data);
+      $this->status = $this->extractElement('status', $this->file->data);
     }
     return $this->status;
   }
@@ -45,7 +48,7 @@ class Experiment {
 
   public function getDescription() {
     if (isset($this->description) == False) {
-      $this->description = $this->extractElement('description', $this->data);
+      $this->description = $this->extractElement('description', $this->file->data);
     }
     return $this->description;
   }
@@ -57,7 +60,7 @@ class Experiment {
 
   public function getLocation() {
     if (isset($this->location) == False) {
-      $this->location = $this->extractElement('location', $this->data);
+      $this->location = $this->extractElement('location', $this->file->data);
     }
     return $this->location;
   }
@@ -69,7 +72,7 @@ class Experiment {
 
   public function getRequirements() {
     if (isset($this->requirements) == False) {
-      $this->requirements = explode('; ', $this->extractElement('requirements', $this->data));
+      $this->requirements = explode('; ', $this->extractElement('requirements', $this->file->data));
     }
     return $this->requirements;
   }
@@ -81,7 +84,7 @@ class Experiment {
 
   public function getExclusions() {
     if (isset($this->exclusions) == False) {
-      $this->exclusions = explode('; ', $this->extractElement('exclusions', $this->data));
+      $this->exclusions = explode('; ', $this->extractElement('exclusions', $this->file->data));
     }
     return $this->exclusions;
   }
@@ -93,7 +96,7 @@ class Experiment {
 
   public function getMaxParticipants() {
     if (isset($this->max_participants) == False) {
-      $this->max_participants = $this->extractElement('max_participants', $this->data);
+      $this->max_participants = $this->extractElement('max_participants', $this->file->data);
     }
     return $this->max_participants;
   }
@@ -105,7 +108,7 @@ class Experiment {
 
   public function getPerSlot() {
     if (isset($this->per_slot) == False) {
-      $this->per_slot = $this->extractElement('per_slot', $this->data);
+      $this->per_slot = $this->extractElement('per_slot', $this->file->data);
     }
     return $this->per_slot;
   }
@@ -117,7 +120,7 @@ class Experiment {
 
   public function getNumOfSlots() {
     if (isset($this->number_of_slots) == False) {
-      $this->number_of_slots = $this->extractElement('number_of_slots', $this->data);
+      $this->number_of_slots = $this->extractElement('number_of_slots', $this->file->data);
     }
     return $this->number_of_slots;
   }
@@ -129,7 +132,7 @@ class Experiment {
 
   public function getSlotTime() {
     if (isset($this->slot_time) == False) {
-      $this->slot_time = $this->extractElement('slot_time', $this->data);
+      $this->slot_time = $this->extractElement('slot_time', $this->file->data);
     }
     return $this->slot_time;
   }
@@ -141,7 +144,7 @@ class Experiment {
 
   public function getCalendar() {
     if (isset($this->calendar) == False) {
-      $calendar = explode('; ', $this->extractElement('calendar', $this->data));
+      $calendar = explode('; ', $this->extractElement('calendar', $this->file->data));
       $d = array();
       foreach ($calendar as $date) {
         $date_times = explode(': ', $date);
@@ -166,7 +169,7 @@ class Experiment {
 
   public function getExclusionEmails() {
     if (isset($this->exclusion_emails) == False) {
-      $this->exclusion_emails = explode('; ', $this->extractElement('exclusion_emails', $this->data));
+      $this->exclusion_emails = explode('; ', $this->extractElement('exclusion_emails', $this->file->data));
     }
     return $this->exclusion_emails;
   }
@@ -256,7 +259,7 @@ class Experiment {
   }
 
   public function getSlot($number) {
-    $slot_data = $this->extractElement('slot'.$number, $this->data);
+    $slot_data = $this->extractElement('slot'.$number, $this->file->data);
     $participants = explode('; ', $slot_data);
     $subjects = array();
     foreach ($participants as $participant) {
@@ -284,11 +287,12 @@ class Experiment {
 
 class User {
 
-  use File_Opener, Element_Extractor, Value_Extractor;
+  use Element_Extractor, Value_Extractor;
 
   public function __construct($username) {
     $this->username = $username;
-    $this->data = $this->extractElement($this->username, $this->openFile('data/users.data'));
+    $users_file = new File('data/users.data', False);
+    $this->data = $this->extractElement($this->username, $users_file->data);
   }
 
   public function getPassword() {
@@ -321,61 +325,60 @@ class User {
 
 }
 
-trait File_Opener {
-  // Open a file
-  public function openFile($filename) {
-    // If the file exists...
-    if (file_exists($filename)) {
-      // If the filesize > 0...
-      if (filesize($filename) > 0) {
-        // Open the file
-        $file = fopen($filename, 'r');
-        // If you can secure a read lock on the file...
-        if (flock($file, LOCK_SH)) {
-          // Read the data from the file...
-          $data = fread($file, filesize($filename));
-          // ... and then unlock, close, and return its contents
-          flock($file, LOCK_UN);
-          fclose($file);
-          return $data;
-        }
-        // Failure to obtain a lock on the file, so close file and return False
-        fclose($file);
-        return False;
+class File {
+
+  private $filename = '';
+  private $write_access = False;
+  public $data = '';
+
+  public function __construct($filename, $write_access=False) {
+    $this->filename = $filename;
+    $this->write_access = $write_access;
+    if ($this->write_access) { $this->data = $this->openFileWithWriteAccess(); }
+    else { $this->data = $this->openFileWithoutWriteAccess(); }
+  }
+
+  private function openFileWithoutWriteAccess() {
+    if (file_exists($this->filename)) {
+      $this->file = fopen($this->filename, 'r');
+      if (flock($this->file, LOCK_SH)) {
+        $data = fread($this->file, filesize($this->filename));
+        flock($this->file, LOCK_UN);
+        fclose($this->file);
+        return $data;
       }
-      // Filesize is 0, so return null
-      return '';
+      fclose($this->file);
     }
-    // The file does not exist, so return False
     return False;
   }
-}
 
-trait File_Writer {
-  // Write data to a file
-  public function writeFile($filename, $data) {
-    // If the file exists and is writeable...
-    if (is_writable($filename)) {
-      // Open the file
-      $file = fopen($filename, 'w');
-      // If you can secure a write lock on the file...
-      if (flock($file, LOCK_EX)) {
-        // If you succeed in writing the data to the file...
-        if (fwrite($file, $data)) {
-          // unlock, close, and return True
-          flock($file, LOCK_UN);
-          fclose($file);
+  private function openFileWithWriteAccess() {
+    if (file_exists($this->filename)) {
+      $this->file = fopen($this->filename, 'c+');
+      if (flock($this->file, LOCK_EX)) {
+        $data = fread($this->file, filesize($this->filename));
+        return $data;
+      }
+      fclose($this->file);
+    }
+    return False;
+  }
+
+  public function overwrite() {
+    if ($this->write_access) {
+      if (ftruncate($this->file, 0)) {
+        if (fwrite($this->file, $this->data)) {
+          flock($this->file, LOCK_UN);
+          fclose($this->file);
           return True;
         }
-        // Failure to write to the file, so unlock
-        flock($file, LOCK_UN);
       }
-      // Failure to obtain a lock on the file or to write to the file, so close
-      fclose($file);
+      flock($this->file, LOCK_UN);
+      fclose($this->file);
     }
-    // The file does not exist or cannot write or cannot obtain lock, so return False
     return False;
   }
+
 }
 
 trait Element_Extractor {
