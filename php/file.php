@@ -204,21 +204,23 @@ class Experiment {
     $this->total_requirements = $i;
   }
 
-  private function getAvailableSlots() {
-    $this->getSlots();
-    $available_slots = array();
-    foreach ($this->getCalendar() as $date=>$slots) {
-      $unix_date = strtotime($date);
-      if ($unix_date-86400 > strtotime(date('Y-m-d'))) {
-        foreach ($slots as $slot) {
-          $num = count($this->slots[$slot[1]]);
-          if ($num < $this->getPerSlot()) {
-            $available_slots[$unix_date][$slot[0]] = array($slot[1], $num);
+  public function getAvailableSlots() {
+    if (isset($this->available_slots) == False) {
+      $this->getSlots();
+      $this->available_slots = array();
+      foreach ($this->getCalendar() as $date=>$slots) {
+        $unix_date = strtotime($date);
+        if ($unix_date-86400 > strtotime(date('Y-m-d'))) {
+          foreach ($slots as $slot) {
+            $num = count($this->slots[$slot[1]]);
+            if ($num < $this->getPerSlot()) {
+              $this->available_slots[$unix_date][$slot[0]] = array($slot[1], $num);
+            }
           }
         }
       }
     }
-    return $available_slots;
+    return $this->available_slots;
   }
 
   public function printCalendar() {
