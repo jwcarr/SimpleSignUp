@@ -37,6 +37,11 @@ class Experiment {
   public function getStatus() {
     if (isset($this->status) == False) {
       $this->status = $this->extractElement('status', $this->file->data);
+      if ($this->status == 'open') {
+        if (count($this->getAvailableSlots()) == 0) {
+          $this->status = 'unavailable';
+        }
+      }
     }
     return $this->status;
   }

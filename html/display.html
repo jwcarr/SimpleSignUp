@@ -27,6 +27,12 @@ if ($experiment->getStatus() == 'open') {
   <p>{$experiment->printAvailableDates()}</p>
   ";
 }
+elseif ($experiment->getStatus() == 'unavailable') {
+  echo "
+  <h3>Available dates</h3>
+  <p>Sorry – this experiment is fully subscribed at the moment. Please check back later.</p>
+  ";
+}
 else {
   echo "<div id='status-closed'>CLOSED</div>";
 }
