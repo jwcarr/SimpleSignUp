@@ -10,6 +10,8 @@
 
 include('globals.php');
 
+cleanInputVariables();
+
 if ($_REQUEST['page'] == '') {
   if ($_REQUEST['exp'] != '') {
     $page = 'display';
