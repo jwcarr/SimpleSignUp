@@ -19,7 +19,7 @@ class Experiment {
       $new_piece = $parameter . ' = {' . $this->$parameter . '}';
       $this->file->data = str_replace($old_piece, $new_piece, $this->file->data);
     }
-    $this->file->overwrite();
+    return $this->file->overwrite();
   }
 
   public function getName() {
