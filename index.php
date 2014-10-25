@@ -8,7 +8,7 @@
 
 <?php
 
-include('globals.php');
+include('php/globals.php');
 
 cleanInputVariables();
 
