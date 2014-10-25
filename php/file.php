@@ -372,7 +372,7 @@ class File {
     if (file_exists($this->filename)) {
       for ($i=0; $i<5; $i++) {
         if (is_writable($this->filename)) {
-          $this->file = fopen($this->filename, 'c+');
+          $this->file = fopen($this->filename, 'a+');
           if ($this->file != False) {
             if (flock($this->file, LOCK_EX)) {
               $data = fread($this->file, filesize($this->filename));
