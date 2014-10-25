@@ -28,7 +28,6 @@ elseif ($page == 'display') { include('php/display.php'); }
 elseif ($page == 'summary') { include('php/summary.php'); }
 elseif ($page == 'confirm') { include('php/confirm.php'); }
 
-
 ?>
 
 </head>
@@ -57,7 +56,7 @@ elseif ($page == 'not_eligible') { include('html/not_eligible.html'); }
 
 elseif ($page == 'fully_subscribed') { include('html/fully_subscribed.html'); }
 
-else { include('html/error.html'); }
+else { $error = '404'; include('html/error.html'); }
 
 ?>
 
