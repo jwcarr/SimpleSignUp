@@ -55,6 +55,8 @@ elseif ($page == 'confirm') { include('html/confirm.html'); }
 
 elseif ($page == 'not_eligible') { include('html/not_eligible.html'); }
 
+elseif ($page == 'fully_subscribed') { include('html/fully_subscribed.html'); }
+
 else { include('html/error.html'); }
 
 ?>
