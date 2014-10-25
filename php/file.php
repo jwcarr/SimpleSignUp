@@ -338,6 +338,13 @@ class File {
     else { $this->data = $this->openFileWithoutWriteAccess(); }
   }
 
+  public function __destruct() {
+    if ($this->write_access) {
+      flock($this->file, LOCK_UN);
+      fclose($this->file);
+    }
+  }
+
   private function openFileWithoutWriteAccess() {
     if (file_exists($this->filename)) {
       $this->file = fopen($this->filename, 'r');
@@ -361,6 +368,7 @@ class File {
       }
       fclose($this->file);
     }
+    $this->write_access = False;
     return False;
   }
 
@@ -370,12 +378,14 @@ class File {
         if (fwrite($this->file, $this->data)) {
           flock($this->file, LOCK_UN);
           fclose($this->file);
+          $this->write_access = False;
           return True;
         }
       }
       flock($this->file, LOCK_UN);
       fclose($this->file);
     }
+    $this->write_access = False;
     return False;
   }
 
