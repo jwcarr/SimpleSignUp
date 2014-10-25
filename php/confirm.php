@@ -2,7 +2,7 @@
 
 include("file.php");
 
-$experiment = new Experiment($_REQUEST['exp']);
+$experiment = new Experiment($_REQUEST['exp'], True);
 
 $user = new User($experiment->owner);
 
