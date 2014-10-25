@@ -14,9 +14,8 @@
       echo '<p style="color: #B22B3B">Sorry... someone else has just taken your chosen timeslot. Please choose another one.</p>';
     } else {
       echo "<p>Please select a suitable time when you are free to take part in this experiment. $additional_message</p>";
-    } ?>
-
-    <?php $experiment->printCalendar(); ?>
+    }
+    $experiment->printCalendar(); ?>
 
     <p><input type='submit' id='button' name='signup' value='Next' /></p>
   </form>
