@@ -383,6 +383,8 @@ class File {
         }
         sleep(2);
       }
+      $this->write_access = False;
+      return $this->openFileWithoutWriteAccess();
     }
     $this->write_access = False;
     return False;
