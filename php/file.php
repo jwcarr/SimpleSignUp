@@ -302,13 +302,6 @@ class User {
     $this->data = $this->extractElement($this->username, $users_file->data);
   }
 
-  public function getPassword() {
-    if (isset($this->password) == False) {
-      $this->password = $this->extractValue('password', $this->data);
-    }
-    return $this->password;
-  }
-
   public function getName() {
     if (isset($this->name) == False) {
       $this->name = $this->extractValue('name', $this->data);
