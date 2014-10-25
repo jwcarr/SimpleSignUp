@@ -348,13 +348,15 @@ class File {
   private function openFileWithoutWriteAccess() {
     if (file_exists($this->filename)) {
       $this->file = fopen($this->filename, 'r');
-      if (flock($this->file, LOCK_SH)) {
-        $data = fread($this->file, filesize($this->filename));
-        flock($this->file, LOCK_UN);
+      if ($this->file != False) {
+        if (flock($this->file, LOCK_SH)) {
+          $data = fread($this->file, filesize($this->filename));
+          flock($this->file, LOCK_UN);
+          fclose($this->file);
+          return $data;
+        }
         fclose($this->file);
-        return $data;
       }
-      fclose($this->file);
     }
     return False;
   }
@@ -362,11 +364,13 @@ class File {
   private function openFileWithWriteAccess() {
     if (file_exists($this->filename)) {
       $this->file = fopen($this->filename, 'c+');
-      if (flock($this->file, LOCK_EX)) {
-        $data = fread($this->file, filesize($this->filename));
-        return $data;
+      if ($this->file != False) {
+        if (flock($this->file, LOCK_EX)) {
+          $data = fread($this->file, filesize($this->filename));
+          return $data;
+        }
+        fclose($this->file);
       }
-      fclose($this->file);
     }
     $this->write_access = False;
     return False;
