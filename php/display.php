@@ -6,6 +6,6 @@ $experiment = new Experiment($_REQUEST['exp']);
 
 $user = new User($experiment->owner);
 
-$page_header = "<h1>{$experiment->getName()}</h1>";
+$page_header = $experiment->getName();
 
 ?>

@@ -6,7 +6,7 @@ $experiment = new Experiment($_REQUEST['exp'], True);
 
 $user = new User($experiment->owner);
 
-$page_header = "<h1>{$experiment->getName()}</h1>";
+$page_header = $experiment->getName();
 
 if ($experiment->getStatus() != 'open') {
   $page = 'fully_subscribed';

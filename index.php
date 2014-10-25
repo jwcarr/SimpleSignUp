@@ -35,7 +35,7 @@ elseif ($page == 'confirm') { include('php/confirm.php'); }
 
 <body>
 
-<div id='header'><?php echo $page_header; ?></div>
+<div id='header'><h1><?php echo $page_header; ?></h1></div>
 
 <div id='body'>
 
