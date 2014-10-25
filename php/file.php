@@ -363,13 +363,18 @@ class File {
 
   private function openFileWithWriteAccess() {
     if (file_exists($this->filename)) {
-      $this->file = fopen($this->filename, 'c+');
-      if ($this->file != False) {
-        if (flock($this->file, LOCK_EX)) {
-          $data = fread($this->file, filesize($this->filename));
-          return $data;
+      for ($i=0; $i<5; $i++) {
+        if (is_writable($this->filename)) {
+          $this->file = fopen($this->filename, 'c+');
+          if ($this->file != False) {
+            if (flock($this->file, LOCK_EX)) {
+              $data = fread($this->file, filesize($this->filename));
+              return $data;
+            }
+            fclose($this->file);
+          }
         }
-        fclose($this->file);
+        sleep(2);
       }
     }
     $this->write_access = False;
