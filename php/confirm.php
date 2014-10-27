@@ -24,6 +24,7 @@ else {
   // Double check that the timeslot is still free
   if (count($experiment->getSlot($_REQUEST['timeslot'])) < $experiment->getPerSlot()) {
     $experiment->setSlot($_REQUEST['timeslot'], $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone']);
+    $experiment->addExclusionEmails(array($_REQUEST['email']));
     if ($experiment->saveExperimentData() == False) {
       $page = 'error';
       $error = '100';
