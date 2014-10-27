@@ -181,6 +181,7 @@ class Experiment {
 
   public function setExclusionEmails($exclusion_emails) {
     $this->exclusion_emails = $exclusion_emails;
+    $this->exclusion_emails = implode('; ', $this->exclusion_emails);
     $this->changed_data[] = 'exclusion_emails';
   }
 
