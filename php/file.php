@@ -280,7 +280,12 @@ class Experiment {
 
   public function setSlot($slot_id, $name, $email, $phone) {
     $slot_subjects = $this->getSlot($slot_id);
-    $slot_subjects[] = array($name, $email, $phone);
+    if ($phone == '') {
+      $slot_subjects[] = array($name, $email, 'Not provided');
+    }
+    else {
+      $slot_subjects[] = array($name, $email, $phone);
+    }
     $new_slot_subjects = array();
     foreach ($slot_subjects as $subject) {
       $new_slot_subjects[] = implode(', ', $subject);
