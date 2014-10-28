@@ -21,6 +21,25 @@ input{
   font-size: 15px;
 }
 
+a:link {
+  color: #3B6C9D;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #3B6C9D;
+  text-decoration: none;
+}
+
+a:active {
+  color: #3B6C9D;
+  text-decoration: none;
+}
+
+a:hover {
+  color: black;
+}
+
 #header{
   position: absolute;
   top: 0px;
