@@ -18,7 +18,7 @@ else {
     $excluded_email_addresses = array_merge($excluded_email_addresses, $alt_experiment->getExclusionEmails());
   }
 
-  if (in_array($_REQUEST['email'], $excluded_email_addresses)) {
+  if (in_array(strtolower($_REQUEST['email']), $excluded_email_addresses)) {
     $page = 'not_eligible';
     $user = new User($experiment->owner);
   }
