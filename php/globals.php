@@ -1,5 +1,8 @@
 <?php
 
+// Path to data folder from SimpleSignUp root
+$data_path = 'data/';
+
 // Set timezone for timestamps (default = UTC)
 date_default_timezone_set('UTC');
 

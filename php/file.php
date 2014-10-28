@@ -5,12 +5,13 @@ class Experiment {
   use Element_Extractor;
 
   public function __construct($experiment_id, $write_access=False) {
+    global $data_path;
     $this->id = $experiment_id;
 
-    $experiments_file = new File('data/experiments.data', False);
+    $experiments_file = new File($data_path .'experiments.data', False);
     $this->owner = $this->extractElement($this->id, $experiments_file->data);
 
-    $this->file = new File('data/users/'. $this->owner .'/'. $this->id .'.data', $write_access);
+    $this->file = new File($data_path .'users/'. $this->owner .'/'. $this->id .'.data', $write_access);
   }
 
   public function saveExperimentData() {
@@ -309,8 +310,9 @@ class User {
   use Element_Extractor, Value_Extractor;
 
   public function __construct($username) {
+    global $data_path;
     $this->username = $username;
-    $users_file = new File('data/users.data', False);
+    $users_file = new File($data_path .'users.data', False);
     $this->data = $this->extractElement($this->username, $users_file->data);
   }
 
