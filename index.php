@@ -17,7 +17,7 @@ if ($_REQUEST['page'] == '') {
     $page = 'display';
   }
   else {
-    $page = 'login';
+    $page = 'error'; $page_header = 'SimpleSignUp';
   }
 }
 else {
@@ -42,9 +42,7 @@ elseif ($page == 'confirm') { include('php/confirm.php'); }
 
 <?php
 
-if ($page == 'login') { include('html/login.html'); }
-
-elseif ($page == 'display') { include('html/display.html'); }
+if ($page == 'display') { include('html/display.html'); }
 
 elseif ($page == 'signup') { include('html/signup.html'); include('js/signup.js'); }
 
