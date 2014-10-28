@@ -337,6 +337,50 @@ class User {
     return $this->phone;
   }
 
+  public function getExperiments() {
+    if (isset($this->experiments) == False) {
+      $this->experiments = explode(', ', $this->extractValue('experiments', $this->data));
+      $this->open_experiments = array();
+      $this->closed_experiments = array();
+      foreach ($this->experiments as $experiment) {
+        $this->$experiment = new Experiment($experiment, False);
+        if ($this->$experiment->getStatus() == 'closed') {
+          $this->closed_experiments[] = $experiment;
+        }
+        else {
+          $this->open_experiments[] = $experiment;
+        }
+      }
+    }
+    return $this->experiments;
+  }
+
+  public function listOpenExperiments() {
+    if (count($this->open_experiments) > 0) {
+      echo '<ul>';
+      foreach ($this->open_experiments as $experiment) {
+        echo '<li>'. $this->$experiment->getName() .' [ <a href="index.php?page=view&exp='. $experiment .'">view</a> | <a href="index.php?page=edit&exp='. $experiment .'">edit</a> | <a href="index.php?page=delete&exp='. $experiment .'">delete</a> ]</li>';
+      }
+      echo '</ul>';
+    }
+    else {
+      echo "<p>You have no open experiments</p>";
+    }
+  }
+
+  public function listClosedExperiments() {
+    if (count($this->closed_experiments) > 0) {
+      echo '<ul>';
+      foreach ($this->closed_experiments as $experiment) {
+        echo '<li>'. $this->$experiment->getName() .' [ <a href="index.php?page=view&exp='. $experiment .'">view</a> | <a href="index.php?page=edit&exp='. $experiment .'">edit</a> | <a href="index.php?page=delete&exp='. $experiment .'">delete</a> ]</li>';
+      }
+      echo '</ul>';
+    }
+    else {
+      echo "<p>You have no closed experiments</p>";
+    }
+  }
+
 }
 
 class File {
