@@ -1,0 +1,27 @@
+<div id='content'>
+
+  <h2>Open experiments</h2>
+
+  <?php $user->listOpenExperiments(); ?>
+
+  <h2>Closed experiments</h2>
+
+  <?php $user->listClosedExperiments(); ?>
+
+</div>
+
+<div id='menu'>
+
+  <p><strong><?php echo $user->getName(); ?></strong></p>
+
+  <ul>
+
+    <li>Create new experiment</li>
+
+    <li>Edit my details</li>
+
+    <li>Change password</li>
+
+  </ul>
+
+</div>
