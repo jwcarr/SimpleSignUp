@@ -355,7 +355,7 @@ class User {
     return $this->experiments;
   }
 
-  public function listOpenExperiments() {
+  public function printOpenExperiments() {
     if (count($this->open_experiments) > 0) {
       echo '<ul>';
       foreach ($this->open_experiments as $experiment) {
@@ -368,7 +368,7 @@ class User {
     }
   }
 
-  public function listClosedExperiments() {
+  public function printClosedExperiments() {
     if (count($this->closed_experiments) > 0) {
       echo '<ul>';
       foreach ($this->closed_experiments as $experiment) {
