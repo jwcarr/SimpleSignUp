@@ -16,6 +16,12 @@ if ($_REQUEST['page'] == '') { $page = 'main'; }
 else { $page = $_REQUEST['page']; }
 
 if ($page == 'main') { include('php/main.php'); }
+elseif ($page == 'view') { include('php/view.php'); }
+elseif ($page == 'edit') { include('php/edit.php'); }
+elseif ($page == 'delete') { include('php/delete.php'); }
+elseif ($page == 'new') { include('php/new.php'); }
+elseif ($page == 'change_details') { include('php/change_details.php'); }
+elseif ($page == 'change_password') { include('php/change_password.php'); }
 
 ?>
 
