@@ -36,7 +36,12 @@ elseif ($page == 'change_password') { include('php/change_password.php'); }
 <?php
 
 if ($page == 'main') { include('html/main.html'); }
-
+elseif ($page == 'view') { include('html/view.html'); }
+elseif ($page == 'edit') { include('html/edit.html'); }
+elseif ($page == 'delete') { include('html/delete.html'); }
+elseif ($page == 'new') { include('html/new.html'); }
+elseif ($page == 'change_details') { include('html/change_details.html'); }
+elseif ($page == 'change_password') { include('html/change_password.html'); }
 else { $error = '404'; include('html/error.html'); }
 
 ?>
