@@ -1,0 +1,37 @@
+<div id='content'>
+
+  <h2>Edit my details</h2>
+
+  <p>Enter your details below. These details will be shown on your experiments’ pages and in emails to participants.</p>
+
+  <form method='post' action='index.php'>
+    <input type='hidden' name='page' value='save_details' />
+
+    <p><input type='text' name='name' value='<?php echo $user->getName(); ?>' size='30' placeholder='name' /></p>
+
+    <p><input type='text' name='email' value='<?php echo $user->getEmail(); ?>' size='30' placeholder='email' /></p>
+
+    <p><input type='text' name='phone' value='<?php echo $user->getPhone(); ?>' size='30' placeholder='phone' /></p>
+
+    <input type='submit' id='button' name='edit_details' value='Save' />
+  </form>
+
+</div>
+
+<div id='menu'>
+
+  <p><strong><?php echo $user->getName(); ?></strong></p>
+
+  <ul>
+
+    <li><a href='index.php?page=main'>My experiments</a></li>
+
+    <li><a href='index.php?page=new'>New experiment</a></li>
+
+    <li>Edit my details</li>
+
+    <li><a href='index.php?page=change_password'>Change my password</a></li>
+
+  </ul>
+
+</div>
