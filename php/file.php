@@ -2,8 +2,6 @@
 
 class Experiment {
 
-  use Element_Extractor;
-
   public function __construct($experiment_id, $write_access=False) {
     global $data_path;
     $this->id = $experiment_id;
@@ -339,11 +337,15 @@ class Experiment {
     }
   }
 
+  private function extractElement($element, $data) {
+    $pattern = '/' . $element . ' = \{(.*?)\}/';
+    preg_match($pattern, $data, $matches);
+    return trim($matches[1]);
+  }
+
 }
 
 class User {
-
-  use Element_Extractor, Value_Extractor;
 
   public function __construct($username) {
     global $data_path;
@@ -415,6 +417,18 @@ class User {
     else {
       echo "<p>You have no closed experiments</p>";
     }
+  }
+
+  private function extractElement($element, $data) {
+    $pattern = '/' . $element . ' = \{(.*?)\}/';
+    preg_match($pattern, $data, $matches);
+    return trim($matches[1]);
+  }
+
+  private function extractValue($value, $data) {
+    $pattern = '/' . $value . ' = \[(.*?)\]/';
+    preg_match($pattern, $data, $matches);
+    return trim($matches[1]);
   }
 
 }
@@ -492,24 +506,6 @@ class File {
     }
     $this->write_access = False;
     return False;
-  }
-
-}
-
-trait Element_Extractor {
-
-  public function extractElement($element, $data) {
-    $pattern = '/' . $element . ' = \{(.*?)\}/';
-    preg_match($pattern, $data, $matches);
-    return trim($matches[1]);
-  }
-}
-
-trait Value_Extractor {
-  public function extractValue($value, $data) {
-    $pattern = '/' . $value . ' = \[(.*?)\]/';
-    preg_match($pattern, $data, $matches);
-    return trim($matches[1]);
   }
 
 }
