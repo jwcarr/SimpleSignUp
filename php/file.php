@@ -303,6 +303,42 @@ class Experiment {
     $this->changed_data[] = $slot_key;
   }
 
+  public function printSchedule() {
+    foreach ($this->getCalendar() as $date=>$slots) {
+      $unix_date = strtotime($date);
+      if ($unix_date == strtotime(date('Y-m-d'))) {
+        $formatted_date = 'Today';
+      }
+      elseif ($unix_date == strtotime(date('Y-m-d')) + 86400) {
+        $formatted_date = 'Tomorrow';
+      }
+      else {
+        $formatted_date = date('l, jS F Y', $unix_date);
+      }
+      echo '<h3>' . $formatted_date . '</h3>';
+      if (count($slots) > 0) {
+        echo '<table>';
+        foreach ($slots as $time=>$slot) {
+          $subjects = explode('; ', $this->extractElement('slot'.$slot[1], $this->file->data));
+          for ($i=0; $i<$this->getPerSlot(); $i++) {
+            $subject_info = explode(', ', $subjects[$i]);
+            if ($i == 0) {
+              echo '<tr><td>' . $slot[0] . '</td><td>' . $subject_info[0] . '</td><td>' . $subject_info[1] . '</td><td>' . $subject_info[2] . '</td></tr>';
+            }
+            else {
+              echo '<tr><td></td><td>' . $subject_info[0] . '</td><td>' . $subject_info[1] . '</td><td>' . $subject_info[2] . '</td></tr>';
+            }
+
+          }
+        }
+        echo '</table>';
+      }
+      else {
+        echo '<p>You have not set up any slots for this date.</p>';
+      }
+    }
+  }
+
 }
 
 class User {
