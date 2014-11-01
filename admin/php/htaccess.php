@@ -4,7 +4,8 @@ class HTaccess {
 
   private $filename = '../../../server_data/ssu/htpasswd';
   private $data = '';
-  private $passwords = [];
+  private $passwords = array();
+  private $new_hash_method = True; // Set to True if using PHP >= 5.5. Uses password_hash() instead of crypt()
 
   public function __construct() {
     $this->data = $this->openPasswordFile();
@@ -12,10 +13,20 @@ class HTaccess {
   }
 
   public function changePassword($username, $password, $new_password) {
-    if (password_verify($password, $this->passwords[$username])) {
-      $this->passwords[$username] = password_hash($new_password, PASSWORD_DEFAULT);
-      if ($this->overwrite()) {
-        return True;
+    if ($this->new_hash_method == True) {
+      if (password_verify($password, $this->passwords[$username])) {
+        $this->passwords[$username] = password_hash($new_password, PASSWORD_DEFAULT);
+        if ($this->overwrite()) {
+          return True;
+        }
+      }
+    }
+    else {
+      if ($this->passwords[$username] == crypt($password, $this->passwords[$username])) {
+        $this->passwords[$username] = crypt($new_password);
+        if ($this->overwrite()) {
+          return True;
+        }
       }
     }
     return False;
