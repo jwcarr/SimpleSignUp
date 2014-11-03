@@ -1,11 +1,3 @@
-<!DOCTYPE HTML>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>SimpleSignUp</title>
-<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
-
-<script src='js/jquery.js'></script>
-
 <?php
 
 include('php/globals.php');
@@ -31,7 +23,12 @@ elseif ($page == 'summary') { include('php/summary.php'); }
 elseif ($page == 'confirm') { include('php/confirm.php'); }
 
 ?>
-
+<!DOCTYPE HTML>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>SimpleSignUp</title>
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
+<script src='js/jquery.js'></script>
 </head>
 
 <body>
