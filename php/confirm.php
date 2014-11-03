@@ -26,7 +26,7 @@ else {
     foreach ($experiment->getCalendar() as $date=>$slots) {
       foreach ($slots as $slot) {
         if ($slot[1] == $_REQUEST['timeslot']) {
-          $slot_date = $date;
+          $slot_date = date('l jS F', strtotime($date));
           $slot_time = $slot[0];
         }
       }
