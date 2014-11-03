@@ -23,12 +23,6 @@ else {
     $user = new User($experiment->owner);
   }
 
-  else {
-    if ($experiment->getPerSlot() > 1) {
-      $additional_message = "<strong>This experiment requires {$experiment->getPerSlot()} participants per timeslot.</strong> You will not be guaranteed a place on the experiment until {$experiment->getPerSlot()} people have signed up for your slot. If possible, please choose a slot that someone else has already signed up for (highlighted in green). You’ll receive an email to confirm when your slot has been filled.";
-    }
-  }
-
 }
 
 ?>
