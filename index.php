@@ -56,6 +56,8 @@ elseif ($page == 'not_eligible') { include('html/not_eligible.html'); }
 
 elseif ($page == 'fully_subscribed') { include('html/fully_subscribed.html'); }
 
+elseif ($page == 'error') { include('html/error.html'); }
+
 else { $error = '404'; include('html/error.html'); }
 
 ?>
