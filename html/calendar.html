@@ -15,7 +15,7 @@
       else { echo '<p>Please select a suitable time when you are free to take part in this experiment.</p>'; } ?>
 
     <?php if ($experiment->getPerSlot() > 1) {
-      echo "<p><strong>This experiment requires {$experiment->getPerSlot()} participants per timeslot.</strong> You will not be guaranteed a place on the experiment until {$experiment->getPerSlot()} people have signed up for your slot. If possible, please choose a slot that someone else has already signed up for (slots highlighted in green). You’ll receive an email to confirm when your slot has been filled.</p>"; } ?>
+      echo "<p><strong>This experiment requires {$experiment->getPerSlot()} participants per timeslot.</strong> You will not be guaranteed a place on the experiment until {$experiment->getPerSlot()} people have signed up for your slot. If possible, please choose a slot that someone else has already signed up for (the slots highlighted in green).</p>"; } ?>
 
     <?php $experiment->printCalendar(); ?>
 
