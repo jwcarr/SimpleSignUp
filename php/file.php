@@ -173,7 +173,13 @@ class Experiment {
 
   public function getExclusionEmails() {
     if (isset($this->exclusion_emails) == False) {
-      $this->exclusion_emails = explode('; ', $this->extractElement('exclusion_emails', $this->file->data));
+      $exclusion_emails = $this->extractElement('exclusion_emails', $this->file->data);
+      if ($exclusion_emails == '') {
+        $this->exclusion_emails = array();
+      }
+      else {
+        $this->exclusion_emails = explode('; ', $exclusion_emails);
+      }
     }
     return $this->exclusion_emails;
   }
