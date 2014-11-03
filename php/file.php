@@ -9,7 +9,7 @@ class Experiment {
     $experiments_file = new File($data_path .'experiments', False);
     $this->owner = $this->extractElement($this->id, $experiments_file->data);
 
-    $this->file = new File($data_path .'user_details/'. $this->owner .'/'. $this->id, $write_access);
+    $this->file = new File($data_path .'user_data/'. $this->owner .'/'. $this->id, $write_access);
   }
 
   public function saveExperimentData() {

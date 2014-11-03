@@ -51,7 +51,7 @@ This contains the details of the users (i.e. experimentors). Each line should co
 
 > *MY_USERNAME = { name = [MY_NAME], email = [MY_EMAIL_ADDRESS], phone = [MY_PHONE_NUMBER] }*
 
-### data/user_details/USERNAME/EXPERIMENT_ID
+### data/user_data/USERNAME/EXPERIMENT_ID
 
 These files contain the parameters that define an experiment. Currently, the following parameters should be set:
 
