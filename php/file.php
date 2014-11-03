@@ -343,6 +343,20 @@ class Experiment {
     }
   }
 
+  public function sendEmail($to_address, $from_name, $from_address, $content_ref, $fill_values) {
+    $email_content = $this->createEmailContent($content_ref, $fill_values);
+    return mail($to_address, $this->getName(), $email_content, "From: {$from_name} <{$from_address}>");
+  }
+
+  private function createEmailContent($content_ref, $fill_values) {
+    $content = $this->extractElement($content_ref, $this->file->data);
+    foreach ($fill_values as $key=>$value) {
+      $content = str_replace('<'. $key .'>', $value, $content);
+    }
+    $content = str_replace("\n", "\r\n", $content);
+    return $content;
+  }
+
   private function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
