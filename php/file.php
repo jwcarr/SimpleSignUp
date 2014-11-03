@@ -338,7 +338,7 @@ class Experiment {
   }
 
   private function extractElement($element, $data) {
-    $pattern = '/' . $element . ' = \{(.*?)\}/';
+    $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
     return trim($matches[1]);
   }
@@ -420,13 +420,13 @@ class User {
   }
 
   private function extractElement($element, $data) {
-    $pattern = '/' . $element . ' = \{(.*?)\}/';
+    $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
     return trim($matches[1]);
   }
 
   private function extractValue($value, $data) {
-    $pattern = '/' . $value . ' = \[(.*?)\]/';
+    $pattern = '/' . $value . ' = \[(.*?)\]/s';
     preg_match($pattern, $data, $matches);
     return trim($matches[1]);
   }
