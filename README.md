@@ -39,19 +39,19 @@ Data format
 
 All data is stored in plain text files to keep things simple. The format of these files is documented below:
 
-### data/experiments.data
+### data/experiments
 
 This provides a look-up table so that you can establish the owner of a given experiment ID. Each line should contain something like:
 
 > *MY_CHOSEN_EXPERIMENT_ID = {MY_USERNAME}*
 
-### data/users.data
+### data/users
 
 This contains the details of the users (i.e. experimentors). Each line should contain something like:
 
 > *MY_USERNAME = { name = [MY_NAME], email = [MY_EMAIL_ADDRESS], phone = [MY_PHONE_NUMBER] }*
 
-### data/users/USERNAME/EXPERIMENT_ID.data
+### data/user_details/USERNAME/EXPERIMENT_ID
 
 These files contain the parameters that define an experiment. Currently, the following parameters should be set:
 

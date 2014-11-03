@@ -6,10 +6,10 @@ class Experiment {
     global $data_path;
     $this->id = $experiment_id;
 
-    $experiments_file = new File($data_path .'experiments.data', False);
+    $experiments_file = new File($data_path .'experiments', False);
     $this->owner = $this->extractElement($this->id, $experiments_file->data);
 
-    $this->file = new File($data_path .'users/'. $this->owner .'/'. $this->id .'.data', $write_access);
+    $this->file = new File($data_path .'user_details/'. $this->owner .'/'. $this->id, $write_access);
   }
 
   public function saveExperimentData() {
@@ -221,7 +221,7 @@ class Experiment {
       $this->available_slots = array();
       foreach ($this->getCalendar() as $date=>$slots) {
         $unix_date = strtotime($date);
-        if ($unix_date-86400 > strtotime(date('Y-m-d'))) {
+        if ($unix_date > strtotime(date('Y-m-d'))) {
           foreach ($slots as $slot) {
             $num = count($this->slots[$slot[1]]);
             if ($num < $this->getPerSlot()) {
@@ -315,16 +315,16 @@ class Experiment {
       }
       echo '<h3>' . $formatted_date . '</h3>';
       if (count($slots) > 0) {
-        echo '<table>';
+        echo '<table style="width: 100%;">';
         foreach ($slots as $time=>$slot) {
           $subjects = explode('; ', $this->extractElement('slot'.$slot[1], $this->file->data));
           for ($i=0; $i<$this->getPerSlot(); $i++) {
             $subject_info = explode(', ', $subjects[$i]);
             if ($i == 0) {
-              echo '<tr><td>' . $slot[0] . '</td><td>' . $subject_info[0] . '</td><td>' . $subject_info[1] . '</td><td>' . $subject_info[2] . '</td></tr>';
+              echo '<tr><td>' . $slot[0] . '</td><td>' . $subject_info[0] . '</td><td><a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a></td><td>' . $subject_info[2] . '</td></tr>';
             }
             else {
-              echo '<tr><td></td><td>' . $subject_info[0] . '</td><td>' . $subject_info[1] . '</td><td>' . $subject_info[2] . '</td></tr>';
+              echo '<tr><td></td><td>' . $subject_info[0] . '</td><td><a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a></td><td>' . $subject_info[2] . '</td></tr>';
             }
 
           }
@@ -350,7 +350,7 @@ class User {
   public function __construct($username) {
     global $data_path;
     $this->username = $username;
-    $users_file = new File($data_path .'users.data', False);
+    $users_file = new File($data_path .'users', False);
     $this->data = $this->extractElement($this->username, $users_file->data);
   }
 
