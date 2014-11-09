@@ -263,11 +263,15 @@ class Experiment {
   }
 
   public function printAvailableDates() {
-    $available_dates = array();
     foreach ($this->getAvailableSlots() as $unix_date=>$slots) {
-      $available_dates[] = date('jS M', $unix_date);
+      $available_times = array();
+      foreach ($slots as $time=>$slot_info) {
+        $available_times[] = $time;
+      }
+      $available_times = implode(', ', $available_times);
+      $available_dates .= '<li>' . date('jS M', $unix_date) . ' (' . $available_times . ')</li>';
     }
-    return implode(', ', $available_dates);
+    return $available_dates;
   }
 
   private function getSlots() {

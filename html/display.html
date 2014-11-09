@@ -23,13 +23,13 @@ if ($experiment->getStatus() == 'open') {
     <p><input type='submit' id='button' name='signup' value='Sign up for this experiment' /></p>
   </form>
 
-  <h3>Available dates</h3>
-  <p>{$experiment->printAvailableDates()}</p>
+  <h3>Currently available times</h3>
+  <ul>{$experiment->printAvailableDates()}</ul>
   ";
 }
 elseif ($experiment->getStatus() == 'unavailable') {
   echo "
-  <h3>Available dates</h3>
+  <h3>Currently available times</h3>
   <p>Sorry – this experiment is fully subscribed at the moment. Please check back later.</p>
   ";
 }
