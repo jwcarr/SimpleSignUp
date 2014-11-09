@@ -26,7 +26,7 @@ elseif ($page == 'confirm') { include('php/confirm.php'); }
 <!DOCTYPE HTML>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>SimpleSignUp</title>
+<title><?php echo $page_header; ?></title>
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
 <script src='js/jquery.js'></script>
 </head>
