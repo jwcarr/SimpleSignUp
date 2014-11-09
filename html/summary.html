@@ -17,8 +17,10 @@
     <p><strong>Date:</strong> <?php echo date('l, jS F Y', strtotime($slot_date)); ?></p>
     <p><strong>Time:</strong> <?php echo $slot_time; ?></p>
 
-    <p><input type='submit' id='button' name='button' value='Sign Up' />
-    <input type='button' id='edit-button' name='edit-button' value='Edit Details' onclick='window.location = "<?php echo $edit_details_link; ?>"' /></p>
+    <div id='submit_container'>
+      <input type='submit' id='button' name='button' value='Sign Up' />
+      <input type='button' id='edit-button' name='edit-button' value='Edit Details' onclick='window.location = "<?php echo $edit_details_link; ?>"' />
+    </div>
   </form>
 
 </div>

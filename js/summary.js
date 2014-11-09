@@ -2,8 +2,7 @@
 
 $("#signup").submit( function() {
 
-  $("#button").attr("disabled", true);
-  $("#edit-button").attr("disabled", true);
+  $("#submit_container").html("<p>Please wait...</p>");
   return true;
 
 });
