@@ -60,4 +60,6 @@ function validatePhone(phone) {
     return re.test(phone);
 }
 
+$("#name").focus();
+
 </script>
