@@ -353,7 +353,7 @@ class Experiment {
     return mail($to_address, $this->getName(), $email_content, "From: {$from_name} <{$from_address}>");
   }
 
-  private function createEmailContent($content_ref, $fill_values) {
+  public function createEmailContent($content_ref, $fill_values) {
     $content = $this->extractElement($content_ref, $this->file->data);
     foreach ($fill_values as $key=>$value) {
       $content = str_replace('<'. $key .'>', $value, $content);
