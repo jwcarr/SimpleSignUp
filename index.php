@@ -4,6 +4,11 @@ include('php/globals.php');
 
 cleanInputVariables();
 
+// If this is a re-signup, delete the cookie for this experiment ID
+if ($_REQUEST['re-sign'] != '') {
+  setcookie($_REQUEST['exp'], '', time()-3600);
+}
+
 if ($_REQUEST['page'] == '') {
   if ($_REQUEST['exp'] != '') {
     $page = 'display';
