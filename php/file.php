@@ -314,10 +314,11 @@ class Experiment {
   public function printSchedule() {
     foreach ($this->getCalendar() as $date=>$slots) {
       $unix_date = strtotime($date);
-      if ($unix_date == strtotime(date('Y-m-d'))) {
+      $unix_today = strtotime(date('Y-m-d'));
+      if ($unix_date == $unix_today) {
         $formatted_date = 'Today';
       }
-      elseif ($unix_date == strtotime(date('Y-m-d')) + 86400) {
+      elseif ($unix_date == $unix_today + 86400) {
         $formatted_date = 'Tomorrow';
       }
       else {
