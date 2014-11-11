@@ -23,6 +23,7 @@ elseif ($page == 'new') { include('php/new.php'); }
 elseif ($page == 'change_details') { include('php/change_details.php'); }
 elseif ($page == 'change_password') { include('php/change_password.php'); }
 elseif ($page == 'save_password') { include('php/save_password.php'); }
+elseif ($page == 'remind') { include('php/remind.php'); }
 
 ?>
 
@@ -43,6 +44,7 @@ elseif ($page == 'delete') { include('html/delete.html'); }
 elseif ($page == 'new') { include('html/new.html'); }
 elseif ($page == 'change_details') { include('html/change_details.html'); }
 elseif ($page == 'change_password') { include('html/change_password.html'); }
+elseif ($page == 'remind') { include('html/remind.html'); }
 else { $error = '404'; include('html/error.html'); }
 
 ?>

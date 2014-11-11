@@ -1,0 +1,43 @@
+<div id='content'>
+
+  <h2><?php echo $experiment->getName(); ?></h2>
+
+  <p>Are you sure you want to send the following email?</p>
+
+  <p><strong>Name:</strong> <?php echo $subject_name; ?></p>
+
+  <p><strong>Email:</strong> <?php echo $subject_email; ?></p>
+
+  <p><strong>Message:</strong></p>
+
+  <p><?php echo $email_content; ?></p>
+
+  <form method='post' action='index.php'>
+    <input type='hidden' name='page' value='remind' />
+    <input type='hidden' name='confirm' value='true' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
+    <input type='hidden' name='slot_num' value='<?php echo $_REQUEST['slot_num']; ?>' />
+    <input type='hidden' name='subject' value='<?php echo $_REQUEST['subject']; ?>' />
+    <input type='hidden' name='time' value='<?php echo $_REQUEST['time']; ?>' />
+    <input type='submit' id='button' name='send_reminder' value='Send reminder' />
+  </form>
+
+</div>
+
+<div id='menu'>
+
+  <p><strong><?php echo $user->getName(); ?></strong></p>
+
+  <ul>
+
+    <li><a href='index.php?page=main'>My experiments</a></li>
+
+    <li><a href='index.php?page=new'>New experiment</a></li>
+
+    <li><a href='index.php?page=change_details'>Edit my details</a></li>
+
+    <li><a href='index.php?page=change_password'>Change my password</a></li>
+
+  </ul>
+
+</div>

@@ -332,11 +332,13 @@ class Experiment {
           for ($i=0; $i<$this->getPerSlot(); $i++) {
             $subject_info = explode(', ', $subjects[$i]);
             if ($i == 0) {
-              echo '<tr><td>' . $slot[0] . '</td><td>' . $subject_info[0] . '</td><td><a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a></td><td>' . $subject_info[2] . '</td></tr>';
+              echo '<tr><td>' . $slot[0] . '</td><td>' . $subject_info[0] . '</td><td><a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a></td><td>' . $subject_info[2] . '</td>';
             }
             else {
-              echo '<tr><td></td><td>' . $subject_info[0] . '</td><td><a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a></td><td>' . $subject_info[2] . '</td></tr>';
+              echo '<tr><td></td><td>' . $subject_info[0] . '</td><td><a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a></td><td>' . $subject_info[2] . '</td>';
             }
+            if ($formatted_date == 'Tomorrow' AND count($subject_info) == 3) { echo '<td><a href="index.php?page=remind&exp='. $this->id . '&slot_num='. $slot[1] .'&subject='. $i .'&time='. $slot[0] .'">remind</a></td>'; }
+            echo '</tr>';
 
           }
         }
