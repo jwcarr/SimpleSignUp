@@ -52,7 +52,24 @@ $("#signup").submit( function() {
 
 function validateEmail(email) {
     var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
+    if (re.test(email) == true) {
+      if (validateEdEmail(email) == true) {
+        return true;
+      }
+    }
+    return false;
+}
+
+function validateEdEmail(email) {
+  var re = /^[sS]\d{7}@/;
+  if (re.test(email) == true) {
+    var re = /^[sS]\d{7}@sms\.ed\.ac\.uk$/;
+    if (re.test(email) == false) {
+      alert("Your email should end with '@sms.ed.ac.uk'.");
+      return false;
+    }
+  }
+  return true;
 }
 
 function validatePhone(phone) {
