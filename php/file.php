@@ -352,7 +352,8 @@ class Experiment {
 
   public function sendEmail($to_address, $from_name, $from_address, $content_ref, $fill_values) {
     $email_content = $this->createEmailContent($content_ref, $fill_values);
-    return mail($to_address, $this->getName(), $email_content, "From: {$from_name} <{$from_address}>");
+    $email_headers = "From: {$from_name} <{$from_address}>\r\nContent-Type: text/plain; charset=UTF-8";
+    return mail($to_address, $this->getName(), $email_content, $email_headers);
   }
 
   public function createEmailContent($content_ref, $fill_values) {
