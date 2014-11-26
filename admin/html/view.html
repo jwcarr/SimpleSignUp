@@ -4,13 +4,17 @@
 
   <h2><?php echo $experiment->getName(); ?></h2>
 
-  <form method='post' action='index.php'>
-    <input type='hidden' name='page' value='button_switch' />
-    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
-    <input type='submit' id='button' name='edit_experiment' value='Edit experiment' />
-    <input type='submit' id='orange-button' name='close_experiment' value='Close experiment' />
-    <input type='submit' id='red-button' name='delete_experiment' value='Delete experiment' />
-  </form>
+  <div style='text-align: center;'>
+
+    <button id='green-button'>Live view</button>
+
+    <button id='button'>Edit experiment</button>
+
+    <button id='orange-button'>Close experiment</button>
+
+    <button id='red-button'>Delete experiment</button>
+
+  </div>
 
   <?php echo $schedule; ?>
 
