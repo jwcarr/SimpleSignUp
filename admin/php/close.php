@@ -8,8 +8,8 @@ if (isset($_REQUEST['status'])) {
   $experiment = new Experiment($_REQUEST['exp'], True);
   $experiment->setStatus($_REQUEST['status']);
   if ($experiment->saveExperimentData() == True) {
-    $notification = '"' . $experiment->getName() . '" has now been ';
-    if ($_REQUEST['status'] == 'close') { $notification .= 'closed'; }
+    $notification = '"' . $experiment->getName() . '" has been ';
+    if ($_REQUEST['status'] == 'closed') { $notification .= 'closed'; }
     else { $notification .= 'opened'; }
     $page = 'main';
     $experiments = $user->getExperiments();
