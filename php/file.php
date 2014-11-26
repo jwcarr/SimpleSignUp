@@ -425,7 +425,7 @@ class User {
     if (count($this->open_experiments) > 0) {
       echo '<ul>';
       foreach ($this->open_experiments as $experiment) {
-        echo '<li>'. $this->$experiment->getName() .' [ <a href="index.php?page=view&exp='. $experiment .'">view</a> | <a href="index.php?page=edit&exp='. $experiment .'">edit</a> | <a href="index.php?page=delete&exp='. $experiment .'">delete</a> ]</li>';
+        echo '<li><a href="index.php?page=view&exp='. $experiment .'">'. $this->$experiment->getName() .'</a></li>';
       }
       echo '</ul>';
     }
@@ -438,7 +438,7 @@ class User {
     if (count($this->closed_experiments) > 0) {
       echo '<ul>';
       foreach ($this->closed_experiments as $experiment) {
-        echo '<li>'. $this->$experiment->getName() .' [ <a href="index.php?page=view&exp='. $experiment .'">view</a> | <a href="index.php?page=edit&exp='. $experiment .'">edit</a> | <a href="index.php?page=delete&exp='. $experiment .'">delete</a> ]</li>';
+        echo '<li><a href="index.php?page=view&exp='. $experiment .'">'. $this->$experiment->getName() .'</a></li>';
       }
       echo '</ul>';
     }
