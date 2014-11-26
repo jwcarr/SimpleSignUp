@@ -14,7 +14,7 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
 
   if ($unix_date < $unix_today) {
     if ($time_point != 'past') {
-      $schedule .= '<div id="view-title-past"><h3>► Completed</h3></div><div id="view-past"><table style="width: 100%;">';
+      $schedule .= '<div id="view-title-past"><h3>► Completed</h3></div><div id="view-past"><table style="width: 100%; border-spacing: 10px;">';
       $time_point = 'past';
     }
   }
@@ -23,7 +23,7 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
       $schedule .= '</table></div>';
     }
     if ($time_point != 'present') {
-      $schedule .= '<div id="view-title-present"><h3>▼ Today</h3></div><div id="view-present"><table style="width: 100%;">';
+      $schedule .= '<div id="view-title-present"><h3>▼ Today</h3></div><div id="view-present"><table style="width: 100%; border-spacing: 10px;">';
       $time_point = 'present';
     }
   }
@@ -32,7 +32,7 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
       $schedule .= '</table></div>';
     }
     if ($time_point != 'future') {
-      $schedule .= '<div id="view-title-future"><h3>► Upcoming</h3></div><div id="view-future"><table style="width: 100%;">';
+      $schedule .= '<div id="view-title-future"><h3>► Upcoming</h3></div><div id="view-future"><table style="width: 100%; border-spacing: 10px;">';
       $time_point = 'future';
     }
   }
