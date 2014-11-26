@@ -7,23 +7,41 @@
   <form method='post' action='index.php'>
     <input type='hidden' name='page' value='save_edits' />
 
-    <p><input type='text' name='name' value='<?php echo $experiment->getName(); ?>' size='45' /></p>
+    <p><strong>Experiment name</strong><br />
+      <input type='text' name='name' value='<?php echo $experiment->getName(); ?>' style='width: 100%;' />
+    </p>
 
-    <p><input type='text' name='location' value='<?php echo $experiment->getLocation(); ?>' size='45' /></p>
+    <p><strong>Location</strong><br />
+      <input type='text' name='location' value='<?php echo $experiment->getLocation(); ?>' style='width: 100%;' />
+    </p>
 
-    <textarea cols="50" rows="10"><?php echo $experiment->getDescription(); ?></textarea>
+    <p><strong>Description</strong><br />
+      <textarea rows="10" style='width: 100%;'><?php echo $experiment->getDescription(); ?></textarea>
+    </p>
 
-    <p><input type='text' name='requirements' value='<?php echo $experiment->getRequirements(); ?>' size='30' /></p>
+    <div id='left-column'>
 
-    <p><input type='text' name='exclusions' value='<?php echo $experiment->getExclusions(); ?>' size='30' /></p>
+      <p><strong>Requirements (1 per line)</strong><br />
+        <textarea name='requirements' rows="5" style='width: 90%;'><?php echo $requirements; ?></textarea>
+      </p>
 
-    <p><input type='text' name='max_participants' value='<?php echo $experiment->getMaxParticipants(); ?>' size='5' /></p>
+      <p><strong>Maximum participants</strong><br />
+        <input type='text' name='max_participants' value='<?php echo $experiment->getMaxParticipants(); ?>' size='5' />
+      </p>
 
-    <p><input type='text' name='per_slot' value='<?php echo $experiment->getPerSlot(); ?>' size='5' /></p>
+    </div>
 
-    <p><input type='text' name='number_of_slots' value='<?php echo $experiment->getNumOfSlots(); ?>' size='5' /></p>
+    <div id='right-column'>
 
-    <p><input type='text' name='slot_time' value='<?php echo $experiment->getSlotTime(); ?>' size='5' /></p>
+      <p><strong>Exclusions (1 per line)</strong><br />
+        <textarea name='exclusions' rows="5" style='width: 90%;'><?php echo $exclusions; ?></textarea>
+      </p>
+
+      <p><strong>Number of participants per time slot</strong><br />
+        <input type='text' name='per_slot' value='<?php echo $experiment->getPerSlot(); ?>' size='5' />
+      </p>
+
+    </div>
 
     <input type='submit' id='button' name='edit_details' value='Save' />
   </form>
