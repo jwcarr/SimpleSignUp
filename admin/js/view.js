@@ -3,6 +3,7 @@
 var past = false;
 var present = true;
 var future = false;
+var experiment_id = '<?php echo $experiment->id; ?>';
 
 $( document ).ready( function() {
   $("#view-past").hide();
@@ -43,6 +44,22 @@ $( "#view-title-future" ).click( function() {
     $("#view-title-future").html("<h3>▼ Upcoming</h3>");
     future = true;
   }
+});
+
+$("#green-button").click( function() {
+  window.location = '../?exp=' + experiment_id;
+});
+
+$("#button").click( function() {
+  window.location = 'index.php?page=edit&exp=' + experiment_id;
+});
+
+$("#orange-button").click( function() {
+  window.location = 'index.php?page=close&exp=' + experiment_id;
+});
+
+$("#red-button").click( function() {
+  window.location = 'index.php?page=delete&exp=' + experiment_id;
 });
 
 </script>
