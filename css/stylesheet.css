@@ -95,6 +95,14 @@ a:hover {
   font-weight: bold;
 }
 
+#green-button{
+  background-color: #EAF2E8;
+  color: black;
+  border: solid 2px #5D9648;
+  font-size: 13px;
+  font-weight: bold;
+}
+
 #orange-button{
   background-color: #F8EFE4;
   color: black;
