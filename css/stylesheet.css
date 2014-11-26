@@ -175,12 +175,12 @@ a:hover {
   cursor: pointer;
 }
 
-#open-experiments{
+#left-column{
   width: 50%;
   float: left;
 }
 
-#closed-experiments{
+#right-column{
   width: 50%;
   float: right;
 }
