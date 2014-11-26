@@ -7,6 +7,7 @@ $user = new User($username);
 $experiment = new Experiment($_REQUEST['exp']);
 
 $unix_today = strtotime(date('Y-m-d'));
+$unix_tomorrow = $unix_today + 86400;
 
 foreach ($experiment->getCalendar() as $date=>$slots) {
   $unix_date = strtotime($date);
@@ -37,6 +38,10 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
   }
 
   $schedule .= '<tr><td colspan="4"><strong>'. date('l, jS F Y', $unix_date) .'</strong></td></tr>';
+
+  if ($unix_date == $unix_tomorrow) {
+    $schedule .= '<tr><td colspan="4"><form method="post" action="index.php"><input type="hidden" name="page" value="remind" /><input type="hidden" name="exp" value="<?php echo $experiment->id; ?>" /><input type="submit" id="button" name="send_reminder" value="Send reminder emails to tomorrow’s participants" /></form></td></tr>';
+  }
 
   foreach ($slots as $time=>$slot) {
     $subjects = explode('; ', $experiment->extractElement('slot'.$slot[1], $experiment->file->data));
