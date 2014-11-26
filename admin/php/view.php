@@ -6,4 +6,58 @@ $user = new User($username);
 
 $experiment = new Experiment($_REQUEST['exp']);
 
+$unix_today = strtotime(date('Y-m-d'));
+
+foreach ($experiment->getCalendar() as $date=>$slots) {
+  $unix_date = strtotime($date);
+
+  if ($unix_date < $unix_today) {
+    if ($time_point != 'past') {
+      $schedule .= '<div id="view-title-past"><h3>► Completed</h3></div><div id="view-past"><table style="width: 100%;">';
+      $time_point = 'past';
+    }
+  }
+  elseif ($unix_date == $unix_today) {
+    if ($time_point == 'past') {
+      $schedule .= '</table></div>';
+    }
+    if ($time_point != 'present') {
+      $schedule .= '<div id="view-title-present"><h3>▼ Today</h3></div><div id="view-present"><table style="width: 100%;">';
+      $time_point = 'present';
+    }
+  }
+  elseif ($unix_date > $unix_today) {
+    if ($time_point == 'past' OR $time_point == 'present') {
+      $schedule .= '</table></div>';
+    }
+    if ($time_point != 'future') {
+      $schedule .= '<div id="view-title-future"><h3>► Upcoming</h3></div><div id="view-future"><table style="width: 100%;">';
+      $time_point = 'future';
+    }
+  }
+
+  $schedule .= '<tr><td colspan="4"><strong>'. date('l, jS F Y', $unix_date) .'</strong></td></tr>';
+
+  foreach ($slots as $time=>$slot) {
+    $subjects = explode('; ', $experiment->extractElement('slot'.$slot[1], $experiment->file->data));
+    for ($i=0; $i<$experiment->getPerSlot(); $i++) {
+      $subject_info = explode(', ', $subjects[$i]);
+      if (count($subject_info) != 3) {
+        $subject_info = array('-', '-', '-');
+      }
+      if ($subject_info[1] != '-') {
+        $subject_info[1] = '<a href="index.php?page=remind&amp;exp='. $experiment->id . '&amp;slot_num='. $slot[1] .'&amp;subject='. $i .'&amp;time='. $slot[0] .'">' . $subject_info[1] . '</a>';
+      }
+      if ($i == 0) {
+        $show_time = $slot[0];
+      }
+      else {
+        $show_time = '';
+      }
+      $schedule .= '<tr><td width="10%">' . $show_time . '</td><td width="30%">' . $subject_info[0] . '</td><td width="40%">' . $subject_info[1] .'</td><td width="20%">' . $subject_info[2] . '</td></tr>';
+    }
+  }
+}
+$schedule .= '</table></div>';
+
 ?>
