@@ -23,7 +23,7 @@ You'll need a server capable of running PHP scripts. You'll need suitable permis
 Important security matter
 -------------------------
 
-To protect the personal details of your participants, you must secure SimpleSignUp's /data/ directory from unauthorized access. To do this, set up a .htaccess file in this directory. If you do not do this, anyone could grab your participants' details, which would be bad. In the future, the plan is to automate this process and allow you to give access to your colleagues.
+To protect the personal details of your participants, you must secure SimpleSignUp's /data/ directory from unauthorized access. The best way to do this is to place the file in the webserver's root above the directory level that's world accessible. An alternate approach would be to set up a .htaccess file in the data directory. If you do not secure the data directory, anyone could grab your participants' details, and that would be bad.
 
 
 Limitations
