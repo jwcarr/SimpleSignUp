@@ -9,11 +9,17 @@
   <form method='post' action='index.php'>
     <input type='hidden' name='page' value='save_details' />
 
-    <p><input type='text' name='name' value='<?php echo $user->getName(); ?>' size='30' placeholder='name' /></p>
+    <p><strong>Name</strong><br />
+      <input type='text' name='name' value='<?php echo $user->getName(); ?>' size='30' />
+    </p>
 
-    <p><input type='text' name='email' value='<?php echo $user->getEmail(); ?>' size='30' placeholder='email' /></p>
+    <p><strong>Email</strong><br />
+      <input type='text' name='email' value='<?php echo $user->getEmail(); ?>' size='30' />
+    </p>
 
-    <p><input type='text' name='phone' value='<?php echo $user->getPhone(); ?>' size='30' placeholder='phone' /></p>
+    <p><strong>Phone</strong><br />
+      <input type='text' name='phone' value='<?php echo $user->getPhone(); ?>' size='30' />
+    </p>
 
     <input type='submit' id='button' name='edit_details' value='Save' />
   </form>
