@@ -4,13 +4,21 @@
 
   <h2>My experiments</h2>
 
-  <h3>Open experiments</h3>
+  <div id='open-experiments'>
 
-  <?php $user->printOpenExperiments(); ?>
+    <h3>Open experiments</h3>
 
-  <h3>Closed experiments</h3>
+    <?php $user->printOpenExperiments(); ?>
 
-  <?php $user->printClosedExperiments(); ?>
+  </div>
+
+  <div id='closed-experiments'>
+
+    <h3>Closed experiments</h3>
+
+    <?php $user->printClosedExperiments(); ?>
+    
+  </div>
 
 </div>
 
