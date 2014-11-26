@@ -4,12 +4,13 @@
 
   <h2><?php echo $experiment->getName(); ?></h2>
 
-  <p>Are you sure you wish to close this experiment? Once an experiment is closed, participants will no longer be able to sign up. You will still be able to reopen the experiment at a later time.</p>
+  <p><?php echo $warning_message; ?></p>
 
   <form method='post' action='index.php'>
-    <input type='hidden' name='page' value='confirm_close' />
-    <input type='hidden' name='exp' value='' />
-    <input type='submit' id='orange-button' name='close' value='Close experiment' />
+    <input type='hidden' name='page' value='close' />
+    <input type='hidden' name='status' value='<?php echo $change_status; ?>' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
+    <input type='submit' id='orange-button' name='close' value='<?php echo $button_text; ?>' />
   </form>
 
 </div>
