@@ -1,0 +1,33 @@
+<div id='content'>
+
+  <?php echo $notification; ?>
+
+  <h2><?php echo $experiment->getName(); ?></h2>
+
+  <p>Are you sure you wish to close this experiment? Once an experiment is closed, participants will no longer be able to sign up. You will still be able to reopen the experiment at a later time.</p>
+
+  <form method='post' action='index.php'>
+    <input type='hidden' name='page' value='confirm_close' />
+    <input type='hidden' name='exp' value='' />
+    <input type='submit' id='orange-button' name='close' value='Close experiment' />
+  </form>
+
+</div>
+
+<div id='menu'>
+
+  <p><strong><?php echo $user->getName(); ?></strong></p>
+
+  <ul>
+
+    <li><a href='index.php?page=main'>My experiments</a></li>
+
+    <li><a href='index.php?page=new'>New experiment</a></li>
+
+    <li><a href='index.php?page=change_details'>Edit my details</a></li>
+
+    <li><a href='index.php?page=change_password'>Change my password</a></li>
+
+  </ul>
+
+</div>
