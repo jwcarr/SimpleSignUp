@@ -365,7 +365,7 @@ class Experiment {
     return $content;
   }
 
-  private function extractElement($element, $data) {
+  public function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
     return trim($matches[1]);
