@@ -46,7 +46,7 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
         $subject_info = array('-', '-', '-');
       }
       if ($subject_info[1] != '-') {
-        $subject_info[1] = '<a href="index.php?page=remind&amp;exp='. $experiment->id . '&amp;slot_num='. $slot[1] .'&amp;subject='. $i .'&amp;time='. $slot[0] .'">' . $subject_info[1] . '</a>';
+        $subject_info[1] = '<a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a>';
       }
       if ($i == 0) {
         $show_time = $slot[0];
