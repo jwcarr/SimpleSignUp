@@ -311,45 +311,6 @@ class Experiment {
     $this->changed_data[] = $slot_key;
   }
 
-  public function printSchedule() {
-    foreach ($this->getCalendar() as $date=>$slots) {
-      $unix_date = strtotime($date);
-      $unix_today = strtotime(date('Y-m-d'));
-      if ($unix_date == $unix_today) {
-        $formatted_date = 'Today';
-      }
-      elseif ($unix_date == $unix_today + 86400) {
-        $formatted_date = 'Tomorrow';
-      }
-      else {
-        $formatted_date = date('l, jS F Y', $unix_date);
-      }
-      echo '<h3>' . $formatted_date . '</h3>';
-      if (count($slots) > 0) {
-        echo '<table style="width: 100%;">';
-        foreach ($slots as $time=>$slot) {
-          $subjects = explode('; ', $this->extractElement('slot'.$slot[1], $this->file->data));
-          for ($i=0; $i<$this->getPerSlot(); $i++) {
-            $subject_info = explode(', ', $subjects[$i]);
-            if ($i == 0) {
-              echo '<tr><td>' . $slot[0] . '</td><td>' . $subject_info[0] . '</td><td><a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a></td><td>' . $subject_info[2] . '</td>';
-            }
-            else {
-              echo '<tr><td></td><td>' . $subject_info[0] . '</td><td><a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a></td><td>' . $subject_info[2] . '</td>';
-            }
-            if ($formatted_date == 'Tomorrow' AND count($subject_info) == 3) { echo '<td><a href="index.php?page=remind&exp='. $this->id . '&slot_num='. $slot[1] .'&subject='. $i .'&time='. $slot[0] .'">remind</a></td>'; }
-            echo '</tr>';
-
-          }
-        }
-        echo '</table>';
-      }
-      else {
-        echo '<p>You have not set up any slots for this date.</p>';
-      }
-    }
-  }
-
   public function sendEmail($to_address, $from_name, $from_address, $content_ref, $fill_values) {
     $email_content = $this->createEmailContent($content_ref, $fill_values);
     $email_headers = "From: {$from_name} <{$from_address}>\r\nContent-Type: text/plain; charset=UTF-8";
