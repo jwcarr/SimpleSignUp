@@ -85,6 +85,7 @@ a:hover {
   border: solid 2px #3B6C9D;
   font-size: 13px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 #edit-button{
@@ -93,6 +94,7 @@ a:hover {
   border: solid 2px grey;
   font-size: 13px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 #green-button{
@@ -101,6 +103,7 @@ a:hover {
   border: solid 2px #5D9648;
   font-size: 13px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 #orange-button{
@@ -109,6 +112,7 @@ a:hover {
   border: solid 2px #E8A13D;
   font-size: 13px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 #red-button{
@@ -117,6 +121,7 @@ a:hover {
   border: solid 2px #B22B3B;
   font-size: 13px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 #status-closed{
