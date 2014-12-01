@@ -149,6 +149,23 @@ class Experiment {
       foreach ($calendar as $date) {
         $date_times = explode(': ', $date);
         $d[$date_times[0]] = explode(', ', $date_times[1]);
+  public function deleteSubject($date, $time, $subject_number) {
+    $calendar = $this->getCalendar();
+    $subject_email = $calendar[$date][$time][$subject_number][1];
+    unset($calendar[$date][$time][$subject_number]);
+    if (count($calendar[$date][$time]) == 0) {
+      $calendar[$date][$time] = None;
+    }
+    else {
+      $calendar[$date][$time] = array_values($calendar[$date][$time]);
+    }
+    print_r($calendar[$date][$time]);
+    $this->calendar = $calendar;
+    $this->changed_data[] = 'calendar';
+    $this->removeExclusionEmail($subject_email);
+    $this->setExclusionEmails();
+  }
+
       }
       $this->calendar = array();
       foreach ($d as $date=>$slots) {
