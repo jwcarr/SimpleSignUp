@@ -402,6 +402,15 @@ class User {
     $this->changed_data[] = 'experiments';
   }
 
+  private function getExperimentObjects() {
+    if (isset($this->experiment_objects) == False) {
+      $this->experiment_objects = array();
+      foreach ($this->getExperiments() as $experiment) {
+        $this->experiment_objects[] = new Experiment($experiment, False);
+      }
+    }
+  }
+
   private function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
