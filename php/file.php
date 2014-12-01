@@ -402,32 +402,6 @@ class User {
     $this->changed_data[] = 'experiments';
   }
 
-  public function printOpenExperiments() {
-    if (count($this->open_experiments) > 0) {
-      echo '<ul>';
-      foreach ($this->open_experiments as $experiment) {
-        echo '<li><a href="index.php?page=view&exp='. $experiment .'">'. $this->$experiment->getName() .'</a></li>';
-      }
-      echo '</ul>';
-    }
-    else {
-      echo "<p>You have no open experiments</p>";
-    }
-  }
-
-  public function printClosedExperiments() {
-    if (count($this->closed_experiments) > 0) {
-      echo '<ul>';
-      foreach ($this->closed_experiments as $experiment) {
-        echo '<li><a href="index.php?page=view&exp='. $experiment .'">'. $this->$experiment->getName() .'</a></li>';
-      }
-      echo '</ul>';
-    }
-    else {
-      echo "<p>You have no closed experiments</p>";
-    }
-  }
-
   private function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
