@@ -26,8 +26,8 @@
         <textarea name='requirements' rows="5" style='width: 90%;'><?php echo $requirements; ?></textarea>
       </p>
 
-      <p><strong>Maximum participants</strong><br />
-        <input type='text' name='max_participants' value='<?php echo $experiment->getMaxParticipants(); ?>' size='5' />
+      <p><strong>Number of participants per time slot</strong><br />
+        <input type='text' name='per_slot' value='<?php echo $experiment->getPerSlot(); ?>' size='5' />
       </p>
 
     </div>
@@ -38,9 +38,6 @@
         <textarea name='exclusions' rows="5" style='width: 90%;'><?php echo $exclusions; ?></textarea>
       </p>
 
-      <p><strong>Number of participants per time slot</strong><br />
-        <input type='text' name='per_slot' value='<?php echo $experiment->getPerSlot(); ?>' size='5' />
-      </p>
       <button type='submit' class='blue'>Save changes</button>
 
     </div>
