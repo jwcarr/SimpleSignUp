@@ -409,6 +409,17 @@ class User {
     $this->data = $this->extractElement($this->username, $this->users_file->data);
   }
 
+  public function saveUserDetails() {
+    $new_user_data = $this->data;
+    foreach ($this->changed_data as $parameter) {
+      $old_piece = $parameter . ' = [' . $this->extractValue($parameter, $this->data) . ']';
+      $new_piece = $parameter . ' = [' . $this->$parameter . ']';
+      $new_user_data = str_replace($old_piece, $new_piece, $new_user_data);
+    }
+    $old_piece = $this->username . ' = { ' . $this->data . ' }';
+    $new_piece = $this->username . ' = { ' . $new_user_data . ' }';
+    $this->users_file->data = str_replace($old_piece, $new_piece, $this->users_file->data);
+    return $this->users_file->overwrite();
   }
 
   public function getName() {
