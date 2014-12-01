@@ -14,7 +14,8 @@ class Experiment {
   public function saveExperimentData() {
     foreach ($this->changed_data as $parameter) {
       $old_piece = $parameter . ' = {' . $this->extractElement($parameter, $this->file->data) . '}';
-      $new_piece = $parameter . ' = {' . $this->$parameter . '}';
+      if ($parameter == 'calendar') { $new_piece = $parameter . ' = {' . $this->flattenCalendar() . '}'; }
+      else { $new_piece = $parameter . ' = {' . $this->$parameter . '}'; }
       $this->file->data = str_replace($old_piece, $new_piece, $this->file->data);
     }
     return $this->file->overwrite();
