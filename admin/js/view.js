@@ -46,19 +46,19 @@ $( "#view-title-future" ).click( function() {
   }
 });
 
-$("#green-button").click( function() {
+$("#live_view").click( function() {
   window.location = '../?exp=' + experiment_id;
 });
 
-$("#button").click( function() {
+$("#edit_experiment").click( function() {
   window.location = 'index.php?page=edit&exp=' + experiment_id;
 });
 
-$("#orange-button").click( function() {
+$("#change_status").click( function() {
   window.location = 'index.php?page=close&exp=' + experiment_id;
 });
 
-$("#red-button").click( function() {
+$("#delete_experiment").click( function() {
   window.location = 'index.php?page=delete&exp=' + experiment_id;
 });
 
