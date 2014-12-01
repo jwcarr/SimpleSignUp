@@ -225,6 +225,14 @@ class Experiment {
     $this->exclusion_emails = array_merge($this->getExclusionEmails(), array_map('strtolower', $exclusion_emails));
   }
 
+  private function removeExclusionEmail($email) {
+    $exclusion_emails = $this->getExclusionEmails();
+    if (($key = array_search(strtolower($email), $exclusion_emails)) !== False) {
+      unset($exclusion_emails[$key]);
+    }
+    $this->exclusion_emails = $exclusion_emails;
+  }
+
   public function printRequirements() {
     $requirements = $this->getRequirements();
     foreach ($requirements as $requirement) {
