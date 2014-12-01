@@ -42,6 +42,7 @@ else {
       $experiment->setSlot($_REQUEST['timeslot'], $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone']);
       // Add the participant's email to the list of excluded email addresses
       $experiment->addExclusionEmails(array($_REQUEST['email']));
+      $experiment->setExclusionEmails();
       // If the new data is successfully written out...
       if ($experiment->saveExperimentData() == True) {
         // If this is a multi-person experiment AND the slot is now full...
