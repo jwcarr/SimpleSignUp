@@ -23,15 +23,10 @@ else {
   }
 
   else {
-    foreach ($experiment->getCalendar() as $date=>$slots) {
-      foreach ($slots as $slot) {
-        if ($slot[1] == $_REQUEST['timeslot']) {
-          $slot_date = date('l jS F', strtotime($date));
-          $slot_time = $slot[0];
-          break 2;
-        }
-      }
-    }
+    $date_time = explode('|', $_REQUEST['timeslot']);
+    $date = $date_time[0];
+    $time = $date_time[1];
+    $formatted_date = date('l jS F', strtotime($date));
 
     // Get a list of the participants who have currently signed up for this slot
     $current_subjects = $experiment->getSlot($_REQUEST['timeslot']);
