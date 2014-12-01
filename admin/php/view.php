@@ -1,6 +1,6 @@
 <?php
 
-include("../php/file.php");
+include_once("../php/file.php");
 
 $user = new User($username);
 
