@@ -60,8 +60,10 @@ class Experiment {
   }
 
   public function setDescription($description) {
-    $this->description = $description;
-    $this->changed_data[] = 'description';
+    if ($description != $this->getDescription()) {
+      $this->description = $description;
+      $this->changed_data[] = 'description';
+    }
   }
 
   public function getLocation() {
