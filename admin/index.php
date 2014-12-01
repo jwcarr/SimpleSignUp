@@ -59,6 +59,12 @@ else { $error = '404'; include('html/error.html'); }
 
 </div>
 
+<script>
+  if ($("#notification").length) {
+    setTimeout("$('#notification').slideUp(duration=150);", 20000);
+  }
+</script>
+
 </body>
 
 </html>
