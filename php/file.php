@@ -126,6 +126,13 @@ class Experiment {
         $date_times = explode(': ', $date);
         $d[$date_times[0]] = explode(', ', $date_times[1]);
 
+  public function getSlot($date, $time) {
+    $calendar = $this->getCalendar();
+    $slot = $calendar[$date][$time];
+    if ($slot == None) { $slot = array(); }
+    return $slot;
+  }
+
   public function addToSlot($date, $time, $name, $email, $phone) {
     $slot = $this->getSlot($date, $time);
     if ($phone == '') { $phone = 'Not provided'; }
