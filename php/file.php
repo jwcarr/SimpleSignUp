@@ -275,24 +275,22 @@ class Experiment {
   }
 
   public function printCalendar() {
-    foreach ($this->getAvailableSlots() as $unix_date=>$slots) {
-      if (count($slots) > 0) {
-        echo '<h3>' . date('l, jS F Y', $unix_date) . '</h3>';
-        echo '<table><tr>';
-        foreach ($slots as $time=>$slot) {
-          echo '<td align="center" width="50px">' . $time . '</td>';
-        }
-        echo '</tr><tr>';
-        foreach ($slots as $time=>$slot) {
-          if ($slot[1] == 0) {
-            echo '<td align="center"><input type="radio" name="timeslot" value="'. $slot[0] . '" /></td>';
-          }
-          else {
-            echo '<td align="center" style="background-color: #EAF2E8;"><input type="radio" name="timeslot" value="'. $slot[0] . '" /></td>';
-          }
-        }
-        echo '</tr></table>';
+    foreach ($this->getAvailableSlots() as $date=>$times) {
+      echo '<h3>' . date('l, jS F Y', strtotime($date)) . '</h3>';
+      echo '<table><tr>';
+      foreach ($times as $time=>$slot_count) {
+        echo '<td align="center" width="50px">' . $time . '</td>';
       }
+      echo '</tr><tr>';
+      foreach ($times as $time=>$slot_count) {
+        if ($slot_count == 0) {
+          echo '<td align="center"><input type="radio" name="timeslot" value="'. $date . '|'. $time .'" /></td>';
+        }
+        else {
+          echo '<td align="center" style="background-color: #EAF2E8;"><input type="radio" name="timeslot" value="'. $date . '|'. $time .'" /></td>';
+        }
+      }
+      echo '</tr></table>';
     }
   }
 
