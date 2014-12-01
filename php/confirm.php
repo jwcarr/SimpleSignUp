@@ -29,7 +29,7 @@ else {
     $formatted_date = date('l jS F', strtotime($date));
 
     // Get a list of the participants who have currently signed up for this slot
-    $current_subjects = $experiment->getSlot($_REQUEST['timeslot']);
+    $current_subjects = $experiment->getSlot($date, $time);
 
     // Double check that the timeslot is still free
     if (count($current_subjects) < $experiment->getPerSlot()) {
