@@ -1,14 +1,25 @@
 <script>
 
-var past = false;
-var present = true;
-var future = false;
-var experiment_id = '<?php echo $experiment->id; ?>';
-
-$( document ).ready( function() {
+if ($("#view-present").length) {
+  var past = false;
+  var present = true;
+  var future = false;
+  $("#view-title-present").html("<h3>▼ Today</h3>");
   $("#view-past").hide();
   $("#view-future").hide();
-});
+}
+else if ($("#view-future").length) {
+  var past = false;
+  var future = true;
+  $("#view-title-future").html("<h3>▼ Upcoming</h3>");
+  $("#view-past").hide();
+}
+else {
+  var past = true;
+  $("#view-title-past").html("<h3>▼ Completed</h3>");
+}
+
+var experiment_id = '<?php echo $experiment->id; ?>';
 
 $( "#view-title-past" ).click( function() {
   $("#view-past").slideToggle(duration=150);
