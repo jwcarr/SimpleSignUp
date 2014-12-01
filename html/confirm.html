@@ -5,8 +5,8 @@
 
   <p>
   <strong>Location:</strong> <?php echo $experiment->getLocation(); ?><br />
-  <strong>Date:</strong> <?php echo $slot_date; ?><br />
-  <strong>Time:</strong> <?php echo $slot_time; ?>
+  <strong>Date:</strong> <?php echo date('l, jS F Y', strtotime($date)); ?><br />
+  <strong>Time:</strong> <?php echo $time; ?>
   </p>
 
   <p>
