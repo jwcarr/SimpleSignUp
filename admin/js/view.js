@@ -62,6 +62,14 @@ $("#delete_experiment").click( function() {
   window.location = 'index.php?page=delete&exp=' + experiment_id;
 });
 
+$("#reload").click( function() {
+  window.location = 'index.php?page=view&exp=' + experiment_id;
+});
+
+$("#reminders").click( function() {
+  window.location = 'index.php?page=remind&exp=' + experiment_id;
+});
 
 setTimeout("$('#notification').slideUp(duration=150);", 30000);
+
 </script>
