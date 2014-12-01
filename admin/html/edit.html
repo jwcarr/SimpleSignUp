@@ -6,6 +6,7 @@
 
   <form method='post' action='index.php'>
     <input type='hidden' name='page' value='save_edits' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
 
     <p><strong>Experiment name</strong><br />
       <input type='text' name='name' value='<?php echo $experiment->getName(); ?>' style='width: 100%;' />
