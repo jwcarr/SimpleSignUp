@@ -456,7 +456,7 @@ class File {
 
   private function openFileWithWriteAccess() {
     if (file_exists($this->filename)) {
-      for ($i=0; $i<5; $i++) {
+      for ($i=0; $i<10; $i++) {
         if (is_writable($this->filename)) {
           $this->file = fopen($this->filename, 'a+');
           if ($this->file != False) {
@@ -467,7 +467,7 @@ class File {
             fclose($this->file);
           }
         }
-        sleep(2);
+        sleep(1);
       }
       $this->write_access = False;
       return $this->openFileWithoutWriteAccess();
