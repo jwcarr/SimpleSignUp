@@ -306,6 +306,18 @@ class Experiment {
     return $available_dates;
   }
 
+  public function printAltTimeslots($current_date, $current_time) {
+    $available_times = '';
+    foreach ($this->getAvailableSlots(True) as $date=>$times) {
+      foreach ($times as $time=>$slot_count) {
+        if ($date == $current_date AND $time == $current_time) {} else {
+          $available_times .= '<option value="'. $date . '|'. $time .'">' . date('jS M', strtotime($date)) . ', ' . $time . ' (' . $slot_count . ')</option>';
+        }
+      }
+    }
+    return $available_times;
+  }
+
   public function sendEmail($to_address, $from_name, $from_address, $content_ref, $fill_values) {
     $email_content = $this->createEmailContent($content_ref, $fill_values);
     $email_headers = "From: {$from_name} <{$from_address}>\r\nContent-Type: text/plain; charset=UTF-8";
