@@ -2,7 +2,9 @@
 
 include_once("../php/file.php");
 
-$user = new User($username);
+if (isset($user) == False) {
+  $user = new User($username);
+}
 
 $experiment = new Experiment($_REQUEST['exp']);
 
