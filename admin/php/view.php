@@ -27,7 +27,7 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
       $schedule .= '</table></div>';
     }
     if ($time_point != 'present') {
-      $schedule .= '<div id="view-title-present"><h3>▼ Today</h3></div><div id="view-present"><table style="width: 100%; border-spacing: 10px;">';
+      $schedule .= '<div id="view-title-present"><h3>► Today</h3></div><div id="view-present"><table style="width: 100%; border-spacing: 10px;">';
       $time_point = 'present';
     }
   }
