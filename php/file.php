@@ -223,8 +223,6 @@ class Experiment {
 
   public function addExclusionEmails($exclusion_emails) {
     $this->exclusion_emails = array_merge($this->getExclusionEmails(), array_map('strtolower', $exclusion_emails));
-    $this->exclusion_emails = implode('; ', $this->exclusion_emails);
-    $this->changed_data[] = 'exclusion_emails';
   }
 
   public function printRequirements() {
