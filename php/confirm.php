@@ -34,7 +34,7 @@ else {
     // Double check that the timeslot is still free
     if (count($current_subjects) < $experiment->getPerSlot()) {
       // Set the time slot with the participant's details
-      $experiment->setSlot($_REQUEST['timeslot'], $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone']);
+      $experiment->addToSlot($date, $time, $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone']);
       // Add the participant's email to the list of excluded email addresses
       $experiment->addExclusionEmails(array($_REQUEST['email']));
       $experiment->setExclusionEmails();
