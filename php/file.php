@@ -104,18 +104,6 @@ class Experiment {
     $this->changed_data[] = 'exclusions';
   }
 
-  public function getMaxParticipants() {
-    if (isset($this->max_participants) == False) {
-      $this->max_participants = $this->extractElement('max_participants', $this->file->data);
-    }
-    return $this->max_participants;
-  }
-
-  public function setMaxParticipants($max_participants) {
-    $this->max_participants = $max_participants;
-    $this->changed_data[] = 'max_participants';
-  }
-
   public function getPerSlot() {
     if (isset($this->per_slot) == False) {
       $this->per_slot = $this->extractElement('per_slot', $this->file->data);
