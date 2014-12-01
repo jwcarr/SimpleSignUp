@@ -346,6 +346,13 @@ class User {
     return $this->name;
   }
 
+  public function setName($name) {
+    if ($name != $this->getName()) {
+      $this->name = $name;
+      $this->changed_data[] = 'name';
+    }
+  }
+
   public function getEmail() {
     if (isset($this->email) == False) {
       $this->email = $this->extractValue('email', $this->data);
@@ -353,11 +360,25 @@ class User {
     return $this->email;
   }
 
+  public function setEmail($email) {
+    if ($email != $this->getName()) {
+      $this->email = $email;
+      $this->changed_data[] = 'email';
+    }
+  }
+
   public function getPhone() {
     if (isset($this->phone) == False) {
       $this->phone = $this->extractValue('phone', $this->data);
     }
     return $this->phone;
+  }
+
+  public function setPhone($phone) {
+    if ($phone != $this->getPhone()) {
+      $this->phone = $phone;
+      $this->changed_data[] = 'phone';
+    }
   }
 
   public function getExperiments() {
