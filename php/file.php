@@ -29,8 +29,10 @@ class Experiment {
   }
 
   public function setName($name) {
-    $this->name = $name;
-    $this->changed_data[] = 'name';
+    if ($name != $this->getName()) {
+      $this->name = $name;
+      $this->changed_data[] = 'name';
+    }
   }
 
   public function getStatus() {
