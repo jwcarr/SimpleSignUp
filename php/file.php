@@ -161,6 +161,12 @@ class Experiment {
     $this->calendar[$date][$time] = $slot;
     $this->changed_data[] = 'calendar';
   }
+
+  public function getSubject($date, $time, $subject_number) {
+    $slot = $this->getSlot($date, $time, $subject_number);
+    return $slot[$subject_number];
+  }
+
   public function deleteSubject($date, $time, $subject_number) {
     $calendar = $this->getCalendar();
     $subject_email = $calendar[$date][$time][$subject_number][1];
