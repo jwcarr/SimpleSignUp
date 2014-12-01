@@ -1,0 +1,61 @@
+<div id='content'>
+
+  <?php echo $notification; ?>
+
+  <h2><?php echo $experiment->getName(); ?></h2>
+
+  <form method='post' action='index.php'>
+    <input type='hidden' name='page' value='edit_subject' />
+    <input type='hidden' name='confirm' value='true' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
+    <input type='hidden' name='date' value='<?php echo $_REQUEST['date']; ?>' />
+    <input type='hidden' name='time' value='<?php echo $_REQUEST['time']; ?>' />
+    <input type='hidden' name='subject' value='<?php echo $_REQUEST['subject']; ?>' />
+
+    <p><strong>Name</strong><br />
+      <input type='text' name='name' size='30' id='name' autocomplete='off' value='<?php echo $subject[0]; ?>' />
+    </p>
+
+    <p><strong>Email</strong><br />
+      <input type='text' name='email' size='30' id='email' autocomplete='off' value='<?php echo $subject[1]; ?>' />
+    </p>
+
+    <p><strong>Phone number</strong><br />
+      <input type='text' name='phone' size='30' id='phone' autocomplete='off' value='<?php echo $subject[2]; ?>' />
+    </p>
+
+    <p><strong>Change timeslot</strong><br />
+      <select name='new_timeslot'>
+        <option value='none'>Current: <?php echo $current_timeslot; ?></option>
+        <option value='none'>----------</option>
+        <?php echo $alt_timeslots; ?>
+      </select>
+    </p>
+
+    <p>
+      <input type='checkbox' name='send_emails' value='checked' /> Notify other participants if the new timeslot is completed by this change of time
+    </p>
+
+    <button type='submit' class='blue'>Save changes</button>
+    
+  </form>
+
+</div>
+
+<div id='menu'>
+
+  <p><strong><?php echo $user->getName(); ?></strong></p>
+
+  <ul>
+
+    <li><a href='index.php?page=main'>My experiments</a></li>
+
+    <li><a href='index.php?page=new'>New experiment</a></li>
+
+    <li><a href='index.php?page=change_details'>Edit my details</a></li>
+
+    <li><a href='index.php?page=change_password'>Change my password</a></li>
+
+  </ul>
+
+</div>
