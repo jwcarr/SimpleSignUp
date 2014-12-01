@@ -15,13 +15,6 @@ $username = $_SERVER['PHP_AUTH_USER'];
 if ($_REQUEST['page'] == '') { $page = 'main'; }
 else { $page = $_REQUEST['page']; }
 
-if ($page == 'button_switch') {
-  echo $_REQUEST['edit_experiment'];
-  if (isset($_REQUEST['edit_experiment'])) { $page = 'edit'; }
-  elseif (isset($_REQUEST['close_experiment'])) { $page = 'close'; }
-  elseif (isset($_REQUEST['delete_experiment'])) { $page = 'delete'; }
-}
-
 if ($page == 'main') { include('php/main.php'); }
 elseif ($page == 'view') { include('php/view.php'); }
 elseif ($page == 'edit') { include('php/edit.php'); }
