@@ -115,11 +115,34 @@ class Experiment {
 
   public function getCalendar() {
     if (isset($this->calendar) == False) {
-      $calendar = explode('; ', $this->extractElement('calendar', $this->file->data));
-      $d = array();
-      foreach ($calendar as $date) {
-        $date_times = explode(': ', $date);
-        $d[$date_times[0]] = explode(', ', $date_times[1]);
+      $this->calendar = array();
+      $date_data = explode("\n", $this->extractElement('calendar', $this->file->data));
+      $dates_array = array();
+      foreach ($date_data as $date_datum) {
+        $date_times = explode(' ~ ', $date_datum);
+        $time_data = explode('; ', $date_times[1]);
+        $times_array = array();
+        foreach ($time_data as $time_datum) {
+          $time = explode(' = ', $time_datum)[0];
+          $subjects = $this->extractValue($time, $time_datum);
+          if ($subjects == '') {
+            $times_array[$time] = None;
+          }
+          else {
+            $subject_data = explode(' & ', $subjects);
+            $subjects_array = array();
+            foreach ($subject_data as $subject_datum) {
+              $subjects_array[] = explode(', ', $subject_datum);
+            }
+            $times_array[$time] = $subjects_array;
+          }
+        }
+        $dates_array[$date_times[0]] = $times_array;
+      }
+      $this->calendar = $dates_array;
+    }
+    return $this->calendar;
+  }
 
   public function flattenCalendar() {
     $date_array = array();
@@ -180,17 +203,19 @@ class Experiment {
   }
 
       }
-      $this->calendar = array();
-      foreach ($d as $date=>$slots) {
-        $b = array();
-        foreach ($d[$date] as $slot) {
-          $b[] = explode(' = ', $slot);
         }
-        $this->calendar[$date] = $b;
       }
     }
-    return $this->calendar;
+    $this->calendar = $calendar;
+    $this->changed_data[] = 'calendar';
+    if ($subject_email != $email) {
+      $this->removeExclusionEmail($subject_email);
+      $this->addExclusionEmails(array($email));
+      $this->setExclusionEmails();
+    }
+    return True;
   }
+
   public function getExclusionEmails() {
     if (isset($this->exclusion_emails) == False) {
       $exclusion_emails = $this->extractElement('exclusion_emails', $this->file->data);
