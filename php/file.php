@@ -306,43 +306,6 @@ class Experiment {
     return $available_dates;
   }
 
-  private function getSlots() {
-    $this->slots = array();
-    for ($i=1; $i<=$this->getNumOfSlots(); $i++) {
-      $this->slots[$i] = $this->getSlot($i);
-    }
-  }
-
-  public function getSlot($number) {
-    $slot_data = $this->extractElement('slot'.$number, $this->file->data);
-    $participants = explode('; ', $slot_data);
-    $subjects = array();
-    foreach ($participants as $participant) {
-      $subject = explode(', ', $participant);
-      if (count($subject) == 3) {
-        $subjects[] = $subject;
-      }
-    }
-    return $subjects;
-  }
-
-  public function setSlot($slot_id, $name, $email, $phone) {
-    $slot_subjects = $this->getSlot($slot_id);
-    if ($phone == '') {
-      $slot_subjects[] = array($name, $email, 'Not provided');
-    }
-    else {
-      $slot_subjects[] = array($name, $email, $phone);
-    }
-    $new_slot_subjects = array();
-    foreach ($slot_subjects as $subject) {
-      $new_slot_subjects[] = implode(', ', $subject);
-    }
-    $slot_key = 'slot' . $slot_id;
-    $this->$slot_key = implode('; ', $new_slot_subjects);
-    $this->changed_data[] = $slot_key;
-  }
-
   public function sendEmail($to_address, $from_name, $from_address, $content_ref, $fill_values) {
     $email_content = $this->createEmailContent($content_ref, $fill_values);
     $email_headers = "From: {$from_name} <{$from_address}>\r\nContent-Type: text/plain; charset=UTF-8";
