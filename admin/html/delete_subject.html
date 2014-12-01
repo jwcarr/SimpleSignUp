@@ -1,0 +1,39 @@
+<div id='content'>
+
+  <?php echo $notification; ?>
+
+  <h2><?php echo $experiment->getName(); ?></h2>
+
+  <p>Are you sure you wish to delete "<?php echo $subject[0]; ?>"? This will remove the participant’s email from the lits of excluded emails and open up the slot for another participant.</p>
+
+  <p><strong>Warning:</strong> this action cannot be undone.</p>
+
+  <form method='post' action='index.php'>
+    <input type='hidden' name='page' value='delete_subject' />
+    <input type='hidden' name='confirm' value='true' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
+    <input type='hidden' name='date' value='<?php echo $_REQUEST['date']; ?>' />
+    <input type='hidden' name='time' value='<?php echo $_REQUEST['time']; ?>' />
+    <input type='hidden' name='subject' value='<?php echo $_REQUEST['subject']; ?>' />
+    <button type='submit' class='red'>Delete participant</button>
+  </form>
+
+</div>
+
+<div id='menu'>
+
+  <p><strong><?php echo $user->getName(); ?></strong></p>
+
+  <ul>
+
+    <li><a href='index.php?page=main'>My experiments</a></li>
+
+    <li><a href='index.php?page=new'>New experiment</a></li>
+
+    <li><a href='index.php?page=change_details'>Edit my details</a></li>
+
+    <li><a href='index.php?page=change_password'>Change my password</a></li>
+
+  </ul>
+
+</div>
