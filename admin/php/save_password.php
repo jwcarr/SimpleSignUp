@@ -4,7 +4,6 @@ include('../php/file.php');
 include('php/htaccess.php');
 
 $user = new User($username);
-$experiments = $user->getExperiments();
 
 if ($_REQUEST['password1'] == $_REQUEST['password2']) {
   $ht_password_file = new HTaccess();
