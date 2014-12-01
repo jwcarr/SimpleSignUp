@@ -41,30 +41,45 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
     }
   }
 
-  $schedule .= '<tr><td colspan="4"><strong>'. date('l, jS F Y', $unix_date) .'</strong></td></tr>';
-
-  if ($unix_date == $unix_tomorrow) {
-    $schedule .= '<tr><td colspan="4"><form method="post" action="index.php"><input type="hidden" name="page" value="remind" /><input type="hidden" name="exp" value="<?php echo $experiment->id; ?>" /><input type="submit" id="button" name="send_reminder" value="Send reminder emails to tomorrow’s participants" /></form></td></tr>';
-  }
+  $schedule .= '<tr><td colspan="5"><strong>'. date('l, jS F Y', $unix_date) .'</strong></td></tr>';
 
   foreach ($slots as $time=>$slot) {
-    $subjects = explode('; ', $experiment->extractElement('slot'.$slot[1], $experiment->file->data));
     for ($i=0; $i<$experiment->getPerSlot(); $i++) {
-      $subject_info = explode(', ', $subjects[$i]);
-      if (count($subject_info) != 3) {
-        $subject_info = array('-', '-', '-');
-      }
-      if ($subject_info[1] != '-') {
-        $subject_info[1] = '<a href="mailto:' . $subject_info[1] . '">' . $subject_info[1] . '</a>';
-      }
-      if ($i == 0) {
-        $show_time = $slot[0];
+      if ($i == 0) { $show_time = $time; } else { $show_time = ''; }
+      if ($slot == None) {
+        $schedule .= '<tr>
+        <td width="10%">' . $show_time . '</td>
+        <td width="25%">-</td>
+        <td width="35%">-</td>
+        <td width="20%">-</td>
+        <td width="10%"></td>
+        </tr>';
       }
       else {
-        $show_time = '';
+        if (isset($slot[$i])) {
+          $subject = $slot[$i];
+          $schedule .= '<tr>
+          <td width="10%">' . $show_time . '</td>
+          <td width="25%">' . $subject[0] . '</td>
+          <td width="35%">' . $subject[1] .'</td>
+          <td width="20%">' . $subject[2] . '</td>
+          <td width="10%"><a href="index.php?page=edit_subject&exp='. $experiment->id .'&date='. $date .'&time='. $time .'&subject='. $i .'">✎</a>&nbsp;<a href="index.php?page=delete_subject&exp='. $experiment->id .'&date='. $date .'&time='. $time .'&subject='. $i .'">✘</a></td>
+          </tr>';
+        }
+        else {
+          $schedule .= '<tr>
+          <td width="10%">' . $show_time . '</td>
+          <td width="25%">-</td>
+          <td width="35%">-</td>
+          <td width="20%">-</td>
+          <td width="10%"></td>
+          </tr>';
+        }
       }
-      $schedule .= '<tr><td width="10%">' . $show_time . '</td><td width="30%">' . $subject_info[0] . '</td><td width="40%">' . $subject_info[1] .'</td><td width="20%">' . $subject_info[2] . '</td></tr>';
     }
+  }
+  if ($unix_date == $unix_tomorrow) {
+    $schedule .= '<tr><td colspan="2"></td><td colspan="3"><button id="reminders" class="green">Send reminder emails for tomorrow</button></td></tr>';
   }
 }
 $schedule .= '</table></div>';
