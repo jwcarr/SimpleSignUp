@@ -328,6 +328,12 @@ class Experiment {
     return trim($matches[1]);
   }
 
+  private function extractValue($value, $data) {
+    $pattern = '/' . $value . ' = \[(.*?)\]/s';
+    preg_match($pattern, $data, $matches);
+    return trim($matches[1]);
+  }
+
 }
 
 class User {
