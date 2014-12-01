@@ -402,11 +402,13 @@ class Experiment {
 
 class User {
 
-  public function __construct($username) {
+  public function __construct($username, $write_access=False) {
     global $data_path;
     $this->username = $username;
-    $users_file = new File($data_path .'users', False);
-    $this->data = $this->extractElement($this->username, $users_file->data);
+    $this->users_file = new File($data_path .'users', $write_access);
+    $this->data = $this->extractElement($this->username, $this->users_file->data);
+  }
+
   }
 
   public function getName() {
