@@ -62,4 +62,6 @@ $("#red-button").click( function() {
   window.location = 'index.php?page=delete&exp=' + experiment_id;
 });
 
+
+setTimeout("$('#notification').slideUp(duration=150);", 30000);
 </script>
