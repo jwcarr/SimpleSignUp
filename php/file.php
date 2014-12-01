@@ -125,6 +125,14 @@ class Experiment {
       foreach ($calendar as $date) {
         $date_times = explode(': ', $date);
         $d[$date_times[0]] = explode(', ', $date_times[1]);
+
+  public function addToSlot($date, $time, $name, $email, $phone) {
+    $slot = $this->getSlot($date, $time);
+    if ($phone == '') { $phone = 'Not provided'; }
+    $slot[] = array($name, $email, $phone);
+    $this->calendar[$date][$time] = $slot;
+    $this->changed_data[] = 'calendar';
+  }
   public function deleteSubject($date, $time, $subject_number) {
     $calendar = $this->getCalendar();
     $subject_email = $calendar[$date][$time][$subject_number][1];
