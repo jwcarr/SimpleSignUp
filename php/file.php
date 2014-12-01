@@ -118,18 +118,6 @@ class Experiment {
     }
   }
 
-  public function getSlotTime() {
-    if (isset($this->slot_time) == False) {
-      $this->slot_time = $this->extractElement('slot_time', $this->file->data);
-    }
-    return $this->slot_time;
-  }
-
-  public function setSlotTime($slot_time) {
-    $this->slot_time = $slot_time;
-    $this->changed_data[] = 'slot_time';
-  }
-
   public function getCalendar() {
     if (isset($this->calendar) == False) {
       $calendar = explode('; ', $this->extractElement('calendar', $this->file->data));
