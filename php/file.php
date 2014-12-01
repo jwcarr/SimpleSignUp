@@ -191,12 +191,6 @@ class Experiment {
     }
     return $this->calendar;
   }
-
-  public function setCalendar($calendar) {
-    $this->calendar = $calendar;
-    $this->changed_data[] = 'calendar';
-  }
-
   public function getExclusionEmails() {
     if (isset($this->exclusion_emails) == False) {
       $exclusion_emails = $this->extractElement('exclusion_emails', $this->file->data);
