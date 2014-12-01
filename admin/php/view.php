@@ -70,10 +70,10 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
 $schedule .= '</table></div>';
 
 if ($experiment->getStatus() == 'closed') {
-  $change_status = 'Open experiment';
+  $change_status = '⎋ Open experiment';
 }
 else {
-  $change_status = 'Close experiment';
+  $change_status = '⎋ Close experiment';
 }
 
 ?>
