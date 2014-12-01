@@ -124,8 +124,10 @@ class Experiment {
   }
 
   public function setPerSlot($per_slot) {
-    $this->per_slot = $per_slot;
-    $this->changed_data[] = 'per_slot';
+    if ($perSlot != $this->getPerSlot()) {
+      $this->per_slot = $per_slot;
+      $this->changed_data[] = 'per_slot';
+    }
   }
 
   public function getNumOfSlots() {
