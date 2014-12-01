@@ -10,17 +10,10 @@ if ($experiment->getStatus() != 'open') {
   $page = 'fully_subscribed';
 }
 else {
-  foreach ($experiment->getCalendar() as $date=>$slots) {
-    foreach ($slots as $slot) {
-      if ($slot[1] == $_REQUEST['timeslot']) {
-        $slot_date = $date;
-        $slot_time = $slot[0];
-      }
-    }
-  }
-
-  // Double check that the timeslot is still free
-  if (count($experiment->getSlot($_REQUEST['timeslot'])) < $experiment->getPerSlot()) {
+  $date_time = explode('|', $_REQUEST['timeslot']);
+  $date = $date_time[0];
+  $time = $date_time[1];
+  if (count($experiment->getSlot($date, $time)) < $experiment->getPerSlot()) {
     $edit_details_link = "index.php?page=signup&exp={$experiment->id}&name={$_REQUEST['name']}&email={$_REQUEST['email']}&phone={$_REQUEST['phone']}";
   }
   else {
