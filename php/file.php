@@ -180,8 +180,8 @@ class Experiment {
     return $this->exclusion_emails;
   }
 
-  public function setExclusionEmails($exclusion_emails) {
-    $this->exclusion_emails = array_map('strtolower', $exclusion_emails);
+  public function setExclusionEmails() {
+    $this->exclusion_emails = array_map('strtolower', $this->exclusion_emails);
     $this->exclusion_emails = implode('; ', $this->exclusion_emails);
     $this->changed_data[] = 'exclusion_emails';
   }
