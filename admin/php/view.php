@@ -6,7 +6,9 @@ if (isset($user) == False) {
   $user = new User($username);
 }
 
-$experiment = new Experiment($_REQUEST['exp']);
+if (isset($experiment) == False) {
+  $experiment = new Experiment($_REQUEST['exp']);
+}
 
 $unix_today = strtotime(date('Y-m-d'));
 $unix_tomorrow = $unix_today + 86400;
