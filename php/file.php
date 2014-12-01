@@ -411,6 +411,24 @@ class User {
     }
   }
 
+  public function printExperimentList($status) {
+    if (isset($this->experiment_objects) == False) {
+      $this->getExperimentObjects();
+    }
+    if (count($this->experiment_objects) > 0) {
+      echo '<ul>';
+      foreach ($this->experiment_objects as $experiment) {
+        if ($experiment->getStatus() == $status) {
+          echo '<li><a href="index.php?page=view&exp='. $experiment->id .'">'. $experiment->getName() .'</a></li>';
+        }
+      }
+      echo '</ul>';
+    }
+    else {
+      echo "<p>None</p>";
+    }
+  }
+
   private function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
