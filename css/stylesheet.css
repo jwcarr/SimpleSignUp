@@ -21,11 +21,6 @@ input{
   font-size: 15px;
 }
 
-textarea {
-  border: solid 1px black;
-  font-size: 15px;
-}
-
 a:link {
   color: #3B6C9D;
   text-decoration: none;
@@ -97,33 +92,6 @@ a:hover {
   cursor: pointer;
 }
 
-#green-button{
-  background-color: #EAF2E8;
-  color: black;
-  border: solid 2px #5D9648;
-  font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#orange-button{
-  background-color: #F8EFE4;
-  color: black;
-  border: solid 2px #E8A13D;
-  font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-#red-button{
-  background-color: #F5E3E6;
-  color: black;
-  border: solid 2px #B22B3B;
-  font-size: 13px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
 #status-closed{
   background-color: #F5E3E6;
   color: #B22B3B;
@@ -139,53 +107,4 @@ a:hover {
   width: 100%;
   padding-left: 20px;
   line-height: 50px;
-}
-
-#view-past{
-  width: 100%;
-  padding-left: 20px;
-}
-
-#view-present{
-  width: 100%;
-  padding-left: 20px;
-}
-
-#view-future{
-  width: 100%;
-  padding-left: 20px;
-}
-
-#view-title-past{
-  background-color: #E6ECF3;
-  width: 100%;
-  padding-left: 20px;
-  line-height: 30px;
-  cursor: pointer;
-}
-
-#view-title-present{
-  background-color: #E6ECF3;
-  width: 100%;
-  padding-left: 20px;
-  line-height: 30px;
-  cursor: pointer;
-}
-
-#view-title-future{
-  background-color: #E6ECF3;
-  width: 100%;
-  padding-left: 20px;
-  line-height: 30px;
-  cursor: pointer;
-}
-
-#left-column{
-  width: 50%;
-  float: left;
-}
-
-#right-column{
-  width: 50%;
-  float: right;
 }
