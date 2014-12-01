@@ -2,7 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>SimpleSignUp Admin Area</title>
-<link rel="stylesheet" type="text/css" href="../css/stylesheet.css" />
+<link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
 
 <script src='../js/jquery.js'></script>
 
