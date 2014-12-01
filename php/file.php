@@ -5,11 +5,10 @@ class Experiment {
   public function __construct($experiment_id, $write_access=False) {
     global $data_path;
     $this->id = $experiment_id;
-
     $experiments_file = new File($data_path .'experiments', False);
     $this->owner = $this->extractElement($this->id, $experiments_file->data);
-
     $this->file = new File($data_path .'user_data/'. $this->owner .'/'. $this->id, $write_access);
+    $this->changed_data = array();
   }
 
   public function saveExperimentData() {
