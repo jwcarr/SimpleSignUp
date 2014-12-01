@@ -252,13 +252,13 @@ class Experiment {
   }
 
   public function printAvailableDates() {
-    foreach ($this->getAvailableSlots() as $unix_date=>$slots) {
+    foreach ($this->getAvailableSlots() as $date=>$times) {
       $available_times = array();
-      foreach ($slots as $time=>$slot_info) {
+      foreach ($times as $time=>$slot_count) {
         $available_times[] = $time;
       }
       $available_times = implode(', ', $available_times);
-      $available_dates .= '<li>' . date('jS M', $unix_date) . ' (' . $available_times . ')</li>';
+      $available_dates .= '<li>' . date('jS M', strtotime($date)) . ' (' . $available_times . ')</li>';
     }
     return $available_dates;
   }
