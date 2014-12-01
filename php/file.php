@@ -389,16 +389,8 @@ class User {
   public function getExperiments() {
     if (isset($this->experiments) == False) {
       $this->experiments = explode(', ', $this->extractValue('experiments', $this->data));
-      $this->open_experiments = array();
-      $this->closed_experiments = array();
-      foreach ($this->experiments as $experiment) {
-        $this->$experiment = new Experiment($experiment, False);
-        if ($this->$experiment->getStatus() == 'closed') {
-          $this->closed_experiments[] = $experiment;
-        }
-        else {
-          $this->open_experiments[] = $experiment;
-        }
+      if ($this->experiments[0] == '') {
+        $this->experiments = array();
       }
     }
     return $this->experiments;
