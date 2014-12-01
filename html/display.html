@@ -15,23 +15,24 @@
 
 <?php
 if ($experiment->getStatus() == 'open') {
-  echo "
-  <form name='signup' action='index.php' method='POST'>
-    <input type='hidden' name='page' value='signup' />
-    <input type='hidden' name='own' value='{$experiment->owner}' />
-    <input type='hidden' name='exp' value='{$experiment->id}' />
-    <p><input type='submit' id='button' name='signup' value='Sign up for this experiment' /></p>
-  </form>
-
-  <h3>Currently available times</h3>
-  <ul>{$experiment->printAvailableDates()}</ul>
-  ";
-}
-elseif ($experiment->getStatus() == 'unavailable') {
-  echo "
-  <h3>Currently available times</h3>
-  <p>Sorry – this experiment is fully subscribed at the moment. Please check back later.</p>
-  ";
+  if (count($experiment->getAvailableSlots()) == 0) {
+    echo "
+    <h3>Fully subscribed</h3>
+    <p>Sorry – this experiment is full at the moment. Please check back later.</p>
+    ";
+  }
+  else {
+    echo "
+    <form name='signup' action='index.php' method='POST'>
+      <input type='hidden' name='page' value='signup' />
+      <input type='hidden' name='own' value='{$experiment->owner}' />
+      <input type='hidden' name='exp' value='{$experiment->id}' />
+      <p><input type='submit' id='button' name='signup' value='Sign up for this experiment' /></p>
+    </form>
+    <h3>Currently available times</h3>
+    <ul>{$experiment->printAvailableDates()}</ul>
+    ";
+  }
 }
 else {
   echo "<div id='status-closed'>CLOSED</div>";
