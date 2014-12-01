@@ -14,8 +14,8 @@
     <p><strong>Name:</strong> <?php echo $_REQUEST['name']; ?></p>
     <p><strong>Email:</strong> <?php echo $_REQUEST['email']; ?></p>
     <?php if ($_REQUEST['phone'] != '') { echo "<p><strong>Phone:</strong> {$_REQUEST['phone']}</p>"; } ?>
-    <p><strong>Date:</strong> <?php echo date('l, jS F Y', strtotime($slot_date)); ?></p>
-    <p><strong>Time:</strong> <?php echo $slot_time; ?></p>
+    <p><strong>Date:</strong> <?php echo date('l, jS F Y', strtotime($date)); ?></p>
+    <p><strong>Time:</strong> <?php echo $time; ?></p>
 
     <div id='submit_container'>
       <input type='submit' id='button' name='button' value='Sign Up' />
