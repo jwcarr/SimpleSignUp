@@ -126,6 +126,27 @@ class Experiment {
         $date_times = explode(': ', $date);
         $d[$date_times[0]] = explode(', ', $date_times[1]);
 
+  public function flattenCalendar() {
+    $date_array = array();
+    foreach ($this->calendar as $date=>$slots) {
+      $time_array = array();
+      foreach ($slots as $time=>$subjects) {
+        if ($subjects == None) {
+          $time_array[] = $time . ' = []';
+        }
+        else {
+          $subject_array = array();
+          foreach ($subjects as $subject) {
+            $subject_array[] = implode(', ', $subject);
+          }
+          $time_array[] = $time . ' = [' . implode(' & ', $subject_array) . ']';
+        }
+      }
+      $date_array[] = $date . ' ~ ' . implode('; ', $time_array);
+    }
+    return implode("\n", $date_array);
+  }
+
   public function getSlot($date, $time) {
     $calendar = $this->getCalendar();
     $slot = $calendar[$date][$time];
