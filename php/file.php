@@ -118,18 +118,6 @@ class Experiment {
     }
   }
 
-  public function getNumOfSlots() {
-    if (isset($this->number_of_slots) == False) {
-      $this->number_of_slots = $this->extractElement('number_of_slots', $this->file->data);
-    }
-    return $this->number_of_slots;
-  }
-
-  public function setNumOfSlots($number_of_slots) {
-    $this->number_of_slots = $number_of_slots;
-    $this->changed_data[] = 'number_of_slots';
-  }
-
   public function getSlotTime() {
     if (isset($this->slot_time) == False) {
       $this->slot_time = $this->extractElement('slot_time', $this->file->data);
