@@ -427,14 +427,22 @@ class File {
   public function __construct($filename, $write_access=False) {
     $this->filename = $filename;
     $this->write_access = $write_access;
-    if ($this->write_access) { $this->data = $this->openFileWithWriteAccess(); }
-    else { $this->data = $this->openFileWithoutWriteAccess(); }
+    $this->data = $this->openFile();
   }
 
   public function __destruct() {
     if ($this->write_access) {
       flock($this->file, LOCK_UN);
       fclose($this->file);
+    }
+  }
+
+  private function openFile() {
+    if ($this->write_access) {
+      return $this->openFileWithWriteAccess();
+    }
+    else {
+      return $this->openFileWithoutWriteAccess();
     }
   }
 
