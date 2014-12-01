@@ -399,6 +399,12 @@ class User {
     return $this->experiments;
   }
 
+  public function addExperiment($code_name) {
+    $this->getExperiments();
+    $this->experiments[] = $code_name;
+    $this->changed_data[] = 'experiments';
+  }
+
   public function printOpenExperiments() {
     if (count($this->open_experiments) > 0) {
       echo '<ul>';
