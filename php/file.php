@@ -74,8 +74,10 @@ class Experiment {
   }
 
   public function setLocation($location) {
-    $this->location = $location;
-    $this->changed_data[] = 'location';
+    if ($location != $this->getLocation()) {
+      $this->location = $location;
+      $this->changed_data[] = 'location';
+    }
   }
 
   public function getRequirements() {
