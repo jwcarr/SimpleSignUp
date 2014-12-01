@@ -9,8 +9,8 @@ if ($_REQUEST['re-sign'] != '') {
   setcookie($_REQUEST['exp'], '', time()-3600);
 }
 
-if ($_REQUEST['page'] == '') {
-  if ($_REQUEST['exp'] != '') {
+if (isset($_REQUEST['page']) == False) {
+  if (isset($_REQUEST['exp']) == True) {
     $page = 'display';
   }
   else {
