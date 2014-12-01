@@ -202,7 +202,35 @@ class Experiment {
     $this->setExclusionEmails();
   }
 
+  public function editSubject($date, $time, $subject_number, $name, $email, $phone, $new_timeslot, $user_name, $user_email, $send_emails) {
+    $calendar = $this->getCalendar();
+    $subject_email = $calendar[$date][$time][$subject_number][1];
+    if ($new_timeslot == 'none') {
+      $calendar[$date][$time][$subject_number] = array($name, $email, $phone);
+    }
+    else {
+      $new_timeslot = explode('|', $new_timeslot);
+      $new_date = $new_timeslot[0];
+      $new_time = $new_timeslot[1];
+      $slot = $this->getSlot($new_date, $new_time);
+      if (count($slot) >= $this->getPerSlot()) {
+        return False;
       }
+      $current_subjects = $slot;
+      if ($phone == '') { $phone = 'Not provided'; }
+      $slot[] = array($name, $email, $phone);
+      $calendar[$new_date][$new_time] = $slot;
+      unset($calendar[$date][$time][$subject_number]);
+      if (count($calendar[$date][$time]) == 0) {
+        $calendar[$date][$time] = None;
+      }
+      else {
+        $calendar[$date][$time] = array_values($calendar[$date][$time]);
+      }
+      if ($send_emails == True) {
+        $formatted_date = date('l jS F', strtotime($new_date));
+        foreach ($current_subjects as $subject) {
+          $this->sendEmail($subject[1], $user_name, $user_email, 'email_full', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$new_time));
         }
       }
     }
