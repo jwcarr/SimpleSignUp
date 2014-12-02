@@ -143,14 +143,13 @@ class User {
     if (isset($this->experiment_objects) == False) {
       $this->getExperimentObjects();
     }
-    if (count($this->experiment_objects) > 0) {
-      echo '<ul>';
-      foreach ($this->experiment_objects as $experiment) {
-        if ($experiment->getStatus() == $status) {
-          echo '<li><a href="index.php?page=view&exp='. $experiment->id .'">'. $experiment->getName() .'</a></li>';
-        }
+    foreach ($this->experiment_objects as $experiment) {
+      if ($experiment->getStatus() == $status) {
+        $list .= '<li><a href="index.php?page=view&exp='. $experiment->id .'">'. $experiment->getName() .'</a></li>';
       }
-      echo '</ul>';
+    }
+    if (isset($list)) {
+      echo '<ul>'. $list .'<ul>';
     }
     else {
       echo "<p>None</p>";
