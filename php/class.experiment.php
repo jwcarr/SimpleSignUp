@@ -22,8 +22,8 @@ class Experiment {
     foreach ($this->changed_data as $parameter) {
       $current_datum = $this->extractElement($parameter, $this->file->data);
       if ($current_datum == '') {
-        if ($parameter == 'calendar') { $this->file->data .= $parameter . ' = {' . $this->flattenCalendar() . "}\n\n"; }
-        else { $this->file->data .= $parameter . ' = {' . $this->$parameter . "}\n\n"; }
+        if ($parameter == 'calendar') { $this->file->data .= $parameter . ' = {' . $this->flattenCalendar() . "}"; }
+        else { $this->file->data .= $parameter . ' = {' . $this->$parameter . "}"; }
         $this->file->data .= "\n\n";
       }
       else {
