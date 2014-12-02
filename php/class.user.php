@@ -104,10 +104,14 @@ class User {
   }
 
   public function setPassword($password) {
-    if ($password != $this->getPassword()) {
-      $this->password = $password;
-      $this->changed_data[] = 'password';
+    if ($this->new_hash_method == True) {
+      $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
+    else {
+      $this->password = crypt($new_password);
+    }
+    $this->changed_data[] = 'password';
+    return $this->password;
   }
 
   public function getExperiments() {
