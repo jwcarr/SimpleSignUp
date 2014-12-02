@@ -45,7 +45,8 @@ class User {
     $new_user_data = $this->data;
     foreach ($this->changed_data as $parameter) {
       $old_piece = $parameter . ' = [' . $this->extractValue($parameter, $this->data) . ']';
-      $new_piece = $parameter . ' = [' . $this->$parameter . ']';
+      if ($parameter == 'experiments') { $new_piece = $parameter . ' = [' . implode(', ', $this->experiments) . ']'; }
+      else { $new_piece = $parameter . ' = [' . $this->$parameter . ']'; }
       $new_user_data = str_replace($old_piece, $new_piece, $new_user_data);
     }
     $old_piece = $this->username . ' = { ' . $this->data . ' }';
