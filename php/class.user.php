@@ -32,7 +32,7 @@ class User {
     }
     else {
       if ($this->new_hash_method) {
-        if (password_verify($password, $this->getPassword())) { return True; }
+        if (password_verify($password, $this->getPassword())) { return $this->getPassword(); }
       }
       else {
         if ($target_password == crypt($password, $this->getPassword())) { return True; }
