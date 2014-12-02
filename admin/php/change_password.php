@@ -4,7 +4,8 @@ include_once("../php/class.user.php");
 
 if (isset($_REQUEST['confirm'])) {
 
-  $user = new User($username, True);
+  unset($user);
+  $user = new User($identity[0], True);
 
   if ($_REQUEST['password1'] == $_REQUEST['password2']) {
 

@@ -4,7 +4,8 @@ include_once("../php/class.user.php");
 
 if (isset($_REQUEST['confirm'])) {
 
-  $user = new User($username, True);
+  unset($user);
+  $user = new User($identity[0], True);
 
   $user->setName($_REQUEST['name']);
   $user->setEmail($_REQUEST['email']);
