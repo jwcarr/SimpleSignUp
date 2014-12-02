@@ -66,7 +66,7 @@ $("#edit_experiment").click( function() {
 });
 
 $("#change_status").click( function() {
-  window.location = 'index.php?page=close&exp=' + experiment_id;
+  window.location = 'index.php?page=change_status&exp=' + experiment_id;
 });
 
 $("#delete_experiment").click( function() {

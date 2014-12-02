@@ -7,7 +7,7 @@
   <p><?php echo $warning_message; ?></p>
 
   <form method='post' action='index.php'>
-    <input type='hidden' name='page' value='close' />
+    <input type='hidden' name='page' value='change_status' />
     <input type='hidden' name='status' value='<?php echo $change_status; ?>' />
     <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
     <button type='submit' class='orange'><?php echo $button_text; ?></button>
