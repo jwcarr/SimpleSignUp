@@ -19,7 +19,7 @@ if ($page == 'main') { include('php/main.php'); }
 elseif ($page == 'view') { include('php/view.php'); }
 elseif ($page == 'edit') { include('php/edit.php'); }
 elseif ($page == 'delete') { include('php/delete.php'); }
-elseif ($page == 'close') { include('php/close.php'); }
+elseif ($page == 'change_status') { include('php/change_status.php'); }
 elseif ($page == 'new') { include('php/new.php'); }
 elseif ($page == 'change_details') { include('php/change_details.php'); }
 elseif ($page == 'change_password') { include('php/change_password.php'); }
@@ -46,13 +46,14 @@ if ($page == 'main') { include('html/main.html'); }
 elseif ($page == 'view') { include('html/view.html'); include('js/view.js'); }
 elseif ($page == 'edit') { include('html/edit.html'); }
 elseif ($page == 'delete') { include('html/delete.html'); }
-elseif ($page == 'close') { include('html/close.html'); }
+elseif ($page == 'change_status') { include('html/change_status.html'); }
 elseif ($page == 'new') { include('html/new.html'); }
 elseif ($page == 'change_details') { include('html/change_details.html'); }
 elseif ($page == 'change_password') { include('html/change_password.html'); }
 elseif ($page == 'remind') { include('html/remind.html'); }
 elseif ($page == 'delete_subject') { include('html/delete_subject.html'); }
 elseif ($page == 'edit_subject') { include('html/edit_subject.html'); }
+elseif ($page == 'login') { include('html/login.html'); }
 else { $error = '404'; include('html/error.html'); }
 
 ?>
