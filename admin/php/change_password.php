@@ -9,12 +9,17 @@ if (isset($_REQUEST['confirm'])) {
 
   if ($_REQUEST['password1'] == $_REQUEST['password2']) {
 
-    include_once("php/class.htaccess.php");
-    $ht_password_file = new HTaccess();
+    if ($user->authorize($_REQUEST['password'], False)) {
+      $password_hash = $user->setPassword($_REQUEST['password1']);
+      if ($user->saveUserDetails()) {
+        $page = 'main';
+        $notification = 'Password successfully changed.';
+        setcookie('SimpleSignUpAuth', $identity[0] . ':' . $password_hash, time()+604800);
+      }
+      else {
+        $notification = 'Error';
+      }
 
-    if ($ht_password_file->changePassword($username, $_REQUEST['password'], $_REQUEST['password1'])) {
-      $page = 'main';
-      $notification = 'Password successfully changed.';
     }
     else {
       $notification = 'You entered the incorrect password. Please try agian.';
