@@ -37,25 +37,13 @@
     </p>
 
     <button type='submit' class='blue'>Save changes</button>
-    
+
   </form>
 
 </div>
 
 <div id='menu'>
 
-  <p><strong><?php echo $user->getName(); ?></strong></p>
-
-  <ul>
-
-    <li><a href='index.php?page=main'>My experiments</a></li>
-
-    <li><a href='index.php?page=new'>New experiment</a></li>
-
-    <li><a href='index.php?page=change_details'>Edit my details</a></li>
-
-    <li><a href='index.php?page=change_password'>Change my password</a></li>
-
-  </ul>
+  <?php echo generateMenu($user->getName(), $page); ?>
 
 </div>
