@@ -4,11 +4,16 @@ include_once('class.file.php');
 
 class Experiment {
 
-  public function __construct($experiment_id, $write_access=False) {
+  public function __construct($experiment_id, $write_access=False, $owner=False) {
     global $data_path;
     $this->id = $experiment_id;
-    $experiments_file = new File($data_path .'experiments', False);
-    $this->owner = $this->extractElement($this->id, $experiments_file->data);
+    if ($owner == False) {
+      $experiments_file = new File($data_path .'experiments', False);
+      $this->owner = $this->extractElement($this->id, $experiments_file->data);
+    }
+    else {
+      $this->owner = $owner;
+    }
     $this->file = new File($data_path .'user_data/'. $this->owner .'/'. $this->id, $write_access);
     $this->changed_data = array();
   }
