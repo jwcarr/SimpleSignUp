@@ -7,7 +7,8 @@
   <p>Enter your details below. These details will be shown on your experiment signup pages. The email you use will show up as the From address in automated emails. You should use an email address on the ed.ac.uk domain to avoid having your outgoing emails blocked by spam filters.</p>
 
   <form method='post' action='index.php'>
-    <input type='hidden' name='page' value='save_details' />
+    <input type='hidden' name='page' value='change_details' />
+    <input type='hidden' name='confirm' value='true' />
 
     <p><strong>Name</strong><br />
       <input type='text' name='name' value='<?php echo $user->getName(); ?>' size='30' />

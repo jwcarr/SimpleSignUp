@@ -5,7 +5,8 @@
   <h2><?php echo $experiment->getName(); ?></h2>
 
   <form method='post' action='index.php'>
-    <input type='hidden' name='page' value='save_edits' />
+    <input type='hidden' name='page' value='edit' />
+    <input type='hidden' name='confirm' value='true' />
     <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
 
     <p><strong>Experiment name</strong><br />
