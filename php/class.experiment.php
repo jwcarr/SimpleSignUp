@@ -159,7 +159,7 @@ class Experiment {
     return $this->calendar;
   }
 
-  public function flattenCalendar() {
+  private function flattenCalendar() {
     $date_array = array();
     foreach ($this->calendar as $date=>$slots) {
       $time_array = array();
@@ -401,7 +401,7 @@ class Experiment {
     return $content;
   }
 
-  public function extractElement($element, $data) {
+  private function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
     return trim($matches[1]);
