@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>SimpleSignUp Admin Area</title>
+<title>SimpleSignUp</title>
 <link rel="stylesheet" type="text/css" href="css/stylesheet.css" />
 
 <script src='../js/jquery.js'></script>
@@ -36,7 +36,7 @@ elseif ($page == 'edit_subject') { include('php/edit_subject.php'); }
 
 <body>
 
-<div id='header'><h1>Admin Area</h1></div>
+<div id='header'><h1>SimpleSignUp</h1></div>
 
 <div id='body'>
 
