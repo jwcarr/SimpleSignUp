@@ -35,7 +35,7 @@ class User {
         if (password_verify($password, $this->getPassword())) { return $this->getPassword(); }
       }
       else {
-        if ($target_password == crypt($password, $this->getPassword())) { return True; }
+        if ($this->getPassword() == crypt($password, $this->getPassword())) { return $this->getPassword(); }
       }
     }
     return False;
