@@ -1,9 +1,9 @@
 <?php
 
-include("../php/file.php");
+include_once("../php/class.user.php");
+$user = new User($username, False);
 
-$user = new User($username);
-
-$experiment = new Experiment($_REQUEST['exp']);
+include_once("../php/class.experiment.php");
+$experiment = new Experiment($_REQUEST['exp'], False);
 
 ?>

@@ -1,13 +1,14 @@
 <?php
 
-include_once("../php/file.php");
+include_once("../php/class.user.php");
+include_once("../php/class.experiment.php");
 
 if (isset($user) == False) {
-  $user = new User($username);
+  $user = new User($username, False);
 }
 
 if (isset($experiment) == False) {
-  $experiment = new Experiment($_REQUEST['exp']);
+  $experiment = new Experiment($_REQUEST['exp'], False);
 }
 
 $unix_today = strtotime(date('Y-m-d'));

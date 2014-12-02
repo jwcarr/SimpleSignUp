@@ -1,10 +1,10 @@
 <?php
 
-include("../php/file.php");
+include_once("../php/class.user.php");
+$user = new User($username, False);
 
-$user = new User($username);
-
-$experiment = new Experiment($_REQUEST['exp']);
+include_once("../php/class.experiment.php");
+$experiment = new Experiment($_REQUEST['exp'], False);
 
 $subject_details = $experiment->getSlot($_REQUEST['slot_num']);
 $subject_name = $subject_details[$_REQUEST['subject']][0];
