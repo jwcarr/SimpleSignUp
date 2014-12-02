@@ -2,26 +2,14 @@
 
   <form id='login' name='login'>
 
+    <input type='hidden' name='page' value='authenticate' />
+
     <p><input id='username' type='text' name='username' placeholder='username' /></p>
 
     <p><input id='password' type='password' name='password' placeholder='password' /></p>
 
-    <p><input type='button' name='submit_login' value='Login' id='button' /></p>
+    <p><button type='submit' class='blue'>Login</button></p>
 
   </form>
 
 </div>
-
-<script>
-
-$('#button').click( function () {
-  var username = $('#username').val();
-  var password = $('#password').val();
-  if (username && password) {
-    var a = "http://" + username + ":" + password + "@" + "<?php echo $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'].'admin/'; ?>";
-    window.location = a;
-  }
-  return false;
-});
-
-</script>
