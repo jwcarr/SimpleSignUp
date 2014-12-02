@@ -1,9 +1,32 @@
 <?php
 
-include("../php/file.php");
+include_once("../php/class.user.php");
 
-$user = new User($username);
+if (isset($_REQUEST['confirm'])) {
 
-$experiment = new Experiment($_REQUEST['exp']);
+  $user = new User($username, True);
+
+  $user->setName($_REQUEST['name']);
+  $user->setEmail($_REQUEST['email']);
+  $user->setPhone($_REQUEST['phone']);
+
+  if ($user->saveUserDetails()) {
+    $page = 'main';
+    $experiments = $user->getExperiments();
+    $notification = 'Your details have successfully been changed.';
+  }
+  else {
+    $notification = 'Error saving your details.';
+  }
+
+  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+
+}
+
+else {
+
+  $user = new User($username, False);
+
+}
 
 ?>

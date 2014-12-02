@@ -1,7 +1,37 @@
 <?php
 
-include("../php/file.php");
+include_once("../php/class.user.php");
 
-$user = new User($username);
+if (isset($_REQUEST['confirm'])) {
+
+  $user = new User($username, True);
+
+  if ($_REQUEST['password1'] == $_REQUEST['password2']) {
+
+    include_once("php/class.htaccess.php");
+    $ht_password_file = new HTaccess();
+
+    if ($ht_password_file->changePassword($username, $_REQUEST['password'], $_REQUEST['password1'])) {
+      $page = 'main';
+      $notification = 'Password successfully changed.';
+    }
+    else {
+      $notification = 'You entered the incorrect password. Please try agian.';
+    }
+
+  }
+  else {
+    $notification = 'The new passwords you entered do not match. Please try again.';
+  }
+
+  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+
+}
+
+else {
+
+  $user = new User($username, False);
+
+}
 
 ?>
