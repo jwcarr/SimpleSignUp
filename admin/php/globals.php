@@ -6,12 +6,6 @@ $data_path = '../../../server_data/ssu/';
 // Set timezone for timestamps (default = UTC)
 date_default_timezone_set('UTC');
 
-function cleanInputVariables() {
-  foreach ($_REQUEST as $key=>$value) {
-    $_REQUEST[$key] = str_replace(array('"', ',' , ':', ';', '{', '}', '[', ']', '=' ), '', str_replace("'", '’', trim($value)));
-  }
-}
-
 function generateMenu($name, $current_page) {
   $menu_items = array('main'=>'My experiments', 'new'=>'New experiment', 'change_details'=>'Change my details', 'change_password'=>'Change my password');
   $menu = '<p><strong>'. $name .'</strong></p><ul>';
