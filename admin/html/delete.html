@@ -9,8 +9,9 @@
   <p><strong>Warning:</strong> this action cannot be undone.</p>
 
   <form method='post' action='index.php'>
-    <input type='hidden' name='page' value='confirm_delete' />
-    <input type='hidden' name='exp' value='' />
+    <input type='hidden' name='page' value='delete' />
+    <input type='hidden' name='confirm' value='true' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
     <button type='submit' class='red'>Delete experiment</button>
   </form>
 
