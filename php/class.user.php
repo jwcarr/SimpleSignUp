@@ -141,9 +141,7 @@ class User {
   }
 
   public function printExperimentList($status) {
-    if (isset($this->experiment_objects) == False) {
-      $this->getExperimentObjects();
-    }
+    $this->getExperimentObjects();
     foreach ($this->experiment_objects as $experiment) {
       if ($experiment->getStatus() == $status) {
         $list .= '<li><a href="index.php?page=view&exp='. $experiment->id .'">'. $experiment->getName() .'</a></li>';
