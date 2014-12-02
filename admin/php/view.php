@@ -1,11 +1,6 @@
 <?php
 
-include_once("../php/class.user.php");
 include_once("../php/class.experiment.php");
-
-if (isset($user) == False) {
-  $user = new User($username, False);
-}
 
 if (isset($experiment) == False) {
   $experiment = new Experiment($_REQUEST['exp'], False);

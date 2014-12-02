@@ -23,10 +23,4 @@ if (isset($_REQUEST['confirm'])) {
 
 }
 
-else {
-
-  $user = new User($username, False);
-
-}
-
 ?>

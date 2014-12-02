@@ -1,8 +1,5 @@
 <?php
 
-include_once("../php/class.user.php");
-$user = new User($username, False);
-
 if (isset($_REQUEST['status'])) {
 
   include_once("../php/class.experiment.php");
