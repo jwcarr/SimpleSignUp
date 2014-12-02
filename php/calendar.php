@@ -1,7 +1,6 @@
 <?php
 
-include("file.php");
-
+include_once("class.experiment.php");
 $experiment = new Experiment($_REQUEST['exp']);
 
 $page_header = $experiment->getName();
@@ -13,6 +12,7 @@ else {
 
   if ($_COOKIE[$experiment->id] == 'ineligible') {
     $page = 'not_eligible';
+    include_once("class.user.php");
     $user = new User($experiment->owner);
   }
 
