@@ -9,7 +9,7 @@ $data_path = '../../../server_data/ssu/';
 // Set to True if using PHP >= 5.5. Uses password_hash() instead of crypt()
 $new_hash_method = True;
 
-// Set timezone for timestamps (default = UTC)
+// Set timezone
 date_default_timezone_set('UTC');
 
 function generateMenu($name, $current_page) {
