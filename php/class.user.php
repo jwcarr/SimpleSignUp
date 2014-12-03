@@ -110,7 +110,7 @@ class User {
       $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
     else {
-      $this->password = crypt($new_password);
+      $this->password = crypt($password);
     }
     $this->changed_data[] = 'password';
     return $this->password;
