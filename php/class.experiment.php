@@ -20,14 +20,13 @@ class Experiment {
 
   public function saveExperimentData() {
     foreach ($this->changed_data as $parameter) {
-      $current_datum = $this->extractElement($parameter, $this->file->data);
-      if ($current_datum == '') {
+      if (preg_match('/' . $parameter . ' = \{.*?\}/s', $this->file->data) == 0) {
         if ($parameter == 'calendar') { $this->file->data .= $parameter . ' = {' . $this->flattenCalendar() . "}"; }
         else { $this->file->data .= $parameter . ' = {' . $this->$parameter . "}"; }
         $this->file->data .= "\n\n";
       }
       else {
-        $old_piece = $parameter . ' = {' . $current_datum . '}';
+        $old_piece = $parameter . ' = {' . $this->extractElement($parameter, $this->file->data) . '}';
         if ($parameter == 'calendar') { $new_piece = $parameter . ' = {' . $this->flattenCalendar() . '}'; }
         else { $new_piece = $parameter . ' = {' . $this->$parameter . '}'; }
         $this->file->data = str_replace($old_piece, $new_piece, $this->file->data);
