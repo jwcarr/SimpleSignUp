@@ -1,5 +1,8 @@
 <?php
 
+// Valid page IDs
+$pages = array('main', 'view', 'edit', 'delete', 'change_status', 'new', 'change_details', 'change_password', 'save_password', 'save_details', 'save_edits', 'remind', 'remind_bulk', 'delete_subject', 'edit_subject');
+
 // Path to data folder from Admin directory
 $data_path = '../../../server_data/ssu/';
 
