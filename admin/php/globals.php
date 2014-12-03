@@ -3,6 +3,9 @@
 // Path to data folder from Admin directory
 $data_path = '../../../server_data/ssu/';
 
+// Set to True if using PHP >= 5.5. Uses password_hash() instead of crypt()
+$new_hash_method = True;
+
 // Set timezone for timestamps (default = UTC)
 date_default_timezone_set('UTC');
 

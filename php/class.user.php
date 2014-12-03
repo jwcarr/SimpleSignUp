@@ -5,7 +5,6 @@ include_once('class.experiment.php');
 
 class User {
 
-  private $new_hash_method = True; // Set to True if using PHP >= 5.5. Uses password_hash() instead of crypt()
   private $valid_user = False;
 
   public function __construct($username, $write_access=False) {
@@ -27,11 +26,12 @@ class User {
   }
 
   private function checkPassword($password, $using_hash) {
+    global $new_hash_method;
     if ($using_hash) {
       if ($password == $this->getPassword()) { return True; }
     }
     else {
-      if ($this->new_hash_method) {
+      if ($new_hash_method) {
         if (password_verify($password, $this->getPassword())) { return $this->getPassword(); }
       }
       else {
@@ -105,7 +105,8 @@ class User {
   }
 
   public function setPassword($password) {
-    if ($this->new_hash_method == True) {
+    global $new_hash_method;
+    if ($new_hash_method == True) {
       $this->password = password_hash($password, PASSWORD_DEFAULT);
     }
     else {
