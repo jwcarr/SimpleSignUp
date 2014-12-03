@@ -45,14 +45,14 @@ else {
           // For each participant who already signed up...
           foreach ($current_subjects as $subject) {
             // Send an email to say that the experiment will go ahead as planned
-            //$experiment->sendEmail($subject[1], $user->getName(), $user->getEmail(), 'email_full', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$time));
+            $experiment->sendEmail($subject[1], $user->getName(), $user->getEmail(), 'email_full', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$time));
           }
           // Send an email to this participant to confirm the appointment
-          //$experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf_full', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
+          $experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf_full', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
         }
         else {
           // Send an email to this participant to confirm the booking
-          //$experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
+          $experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
         }
       }
       else {

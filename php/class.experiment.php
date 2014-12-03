@@ -245,7 +245,7 @@ class Experiment {
       if ($send_emails == True) {
         $formatted_date = date('l jS F', strtotime($new_date));
         foreach ($current_subjects as $subject) {
-          //$this->sendEmail($subject[1], $user_name, $user_email, 'email_full', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$new_time));
+          $this->sendEmail($subject[1], $user_name, $user_email, 'email_full', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$new_time));
         }
       }
     }
