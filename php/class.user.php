@@ -131,6 +131,14 @@ class User {
     $this->changed_data[] = 'experiments';
   }
 
+  public function removeExperiment($code_name) {
+    $this->getExperiments();
+    if (($key = array_search($code_name, $this->experiments)) !== False) {
+      unset($this->experiments[$key]);
+    }
+    $this->changed_data[] = 'experiments';
+  }
+
   private function getExperimentObjects() {
     if (isset($this->experiment_objects) == False) {
       $this->experiment_objects = array();
