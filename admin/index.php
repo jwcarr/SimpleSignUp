@@ -2,8 +2,10 @@
 
 include('php/globals.php');
 
-if (isset($_REQUEST['page']) AND in_array($_REQUEST['page'], $pages)) {
-  $page = $_REQUEST['page'];
+if (isset($_REQUEST['page'])) {
+  if (in_array($_REQUEST['page'], $pages) OR in_array($_REQUEST['page'], $auth_pages)) {
+    $page = $_REQUEST['page'];
+  }
 }
 else {
   $page = 'main';
