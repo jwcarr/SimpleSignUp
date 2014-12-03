@@ -16,8 +16,8 @@ class User {
   }
 
   public function authorize($password, $using_hash) {
-    $check_result = $this->checkPassword($password, $using_hash);
     if ($this->valid_user == True) {
+      $check_result = $this->checkPassword($password, $using_hash);
       if ($check_result == True) {
         return $check_result;
       }
