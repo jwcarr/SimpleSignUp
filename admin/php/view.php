@@ -81,11 +81,11 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
 $schedule .= '</table></div>';
 
 if ($experiment->getStatus() == 'closed') {
-  $change_status_button = '<button id="change_status" class="orange">⎋ Open experiment</button>';
-  $delete_button = '<button id="delete_experiment" class="red">✘ Delete experiment</button>';
+  $change_status_button = '<button id="change_status" class="orange">Open experiment</button>';
+  $delete_button = '<button id="delete_experiment" class="red">Delete experiment</button>';
 }
 else {
-  $change_status_button = '<button id="change_status" class="red">⎋ Close experiment</button>';
+  $change_status_button = '<button id="change_status" class="red">Close experiment</button>';
 }
 
 ?>
