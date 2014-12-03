@@ -138,7 +138,8 @@ class Experiment {
         $time_data = explode('; ', $date_times[1]);
         $times_array = array();
         foreach ($time_data as $time_datum) {
-          $time = explode(' = ', $time_datum)[0];
+          $time = explode(' = ', $time_datum);
+          $time = $time[0];
           $subjects = $this->extractValue($time, $time_datum);
           if ($subjects == '') {
             $times_array[$time] = None;
