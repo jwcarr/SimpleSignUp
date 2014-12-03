@@ -7,7 +7,7 @@ if (isset($_REQUEST['confirm'])) {
   $user->addExperiment($_REQUEST['exp']);
 
   $experiments_file = new File($data_path .'experiments', True);
-  $experiments_file->data = $experiments_file->data . "\n" . $_REQUEST['exp'] . ' = {' . $identity[0] . '}';
+  $experiments_file->data = $experiments_file->data . $_REQUEST['exp'] . ' = {' . $identity[0] . "}\n";
 
   $f = fopen($data_path . 'user_data/'. $identity[0] . '/' . $_REQUEST['exp'], 'w');
   fclose($f);
