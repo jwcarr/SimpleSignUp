@@ -75,7 +75,7 @@ foreach ($experiment->getCalendar() as $date=>$slots) {
     }
   }
   if ($unix_date == $unix_tomorrow) {
-    $schedule .= '<tr><td colspan="2"></td><td colspan="3"><button id="reminders" class="green">Send reminder emails for tomorrow</button></td></tr>';
+    $schedule .= '<tr><td colspan="2"></td><td colspan="3"><button id="reminders" class="green">Send all reminder emails for tomorrow</button></td></tr>';
   }
 }
 $schedule .= '</table></div>';

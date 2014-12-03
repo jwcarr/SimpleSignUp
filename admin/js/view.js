@@ -78,7 +78,7 @@ $("#reload").click( function() {
 });
 
 $("#reminders").click( function() {
-  window.location = 'index.php?page=remind&exp=' + experiment_id;
+  window.location = 'index.php?page=remind_bulk&exp=' + experiment_id;
 });
 
 </script>

@@ -1,0 +1,28 @@
+<div id='content'>
+
+  <h2><?php echo $experiment->getName(); ?></h2>
+
+  <p>Are you sure you want to send the email below to the following people? The &lt;NAME&gt; and &lt;TIME&gt; tags will be replaced with the relevant names and times.</p>
+
+  <p><strong>Tomorrow’s participants:</strong><p/>
+
+  <p><?php echo $name_email; ?></p>
+
+  <p><strong>Message:</strong></p>
+
+  <p><?php echo $email_content; ?></p>
+
+  <form method='post' action='index.php'>
+    <input type='hidden' name='page' value='remind_bulk' />
+    <input type='hidden' name='confirm' value='true' />
+    <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />
+    <button type='submit' class='green'>Send reminders</button>
+  </form>
+
+</div>
+
+<div id='menu'>
+
+  <?php echo generateMenu($user->getName(), $page); ?>
+
+</div>
