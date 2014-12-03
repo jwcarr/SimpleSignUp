@@ -195,6 +195,11 @@ class Experiment {
     $this->changed_data[] = 'calendar';
   }
 
+  public function getDate($date) {
+    $calendar = $this->getCalendar();
+    return $calendar[$date];
+  }
+
   public function getSubject($date, $time, $subject_number) {
     $slot = $this->getSlot($date, $time, $subject_number);
     return $slot[$subject_number];
