@@ -28,6 +28,7 @@ else {
     if (in_array(strtolower($_REQUEST['email']), $excluded_email_addresses)) {
       $page = 'not_eligible';
       setcookie($experiment->id, 'ineligible', time()+604800);
+      include_once("class.user.php");
       $user = new User($experiment->owner);
     }
 
