@@ -11,6 +11,19 @@ div{
   box-sizing: border-box;
 }
 
+div.view-table{
+  width: 100%;
+  padding-left: 20px;
+}
+
+div.view-title{
+  background-color: #E6ECF3;
+  width: 100%;
+  padding-left: 20px;
+  line-height: 30px;
+  cursor: pointer;
+}
+
 ul {
   margin: 0;
   padding-left: 25px;
@@ -147,45 +160,6 @@ a:hover {
   width: 100%;
   padding-left: 20px;
   line-height: 50px;
-}
-
-#view-past{
-  width: 100%;
-  padding-left: 20px;
-}
-
-#view-present{
-  width: 100%;
-  padding-left: 20px;
-}
-
-#view-future{
-  width: 100%;
-  padding-left: 20px;
-}
-
-#view-title-past{
-  background-color: #E6ECF3;
-  width: 100%;
-  padding-left: 20px;
-  line-height: 30px;
-  cursor: pointer;
-}
-
-#view-title-present{
-  background-color: #E6ECF3;
-  width: 100%;
-  padding-left: 20px;
-  line-height: 30px;
-  cursor: pointer;
-}
-
-#view-title-future{
-  background-color: #E6ECF3;
-  width: 100%;
-  padding-left: 20px;
-  line-height: 30px;
-  cursor: pointer;
 }
 
 #left-column{
