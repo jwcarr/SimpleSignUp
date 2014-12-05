@@ -18,7 +18,26 @@
 
   </div>
 
-  <?php echo $schedule; ?>
+  <div style='margin-top: 15px; margin-bottom: 60px; width: 100%;'>
+
+    <div style='font-size: 13px; text-align: center;'><p><?php echo $legend; ?></p></div>
+
+    <div style='height: 12px; float: left; width: 100%; border: solid black 1px;'>
+      <?php echo $past_div; ?>
+      <?php echo $present_div; ?>
+      <?php echo $future_div; ?>
+      <?php echo $free_div; ?>
+    </div>
+
+  </div>
+
+  <div>
+
+    <h2><img src='images/calendar.png' width='32' height='32' style="vertical-align: middle" />&nbsp;&nbsp;&nbsp;Calendar</h2>
+
+    <?php echo $schedule; ?>
+
+  </div>
 
 </div>
 
