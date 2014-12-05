@@ -30,20 +30,24 @@ if (isset($_REQUEST['confirm'])) {
       if ($user->saveUserDetails()) {
         $page = 'main';
         $notification = 'Your new experiment has been created.';
+        $notification_colour = 'green';
       }
       else {
         $notification = '<strong>Error:</strong> failure to add experiment to this user.';
+        $notification_colour = 'red';
       }
     }
     else {
       $notification = '<strong>Error:</strong> failure to add experiment to SimpleSignUp.';
+      $notification_colour = 'red';
     }
   }
   else {
     $notification = '<strong>Error:</strong> failure to create experiment.';
+    $notification_colour = 'red';
   }
 
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 
 }
 

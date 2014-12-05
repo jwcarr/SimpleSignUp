@@ -10,12 +10,14 @@ if (isset($_REQUEST['confirm'])) {
 
   if ($experiment->saveExperimentData()) {
     $notification = '"'. $subject[0] .'" has been removed from this experiment.';
+    $notification_colour = 'green';
   }
   else {
     $notification = 'There was an error removing "'. $subject[0] .'" from this experiment.';
+    $notification_colour = 'red';
   }
 
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 
   include('php/view.php');
   $page = 'view';

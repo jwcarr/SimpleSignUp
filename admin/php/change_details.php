@@ -15,12 +15,14 @@ if (isset($_REQUEST['confirm'])) {
     $page = 'main';
     $experiments = $user->getExperiments();
     $notification = 'Your details have successfully been changed.';
+    $notification_colour = 'green';
   }
   else {
     $notification = 'Error saving your details.';
+    $notification_colour = 'red';
   }
 
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 
 }
 

@@ -15,12 +15,14 @@ if (isset($_REQUEST['confirm'])) {
     include('view.php');
     $page = 'view';
     $notification = 'Your edits have successfully been changed.';
+    $notification_colour = 'green';
   }
   else {
     $notification = 'Error saving your edits.';
+    $notification_colour = 'red';
   }
 
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 
 }
 

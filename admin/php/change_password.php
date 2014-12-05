@@ -14,23 +14,27 @@ if (isset($_REQUEST['confirm'])) {
       if ($user->saveUserDetails()) {
         $page = 'main';
         $notification = 'Password successfully changed.';
+        $notification_colour = 'green';
         setcookie('SimpleSignUpAuth', $identity[0] . ':' . $password_hash, time()+604800);
       }
       else {
-        $notification = 'Error';
+        $notification = 'Error: could not save your new password';
+        $notification_colour = 'red';
       }
 
     }
     else {
       $notification = 'You entered the incorrect password. Please try agian.';
+      $notification_colour = 'red';
     }
 
   }
   else {
     $notification = 'The new passwords you entered do not match. Please try again.';
+    $notification_colour = 'red';
   }
 
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 
 }
 

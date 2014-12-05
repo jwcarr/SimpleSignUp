@@ -13,11 +13,13 @@ if ($_REQUEST['confirm'] == 'true') {
   $page = 'view';
   if ($experiment->sendEmail($subject_email, $user->getName(), $user->getEmail(), 'email_reminder', array('NAME'=>$subject_name, 'TIME'=>$_REQUEST['time']))) {
     $notification = "Sent reminder email to $subject_name";
+    $notification_colour = 'green';
   }
   else {
     $notification = "Email to $subject_name failed to send";
+    $notification_colour = 'red';
   }
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 }
 
 ?>

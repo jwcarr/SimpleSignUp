@@ -13,21 +13,25 @@ if (isset($_REQUEST['confirm'])) {
     if ($experiments_file->overwrite()) {
       if (unlink($data_path . 'user_data/'. $identity[0] . '/' . $_REQUEST['exp'])) {
         $page = 'main';
-        $notification = 'Experiment deleted';
+        $notification = 'Experiment successfully deleted';
+        $notification_colour = 'green';
       }
       else {
         $notification = '<strong>Error:</strong> failure to delete experiment file';
+        $notification_colour = 'red';
       }
     }
     else {
       $notification = '<strong>Error:</strong> failure to remove experiment from SimpleSignUp.';
+      $notification_colour = 'red';
     }
   }
   else {
     $notification = '<strong>Error:</strong> failure to remove experiment from this user.';
+    $notification_colour = 'red';
   }
 
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 
 }
 

@@ -10,13 +10,15 @@ if (isset($_REQUEST['status'])) {
     $notification = '"' . $experiment->getName() . '" has been ';
     if ($_REQUEST['status'] == 'closed') { $notification .= 'closed'; }
     else { $notification .= 'opened'; }
+    $notification_colour = 'green';
     $page = 'main';
     $experiments = $user->getExperiments();
   }
   else {
     $notification = 'There was an error changing the status of the experiment';
+    $notification_colour = 'red';
   }
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 
 }
 else {

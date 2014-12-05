@@ -17,15 +17,18 @@ if (isset($_REQUEST['confirm'])) {
   if ($experiment->editSubject($_REQUEST['date'], $_REQUEST['time'], $_REQUEST['subject'], $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone'], $_REQUEST['new_timeslot'], $user->getName(), $user->getEmail(), $send_emails)) {
     if ($experiment->saveExperimentData()) {
       $notification = 'Your changes to "'. $_REQUEST['name'] .'" have been saved.';
+      $notification_colour = 'green';
     }
     else {
       $notification = 'There was an error saving your changes.';
+      $notification_colour = 'red';
     }
   }
   else {
     $notification = 'The requested date is no longer available.';
+    $notification_colour = 'red';
   }
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
   include('php/view.php');
   $page = 'view';
 

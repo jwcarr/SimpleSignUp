@@ -25,12 +25,14 @@ if ($_REQUEST['confirm'] == 'true') {
   $fails = implode(', ', $fails);
   if ($fails == '') {
     $notification = 'Reminder emails were successfully sent to tomorrow’s participants';
+    $notification_colour = 'green';
   }
   else {
     $notification = 'Emails failed to send to: ' . $fails;
+    $notification_colour = 'red';
   }
 
-  $notification = '<div id="notification"><p>' . $notification . '</p></div>';
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 
 }
 
