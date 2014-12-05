@@ -131,30 +131,36 @@ class Experiment {
     if (isset($this->calendar) == False) {
       $this->calendar = array();
       $date_data = explode("\n", $this->extractElement('calendar', $this->file->data));
-      $dates_array = array();
-      foreach ($date_data as $date_datum) {
-        $date_times = explode(' ~ ', $date_datum);
-        $time_data = explode('; ', $date_times[1]);
-        $times_array = array();
-        foreach ($time_data as $time_datum) {
-          $time = explode(' = ', $time_datum);
-          $time = $time[0];
-          $subjects = $this->extractValue($time, $time_datum);
-          if ($subjects == '') {
-            $times_array[$time] = None;
-          }
-          else {
-            $subject_data = explode(' & ', $subjects);
-            $subjects_array = array();
-            foreach ($subject_data as $subject_datum) {
-              $subjects_array[] = explode(', ', $subject_datum);
-            }
-            $times_array[$time] = $subjects_array;
-          }
-        }
-        $dates_array[$date_times[0]] = $times_array;
+      if ($date_data[0] == '') {
+        $this->calendar = None;
+        return $this->calendar;
       }
-      $this->calendar = $dates_array;
+      else {
+        $dates_array = array();
+        foreach ($date_data as $date_datum) {
+          $date_times = explode(' ~ ', $date_datum);
+          $time_data = explode('; ', $date_times[1]);
+          $times_array = array();
+          foreach ($time_data as $time_datum) {
+            $time = explode(' = ', $time_datum);
+            $time = $time[0];
+            $subjects = $this->extractValue($time, $time_datum);
+            if ($subjects == '') {
+              $times_array[$time] = None;
+            }
+            else {
+              $subject_data = explode(' & ', $subjects);
+              $subjects_array = array();
+              foreach ($subject_data as $subject_datum) {
+                $subjects_array[] = explode(', ', $subject_datum);
+              }
+              $times_array[$time] = $subjects_array;
+            }
+          }
+          $dates_array[$date_times[0]] = $times_array;
+        }
+        $this->calendar = $dates_array;
+      }
     }
     return $this->calendar;
   }
