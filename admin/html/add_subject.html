@@ -1,0 +1,44 @@
+<div id='content'>
+
+  <?php echo $notification; ?>
+
+  <h2>Add participant</h2>
+
+  <form method='post' action='index.php'>
+    <input type='hidden' name='page' value='add_subject' />
+    <input type='hidden' name='confirm' value='true' />
+    <input type='hidden' name='exp' value='<?php echo $_REQUEST['exp']; ?>' />
+    <input type='hidden' name='date' value='<?php echo $_REQUEST['date']; ?>' />
+    <input type='hidden' name='time' value='<?php echo $_REQUEST['time']; ?>' />
+
+    <p><strong>Name</strong><br />
+      <input type='text' name='name' size='30' id='name' autocomplete='off' value='<?php echo $subject[0]; ?>' />
+    </p>
+
+    <p><strong>Email</strong><br />
+      <input type='text' name='email' size='30' id='email' autocomplete='off' value='<?php echo $subject[1]; ?>' />
+    </p>
+
+    <p><strong>Phone number</strong><br />
+      <input type='text' name='phone' size='30' id='phone' autocomplete='off' value='<?php echo $subject[2]; ?>' />
+    </p>
+
+    <p>
+      <input type='checkbox' name='send_conf_email' value='checked' /> Send a confirmation email to this participant
+    </p>
+
+    <p>
+      <input type='checkbox' name='send_emails' value='checked' /> Send emails to other participants if the timeslot is completed by this participant
+    </p>
+
+    <button type='submit' class='blue'>Add participant</button>
+
+  </form>
+
+</div>
+
+<div id='menu'>
+
+  <?php echo generateMenu($user->getName(), $page); ?>
+
+</div>
