@@ -123,7 +123,7 @@ class User {
         $this->experiments = array();
       }
     }
-    return $this->experiments;
+    return array_reverse($this->experiments);
   }
 
   public function addExperiment($code_name) {
