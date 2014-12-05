@@ -24,6 +24,22 @@ div.view-title{
   cursor: pointer;
 }
 
+div.notification-green{
+  background-color: #EAF2E8;
+  height: 50px;
+  width: 100%;
+  padding-left: 20px;
+  line-height: 50px;
+}
+
+div.notification-red{
+  background-color: #F5E3E6;
+  height: 50px;
+  width: 100%;
+  padding-left: 20px;
+  line-height: 50px;
+}
+
 ul {
   margin: 0;
   padding-left: 25px;
@@ -152,14 +168,6 @@ a:hover {
   font-size: 10px;
   width: 60px;
   text-align: center;
-}
-
-#notification{
-  background-color: #F5E3E6;
-  height: 50px;
-  width: 100%;
-  padding-left: 20px;
-  line-height: 50px;
 }
 
 #left-column{
