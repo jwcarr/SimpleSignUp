@@ -115,10 +115,13 @@ else {
 
 if ($experiment->getStatus() == 'closed') {
   $change_status_button = '<button id="change_status" class="orange">Open experiment</button>';
-  $delete_button = '<button id="delete_experiment" class="red">Delete experiment</button>';
 }
 else {
   $change_status_button = '<button id="change_status" class="red">Close experiment</button>';
+}
+
+if ($experiment->owner == $identity[0] AND $experiment->getStatus() == 'closed') {
+  $delete_button = '<button id="delete_experiment" class="red">Delete experiment</button>';
 }
 
 $total_slots = $past_slots + $present_slots + $future_slots + $free_slots;
