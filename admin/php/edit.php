@@ -34,4 +34,22 @@ else {
 
 }
 
+if ($page == 'edit') {
+  $calendar_table = '<table style="width: 80%;" id="calendar">
+  <tr>
+  <td style="width: 20%;"><strong>Date</strong></td>
+  <td style="width: 40%;"><strong>Add new times (comma separated)</strong></td>
+  <td style="width: 40%;"><strong>Current times</strong></td>
+  </tr>';
+  foreach ($experiment->getCalendar() as $date=>$times) {
+    $calendar_table .= '<tr>
+    <td style="width: 20%;">'. $date .'</td>
+    <td style="width: 40%;"><input type="text" name="new_times['. $date .']" value="" size="30" /></td>
+    <td style="width: 40%;">'. implode(', ', array_keys($times)) .'</td>
+    </tr>';
+  }
+  $calendar_table .= '</table>';
+
+}
+
 ?>
