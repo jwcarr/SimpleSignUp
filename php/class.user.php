@@ -165,6 +165,12 @@ class User {
     }
   }
 
+  public function getAllUsernames() {
+    $usernames = explode('; ', $this->extractElement('all_usernames', $this->users_file->data));
+    sort($usernames);
+    return $usernames;
+  }
+
   private function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
