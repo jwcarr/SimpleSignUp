@@ -48,6 +48,8 @@ if ($experiment->getCalendar() != Null) {
 
     $schedule .= '<tr><td colspan="5"><strong>'. date('l, jS F Y', $unix_date) .'</strong></td></tr>';
 
+    if (is_null($slots)) { $slots = array(); }
+
     foreach ($slots as $time=>$slot) {
       for ($i=0; $i<$experiment->getPerSlot(); $i++) {
         if ($i == 0) {
