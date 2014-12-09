@@ -19,6 +19,8 @@ if ($experiment->getCalendar() != None) {
   foreach ($experiment->getCalendar() as $date=>$slots) {
     $unix_date = strtotime($date);
 
+    $empty_date = True;
+
     if ($unix_date < $unix_today) {
       if ($time_point != 'past') {
         $schedule .= '<div id="view-title-past" class="view-title"><h3>► Completed</h3></div><div id="view-past" class="view-table"><table style="width: 100%; border-spacing: 10px;">';
@@ -69,6 +71,7 @@ if ($experiment->getCalendar() != None) {
           }
         }
         else {
+          $empty_date = False;
           if (isset($slot[$i])) {
             $subject = $slot[$i];
             $schedule .= '<tr>
@@ -105,6 +108,9 @@ if ($experiment->getCalendar() != None) {
     }
     if ($unix_date == $unix_tomorrow) {
       $schedule .= '<tr><td colspan="2"></td><td colspan="3"><button id="reminders" class="green">Send all reminder emails for tomorrow</button></td></tr>';
+    }
+    if ($empty_date == True) {
+      $schedule .= '<tr><td colspan="5"><a href="index.php?page=edit_calendar&exp='. $experiment->id .'&date='. $date .'"><img src="images/delete.png" width="16" height="16" style="vertical-align: bottom" /></a>&nbsp;Delete this date</td></tr>';
     }
   }
   $schedule .= '</table></div>';
