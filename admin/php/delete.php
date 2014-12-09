@@ -1,6 +1,17 @@
 <?php
 
+include_once("../php/class.experiment.php");
+$experiment = new Experiment($_REQUEST['exp'], False);
+
 if (isset($_REQUEST['confirm'])) {
+
+  $shared_access_users = $experiment->getSharedAccess();
+  foreach ($shared_access_users as $shared_user) {
+    $shared_user_object = new User($shared_user, True);
+    $shared_user_object->removeSharedExperiment($_REQUEST['exp']);
+    $shared_user_object->saveUserDetails();
+    unset($shared_user_object);
+  }
 
   unset($user);
   $user = new User($identity[0], True);
@@ -32,13 +43,6 @@ if (isset($_REQUEST['confirm'])) {
   }
 
   $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
-
-}
-
-else {
-
-  include_once("../php/class.experiment.php");
-  $experiment = new Experiment($_REQUEST['exp'], False);
 
 }
 
