@@ -431,20 +431,18 @@ class Experiment {
 
   public function printRequirementCheckboxes() {
     $requirements = $this->getRequirements();
-    $i = 0;
-    if ($_REQUEST['name'] == '') {
-      foreach ($requirements as $requirement) {
-        echo '<p><input type="checkbox" name="confirm" id="require' . $i . '"" /> ' . $requirement . '</p>';
-        $i++;
-      }
+    if (is_null($requirements)) {
+      $this->total_requirements = 0;
+      return False;
     }
     else {
+      $this->total_requirements = 0;
       foreach ($requirements as $requirement) {
-        echo '<p><input type="checkbox" name="confirm" id="require' . $i . '"" checked /> ' . $requirement . '</p>';
-        $i++;
+        $checkboxes .= '<p><input type="checkbox" name="confirm" id="require' . $i . '"" /> ' . $requirement . '</p>';
+        $this->total_requirements++;
       }
     }
-    $this->total_requirements = $i;
+    return $checkboxes;
   }
 
   public function getAvailableSlots($include_today=False) {
