@@ -144,6 +144,32 @@ class User {
     $this->changed_data[] = 'experiments';
   }
 
+  public function getSharedExperiments() {
+    if (isset($this->shares) == False) {
+      $this->shares = explode(', ', $this->extractValue('shares', $this->data));
+      if ($this->shares[0] == '') {
+        $this->shares = array();
+      }
+    }
+    return array_reverse($this->shares);
+  }
+
+  public function addSharedExperiment($code_name) {
+    $this->getSharedExperiments();
+    if (in_array($code_name, $this->shares) == False) {
+      $this->shares[] = $code_name;
+      $this->changed_data[] = 'shares';
+    }
+  }
+
+  public function removeSharedExperiment($code_name) {
+    $this->getSharedExperiments();
+    if (($key = array_search($code_name, $this->shares)) !== False) {
+      unset($this->shares[$key]);
+      $this->changed_data[] = 'shares';
+    }
+  }
+
   private function getExperimentObjects($experiments) {
     $objects = array();
     foreach ($experiments as $experiment) {
