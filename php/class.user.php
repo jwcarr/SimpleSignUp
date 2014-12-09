@@ -178,11 +178,20 @@ class User {
     return $objects;
   }
 
-  public function printExperimentList($status) {
-    $this->getExperimentObjects();
-    foreach ($this->experiment_objects as $experiment) {
-      if ($experiment->getStatus() == $status) {
+  public function printExperimentList($status, $type) {
+    if ($type == 'mine') {
+      $experiments = $this->getExperiments();
+    }
+    else {
+      $experiments = $this->getSharedExperiments();
+    }
+    $objects = $this->getExperimentObjects($experiments);
+    foreach ($objects as $experiment) {
+      if ($experiment->getStatus() == $status AND $type == 'mine') {
         $list .= '<li><a href="index.php?page=view&exp='. $experiment->id .'">'. $experiment->getName() .'</a></li>';
+      }
+      elseif ($experiment->getStatus() == $status AND $type == 'shared') {
+        $list .= '<li><a href="index.php?page=view&exp='. $experiment->id .'">'. $experiment->getName() . ' (' . $experiment->owner . ')</a></li>';
       }
     }
     if (isset($list)) {
