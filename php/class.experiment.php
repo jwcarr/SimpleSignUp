@@ -452,20 +452,22 @@ class Experiment {
       $calendar = $this->getCalendar();
       $this->available_slots = array();
       $unix_today = strtotime(date('Y-m-d'));
-      foreach ($calendar as $date=>$slots) {
-        $unix_date = strtotime($date);
-        if ($include_today == True) {
-          $cut_off_date = $unix_today - 86400;
-        }
-        else {
-          $cut_off_date = $unix_today;
-        }
-        if ($unix_date > $cut_off_date) {
-          foreach ($slots as $time=>$slot) {
-            if ($slot == None) { $slot_count = 0; }
-            else { $slot_count = count($slot); }
-            if ($slot_count < $this->getPerSlot()) {
-              $this->available_slots[$date][$time] = $slot_count;
+      if (is_null($calendar) == False) {
+        foreach ($calendar as $date=>$slots) {
+          $unix_date = strtotime($date);
+          if ($include_today == True) {
+            $cut_off_date = $unix_today - 86400;
+          }
+          else {
+            $cut_off_date = $unix_today;
+          }
+          if ($unix_date > $cut_off_date) {
+            foreach ($slots as $time=>$slot) {
+              if (is_null($slot)) { $slot_count = 0; }
+              else { $slot_count = count($slot); }
+              if ($slot_count < $this->getPerSlot()) {
+                $this->available_slots[$date][$time] = $slot_count;
+              }
             }
           }
         }
