@@ -396,6 +396,17 @@ class Experiment {
     return $this->exclusion_emails;
   }
 
+  public function getManualExclusions() {
+    return implode(', ', $this->getExclusionEmails());
+  }
+
+  public function setManualExclusions($manual_exclusions) {
+    if ($manual_exclusions != $this->getManualExclusions()) {
+      $this->exclusion_emails = explode(',', str_replace(array(' ', "\n", "\r", "\t"), '', $manual_exclusions));
+      $this->setExclusionEmails();
+    }
+  }
+
   public function setExclusionEmails() {
     $this->exclusion_emails = array_map('strtolower', $this->exclusion_emails);
     $this->exclusion_emails = implode('; ', $this->exclusion_emails);
