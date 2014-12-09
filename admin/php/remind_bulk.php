@@ -8,8 +8,6 @@ $tomorrow_slots = $experiment->getDate($tomorrow);
 
 if ($_REQUEST['confirm'] == 'true') {
 
-  $page = 'view';
-
   $fails = array();
 
   $formatted_date = date('l jS F', strtotime($date));
@@ -35,6 +33,9 @@ if ($_REQUEST['confirm'] == 'true') {
   }
 
   $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
+
+  $page = 'view';
+  include_once("php/view.php");
 
 }
 
