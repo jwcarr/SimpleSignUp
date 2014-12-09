@@ -150,6 +150,29 @@ class Experiment {
     return $this->shared_access;
   }
 
+  public function setSharedAccess($shared_access, $all_users) {
+    if (is_null($shared_access)) { $shared_access = array(); }
+    $shared_access_string = implode('; ', $shared_access);
+    if ($shared_access_string != $this->extractElement('shared_access', $this->file->data)) {
+      $this->shared_access = $shared_access_string;
+      foreach ($all_users as $user) {
+        if (in_array($user, $shared_access)) {
+          $user_object = new User($user, True);
+          $user_object->addSharedExperiment($this->id);
+          $user_object->saveUserDetails();
+          unset($user_object);
+        }
+        else {
+          $user_object = new User($user, True);
+          $user_object->removeSharedExperiment($this->id);
+          $user_object->saveUserDetails();
+          unset($user_object);
+        }
+      }
+      $this->changed_data[] = 'shared_access';
+    }
+  }
+
   public function getCalendar() {
     if (isset($this->calendar) == False) {
       $this->calendar = array();
