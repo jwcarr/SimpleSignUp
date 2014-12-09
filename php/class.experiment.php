@@ -8,8 +8,8 @@ class Experiment {
     global $data_path;
     $this->id = $experiment_id;
     if ($owner == False) {
-      $experiments_file = new File($data_path .'experiments', False);
-      $this->owner = $this->extractElement($this->id, $experiments_file->data);
+      $this->experiments_file = new File($data_path .'experiments', False);
+      $this->owner = $this->extractElement($this->id, $this->experiments_file->data);
     }
     else {
       $this->owner = $owner;
