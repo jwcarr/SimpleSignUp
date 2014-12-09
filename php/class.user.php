@@ -43,17 +43,20 @@ class User {
   }
 
   public function saveUserDetails() {
-    $new_user_data = $this->data;
-    foreach ($this->changed_data as $parameter) {
-      $old_piece = $parameter . ' = [' . $this->extractValue($parameter, $this->data) . ']';
-      if ($parameter == 'experiments') { $new_piece = $parameter . ' = [' . implode(', ', $this->experiments) . ']'; }
-      else { $new_piece = $parameter . ' = [' . $this->$parameter . ']'; }
-      $new_user_data = str_replace($old_piece, $new_piece, $new_user_data);
+    if (count($this->changed_data) > 0) {
+      $new_user_data = $this->data;
+      foreach ($this->changed_data as $parameter) {
+        $old_piece = $parameter . ' = [' . $this->extractValue($parameter, $this->data) . ']';
+        if ($parameter == 'experiments' OR $parameter == 'shares') { $new_piece = $parameter . ' = [' . implode(', ', $this->$parameter) . ']'; }
+        else { $new_piece = $parameter . ' = [' . $this->$parameter . ']'; }
+        $new_user_data = str_replace($old_piece, $new_piece, $new_user_data);
+      }
+      $old_piece = $this->username . ' = { ' . $this->data . ' }';
+      $new_piece = $this->username . ' = { ' . $new_user_data . ' }';
+      $this->users_file->data = str_replace($old_piece, $new_piece, $this->users_file->data);
+      return $this->users_file->overwrite();
     }
-    $old_piece = $this->username . ' = { ' . $this->data . ' }';
-    $new_piece = $this->username . ' = { ' . $new_user_data . ' }';
-    $this->users_file->data = str_replace($old_piece, $new_piece, $this->users_file->data);
-    return $this->users_file->overwrite();
+    return True;
   }
 
   public function getName() {
