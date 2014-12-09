@@ -32,7 +32,7 @@ if (isset($_REQUEST['confirm'])) {
       $send_conf_email = False;
     }
 
-    $current_subjects = $experiment->getSlot($date, $time);
+    $current_subjects = $experiment->getSlot($_REQUEST['date'], $_REQUEST['time']);
 
     if (count($current_subjects) < $experiment->getPerSlot()) {
       $experiment->addToSlot($_REQUEST['date'], $_REQUEST['time'], $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone']);
@@ -41,6 +41,8 @@ if (isset($_REQUEST['confirm'])) {
       if ($experiment->saveExperimentData()) {
         // If this is a multi-person experiment AND the slot is now full AND the send emails box was checked...
         if ($experiment->getPerSlot() > 1 AND $experiment->getPerSlot() == count($current_subjects)+1 AND $send_emails == True) {
+          $formatted_date = date('l jS F', strtotime($_REQUEST['date']));
+          $time = $_REQUEST['time'];
           // For each participant who already signed up...
           foreach ($current_subjects as $subject) {
             // Send an email to say that the experiment will go ahead as planned
