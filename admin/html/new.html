@@ -2,49 +2,159 @@
 
   <?php echo $notification; ?>
 
-  <h2>New experiment</h2>
-
   <form method='post' action='index.php'>
     <input type='hidden' name='page' value='new' />
     <input type='hidden' name='confirm' value='true' />
 
-    <p><strong>Experiment code name (no spaces)</strong><br />
-      <input type='text' name='exp' value='<?php echo $_REQUEST['exp']; ?>' style='width: 100%;' />
-    </p>
+    <div>
 
-    <p><strong>Experiment name</strong><br />
-      <input type='text' name='name' value='<?php echo $_REQUEST['name']; ?>' style='width: 100%;' />
-    </p>
+      <h2><img src='images/basic_details.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Information</h2>
 
-    <p><strong>Location</strong><br />
-      <input type='text' name='location' value='<?php echo $_REQUEST['location']; ?>' style='width: 100%;' />
-    </p>
+      <p>General information about the experiment. These details will be shown on the experiment home page. The code name will appear in the experiment URL and should be short, informative, and unique to your experiment.</p>
 
-    <p><strong>Description</strong><br />
-      <textarea name='description' rows="7" style='width: 100%;'><?php echo $_REQUEST['description']; ?></textarea>
-    </p>
-
-    <div id='left-column'>
-
-      <p><strong>Requirements (1 per line)</strong><br />
-        <textarea name='requirements' rows="5" style='width: 90%;'><?php echo $_REQUEST['requirements']; ?></textarea>
+      <p><strong>Code name (alphanumeric characters only)</strong><br />
+        <input type='text' name='exp' value='<?php echo $_REQUEST['exp']; ?>' style='width: 50%;' />
       </p>
+
+      <p><strong>Title</strong><br />
+        <input type='text' name='name' value='<?php echo $_REQUEST['name']; ?>' style='width: 100%;' />
+      </p>
+
+      <p><strong>Location</strong><br />
+        <input type='text' name='location' value='<?php echo $_REQUEST['location']; ?>' style='width: 100%;' />
+      </p>
+
+      <p><strong>Description</strong><br />
+        <textarea name='description' rows='7' style='width: 100%;'><?php echo $_REQUEST['description']; ?></textarea>
+      </p>
+    </div>
+
+    <p>&nbsp;</p>
+
+    <div>
+
+      <h2><img src='images/parameters.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Parameters</h2>
 
       <p><strong>Number of participants per time slot</strong><br />
-        <input type='text' name='per_slot' value='<?php echo $_REQUEST['per_slot']; ?>' size='5' />
+        <input type='text' name='per_slot' id='per_slot' value='<?php echo $_REQUEST['per_slot']; ?>' size='5' />
       </p>
 
     </div>
 
-    <div id='right-column'>
+    <p>&nbsp;</p>
 
-      <p><strong>Exclusions (1 per line)</strong><br />
-        <textarea name='exclusions' rows="5" style='width: 90%;'><?php echo $_REQUEST['exclusions']; ?></textarea>
-      </p>
+    <div>
 
-      <button type='submit' class='blue'>Create experiment</button>
+      <h2><img src='images/exclusions.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Requirements and exclusions</h2>
+
+      <p>Participants will be required to indicate that they meet the requirements for the experiment. Before the participant is able to sign up, their email will be checked against any excluded experiments. Hold the <span style="font-variant: small-caps;">cmd</span> or <span style="font-variant: small-caps;">ctrl</span> button to select more than one experiment to exclude.</p>
+
+      <div id='left-column'>
+
+        <p><strong>Requirements (1 per line)</strong><br />
+          <textarea name='requirements' rows='7' style='width: 100%;'><?php echo $_REQUEST['requirements']; ?></textarea>
+        </p>
+
+      </div>
+
+      <div id='right-column'>
+
+        <p><strong>Exclusions</strong><br />
+          <select multiple name='exclusions[]' size='7' style='width: 100%;'><?php echo $exclusion_options; ?></select>
+        </p>
+
+      </div>
 
     </div>
+
+    <p>&nbsp;</p>
+
+    <div>
+
+      <h2><img src='images/calendar.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Calendar</h2>
+
+      <p>To create a new date, enter the date in YYYY/MM/DD format and click the green plus button. To add new times, enter the times for a given date into the relevant box (separated by commas). Times should be in 24-hour format (HH:MM), including leading zeros, e.g. 09:00 or 14:30.</p>
+
+      <p><strong>Add date (YYYY/MM/DD)</strong><br />
+        <input type='text' name='new_date' id='new_date' value='' size='20' />
+        <img src='images/add.png' id='add_date' width='16' height='16' style="vertical-align: middle; cursor: pointer;" />
+      </p>
+
+      <table style="width: 80%;" id="calendar">
+        <tr>
+          <td style="width: 20%;"><strong>Date</strong></td>
+          <td style="width: 80%;"><strong>Add new times (comma separated)</strong></td>
+        </tr>
+      </table>
+
+    </div>
+
+    <p>&nbsp;</p>
+
+    <div>
+
+      <h2><img src='images/email.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Emails</h2>
+
+      <p>Enter your automated emails here. Leave blank if you don't want to send emails of a given type. You can use the &lt;NAME&gt;, &lt;DATE&gt;, and &lt;TIME&gt; tags to insert the relevant details into outgoing emails. Your email address will show up as the From address, so participants will be able to reply directly to automated emails to contact you.</p>
+
+      <div>
+
+        <div id='left-column'>
+
+          <p><strong>Confirmation email</strong><br />
+            <textarea name='email_conf' rows='7' style='width: 100%;'><?php echo $_REQUEST['email_conf']; ?></textarea>
+          </p>
+
+        </div>
+
+        <div id='right-column'>
+
+          <p><strong>Reminder email</strong><br />
+            <textarea name='email_reminder' rows='7' style='width: 100%;'><?php echo $_REQUEST['email_reminder']; ?></textarea>
+          </p>
+
+        </div>
+
+      </div>
+
+      <div id='multiperson_emails'>
+
+        <div id='left-column'>
+
+          <p><strong>Confirmation email (for final participant)</strong><br />
+            <textarea name='email_conf_full' rows='7' style='width: 100%;'><?php echo $_REQUEST['email_conf_full']; ?></textarea>
+          </p>
+
+        </div>
+
+        <div id='right-column'>
+
+          <p><strong>FYI email</strong><br />
+            <textarea name='email_full' rows='7' style='width: 100%;'><?php echo $_REQUEST['email_full']; ?></textarea>
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <p>&nbsp;</p>
+
+    <div>
+
+      <h2><img src='images/access.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Shared access</h2>
+
+      <p>Grant access to other users. Users with shared access will be able to view and edit, but not delete, this experiemnt. Hold the <span style='font-variant: small-caps;'>cmd</span> or <span style='font-variant: small-caps;'>ctrl</span> button to select more than one user.</p>
+
+      <p>
+        <select multiple name='shared_access[]' size='7' style='width: 50%;'><?php echo $shared_access_options; ?></select>
+      </p>
+
+    </div>
+
+    <button type='submit' class='blue'>Save changes</button>
+
   </form>
 
 </div>
@@ -54,3 +164,5 @@
   <?php echo generateMenu($user->getName(), $page); ?>
 
 </div>
+
+<?php include('js/edit.js'); ?>
