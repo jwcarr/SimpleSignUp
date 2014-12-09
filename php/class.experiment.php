@@ -522,6 +522,13 @@ class Experiment {
     return trim($this->extractElement($content_ref, $this->file->data));
   }
 
+  public function setEmail($email, $content_ref) {
+    if ($email != $this->getEmail($content_ref)) {
+      $this->$content_ref = trim($email);
+      $this->changed_data[] = $content_ref;
+    }
+  }
+
   public function sendEmail($to_address, $from_name, $from_address, $content_ref, $fill_values) {
     $email_content = $this->createEmailContent($content_ref, $fill_values);
     if ($email_content === False) { return False; }
