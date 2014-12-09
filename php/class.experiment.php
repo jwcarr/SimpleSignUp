@@ -140,6 +140,16 @@ class Experiment {
     }
   }
 
+  public function getSharedAccess() {
+    if (isset($this->shared_access) == False) {
+      $this->shared_access = explode('; ', $this->extractElement('shared_access', $this->file->data));
+      if (count($this->shared_access) == 1 AND $this->shared_access[0] == '') {
+        $this->shared_access = array();
+      }
+    }
+    return $this->shared_access;
+  }
+
   public function getCalendar() {
     if (isset($this->calendar) == False) {
       $this->calendar = array();
