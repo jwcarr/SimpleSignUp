@@ -12,10 +12,12 @@ if ($_REQUEST['confirm'] == 'true') {
 
   $fails = array();
 
+  $formatted_date = date('l jS F', strtotime($date));
+
   foreach ($tomorrow_slots as $time=>$slot) {
     if ($slot != None) {
       foreach ($slot as $subject) {
-        if ($experiment->sendEmail($subject[0], $user->getName(), $user->getEmail(), 'email_reminder', array('NAME'=>$subject[0], 'TIME'=>$time)) == False) {
+        if ($experiment->sendEmail($subject[1], $user->getName(), $user->getEmail(), 'email_reminder', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$time)) == False) {
           $fails[] = $subject_name;
         }
       }
