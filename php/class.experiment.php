@@ -275,6 +275,7 @@ class Experiment {
     $date_array = array();
     foreach ($this->calendar as $date=>$slots) {
       $time_array = array();
+      if (is_null($slots)) { $slots = array(); }
       foreach ($slots as $time=>$subjects) {
         if (is_null($subjects)) {
           $time_array[] = $time . ' = []';
