@@ -537,7 +537,7 @@ class Experiment {
   private function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
-    return trim($matches[1]);
+    return $matches[1];
   }
 
   private function extractValue($value, $data) {
