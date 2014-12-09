@@ -173,6 +173,21 @@ class Experiment {
     }
   }
 
+  public function printSharedAccess($usernames) {
+    $shared_users = $this->getSharedAccess();
+    foreach ($usernames as $username) {
+      if ($username != $this->owner) {
+        if (in_array($username, $shared_users)) {
+          $options .= '<option value="' . $username . '" selected>' . $username . '</option>';
+        }
+        else {
+          $options .= '<option value="' . $username . '">' . $username . '</option>';
+        }
+      }
+    }
+    return $options;
+  }
+
   public function getCalendar() {
     if (isset($this->calendar) == False) {
       $this->calendar = array();
