@@ -132,7 +132,7 @@ class Experiment {
       $this->calendar = array();
       $date_data = explode("\n", $this->extractElement('calendar', $this->file->data));
       if ($date_data[0] == '') {
-        $this->calendar = None;
+        $this->calendar = Null;
         return $this->calendar;
       }
       else {
@@ -146,7 +146,7 @@ class Experiment {
             $time = $time[0];
             $subjects = $this->extractValue($time, $time_datum);
             if ($subjects == '') {
-              $times_array[$time] = None;
+              $times_array[$time] = Null;
             }
             else {
               $subject_data = explode(' & ', $subjects);
@@ -170,7 +170,7 @@ class Experiment {
     foreach ($this->calendar as $date=>$slots) {
       $time_array = array();
       foreach ($slots as $time=>$subjects) {
-        if ($subjects == None) {
+        if (is_null($subjects)) {
           $time_array[] = $time . ' = []';
         }
         else {
@@ -189,7 +189,7 @@ class Experiment {
   public function getSlot($date, $time) {
     $calendar = $this->getCalendar();
     $slot = $calendar[$date][$time];
-    if ($slot == None) { $slot = array(); }
+    if (is_null($slot)) { $slot = array(); }
     return $slot;
   }
 
@@ -216,7 +216,7 @@ class Experiment {
     $subject_email = $calendar[$date][$time][$subject_number][1];
     unset($calendar[$date][$time][$subject_number]);
     if (count($calendar[$date][$time]) == 0) {
-      $calendar[$date][$time] = None;
+      $calendar[$date][$time] = Null;
     }
     else {
       $calendar[$date][$time] = array_values($calendar[$date][$time]);
@@ -248,7 +248,7 @@ class Experiment {
       $calendar[$new_date][$new_time] = $slot;
       unset($calendar[$date][$time][$subject_number]);
       if (count($calendar[$date][$time]) == 0) {
-        $calendar[$date][$time] = None;
+        $calendar[$date][$time] = Null;
       }
       else {
         $calendar[$date][$time] = array_values($calendar[$date][$time]);

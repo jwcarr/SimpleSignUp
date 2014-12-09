@@ -9,7 +9,7 @@ if (isset($experiment) == False) {
 $unix_today = strtotime(date('Y-m-d'));
 $unix_tomorrow = $unix_today + 86400;
 
-if ($experiment->getCalendar() != None) {
+if ($experiment->getCalendar() != Null) {
 
   $free_slots = 0;
   $past_slots = 0;
@@ -58,7 +58,7 @@ if ($experiment->getCalendar() != None) {
           $show_time = '';
           $show_plus = '';
         }
-        if ($slot == None) {
+        if (is_null($slot)) {
           $schedule .= '<tr>
           <td width="10%">' . $show_time . '</td>
           <td width="25%">-</td>
