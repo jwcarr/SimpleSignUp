@@ -2,28 +2,38 @@
 
   <?php echo $notification; ?>
 
-  <h2>My experiments</h2>
-
   <div id='left-column'>
 
-    <h3>Open experiments</h3>
+    <h2>My experiments</h2>
 
-    <?php $user->printExperimentList('open'); ?>
+    <h3>Open</h3>
+
+    <?php $user->printExperimentList('open', 'mine'); ?>
+
+    <h3>Closed</h3>
+
+    <?php $user->printExperimentList('closed', 'mine'); ?>
 
   </div>
 
   <div id='right-column'>
 
-    <h3>Closed experiments</h3>
+    <h2>Shared experiments</h2>
 
-    <?php $user->printExperimentList('closed'); ?>
+    <h3>Open</h3>
+
+    <?php $user->printExperimentList('open', 'shared'); ?>
+
+    <h3>Closed</h3>
+
+    <?php $user->printExperimentList('closed', 'shared'); ?>
 
   </div>
 
 </div>
 
 <div id='menu'>
-  
+
   <?php echo generateMenu($user->getName(), $page); ?>
 
 </div>
