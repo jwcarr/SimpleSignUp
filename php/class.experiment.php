@@ -438,7 +438,7 @@ class Experiment {
     else {
       $this->total_requirements = 0;
       foreach ($requirements as $requirement) {
-        $checkboxes .= '<p><input type="checkbox" name="confirm" id="require' . $i . '"" /> ' . $requirement . '</p>';
+        $checkboxes .= '<p><input type="checkbox" name="confirm" id="require' . $this->total_requirements . '" /> ' . $requirement . '</p>';
         $this->total_requirements++;
       }
     }
