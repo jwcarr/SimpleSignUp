@@ -171,11 +171,13 @@ a:hover {
 }
 
 #left-column{
-  width: 50%;
+  width: 47.5%;
   float: left;
+  margin-right: 2.5%;
 }
 
 #right-column{
-  width: 50%;
+  width: 47.5%;
   float: right;
+  margin-left: 2.5%;
 }
