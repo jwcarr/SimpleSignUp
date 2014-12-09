@@ -82,9 +82,8 @@ if (isset($_REQUEST['confirm'])) {
       }
 
     }
-
-    $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
   }
+  $notification = '<div id="notification" class="notification-'. $notification_colour .'"><p>' . $notification . '</p></div>';
 }
 
 if ($page == 'new') {
