@@ -27,9 +27,7 @@
       <input type='checkbox' name='send_conf_email' value='checked' /> Send a confirmation email to this participant
     </p>
 
-    <p>
-      <input type='checkbox' name='send_emails' value='checked' /> Send emails to other participants if the timeslot is completed by this participant
-    </p>
+    <?php if ($experiment->getPerSlot() > 1) { echo '<p><input type="checkbox" name="send_emails" value="checked" /> Send emails to other participants if the timeslot is completed by this participant</p>'; } ?>
 
     <button type='submit' class='blue'>Add participant</button>
 
