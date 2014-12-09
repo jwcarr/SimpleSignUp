@@ -247,6 +247,30 @@ class Experiment {
     return True;
   }
 
+  public function setCalendar($new_times) {
+    $edit = False;
+    $calendar = $this->getCalendar();
+    foreach ($new_times as $date=>$time_string) {
+      if ($date != '') {
+        if ($time_string != '') {
+          $times = explode(',', trim($time_string));
+          foreach ($times as $time) {
+            if ($time != '') {
+              $calendar[trim($date)][trim($time)] = Null;
+              $edit = True;
+            }
+          }
+          ksort($calendar[trim($date)]);
+        }
+      }
+    }
+    ksort($calendar);
+    if ($edit == True) {
+      $this->calendar = $calendar;
+      $this->changed_data[] = 'calendar';
+    }
+  }
+
   private function flattenCalendar() {
     $date_array = array();
     foreach ($this->calendar as $date=>$slots) {
