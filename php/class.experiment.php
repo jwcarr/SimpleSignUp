@@ -92,6 +92,7 @@ class Experiment {
   public function getRequirements() {
     if (isset($this->requirements) == False) {
       $this->requirements = explode('; ', $this->extractElement('requirements', $this->file->data));
+      if ($this->requirements[0] == '') { $this->requirements = Null; }
     }
     return $this->requirements;
   }
