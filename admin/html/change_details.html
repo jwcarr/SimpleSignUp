@@ -4,26 +4,53 @@
 
   <h2>Change my details</h2>
 
-  <p>Enter your details below. These details will be shown on your experiment signup pages. The email you use will show up as the From address in automated emails. You should use an email address on the ed.ac.uk domain to avoid having your outgoing emails blocked by spam filters.</p>
+  <p>These details will be shown on your experiment signup pages. The email you use will show up as the From address in automated emails. You should use an email address on the ed.ac.uk domain to avoid your outgoing emails being blocked by spam filters.</p>
 
-  <form method='post' action='index.php'>
-    <input type='hidden' name='page' value='change_details' />
-    <input type='hidden' name='confirm' value='true' />
+  <div id='left-column'>
 
-    <p><strong>Name</strong><br />
-      <input type='text' name='name' value='<?php echo $user->getName(); ?>' size='30' />
-    </p>
+    <form method='post' action='index.php'>
+      <input type='hidden' name='page' value='change_details' />
+      <input type='hidden' name='confirm' value='true' />
 
-    <p><strong>Email</strong><br />
-      <input type='text' name='email' value='<?php echo $user->getEmail(); ?>' size='30' />
-    </p>
+      <p><strong>Name</strong><br />
+        <input type='text' name='name' value='<?php echo $user->getName(); ?>' size='30' />
+      </p>
 
-    <p><strong>Phone</strong><br />
-      <input type='text' name='phone' value='<?php echo $user->getPhone(); ?>' size='30' />
-    </p>
+      <p><strong>Email</strong><br />
+        <input type='text' name='email' value='<?php echo $user->getEmail(); ?>' size='30' />
+      </p>
 
-    <button type='submit' class='blue'>Save</button>
-  </form>
+      <p><strong>Phone</strong><br />
+        <input type='text' name='phone' value='<?php echo $user->getPhone(); ?>' size='30' />
+      </p>
+
+      <button type='submit' class='blue'>Save details</button>
+    </form>
+
+  </div>
+
+  <div id='right-column'>
+
+    <form method='post' action='index.php'>
+      <input type='hidden' name='page' value='change_password' />
+      <input type='hidden' name='confirm' value='true' />
+
+      <p><strong>Current password</strong><br />
+        <input type='password' name='password' size='30' />
+      </p>
+
+      <p><strong>New password</strong><br />
+        <input type='password' name='password1' size='30' />
+      </p>
+
+      <p><strong>Repeat new password</strong><br />
+        <input type='password' name='password2' size='30' />
+      </p>
+
+      <button type='submit' class='blue'>Change password</button>
+    </form>
+
+  </div>
 
 </div>
 

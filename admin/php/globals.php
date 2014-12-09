@@ -15,7 +15,7 @@ $new_hash_method = True;
 date_default_timezone_set('UTC');
 
 function generateMenu($name, $current_page) {
-  $menu_items = array('main'=>'My experiments', 'new'=>'New experiment', 'change_details'=>'Change my details', 'change_password'=>'Change my password');
+  $menu_items = array('main'=>'Experiments', 'new'=>'New experiment', 'change_details'=>'Change my details');
   $menu = '<p><strong>'. $name .'</strong></p>';
   foreach ($menu_items as $page=>$description) {
     if ($page == $current_page) {

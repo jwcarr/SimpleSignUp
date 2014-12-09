@@ -18,18 +18,21 @@ if (isset($_REQUEST['confirm'])) {
         setcookie('SimpleSignUpAuth', $identity[0] . ':' . $password_hash, time()+604800);
       }
       else {
+        $page = 'change_details';
         $notification = 'Error: could not save your new password';
         $notification_colour = 'red';
       }
 
     }
     else {
+      $page = 'change_details';
       $notification = 'You entered the incorrect password. Please try agian.';
       $notification_colour = 'red';
     }
 
   }
   else {
+    $page = 'change_details';
     $notification = 'The new passwords you entered do not match. Please try again.';
     $notification_colour = 'red';
   }
