@@ -46,6 +46,7 @@ if (isset($_REQUEST['confirm'])) {
           $experiment->setLocation($_REQUEST['location']);
           $experiment->setRequirements($_REQUEST['requirements']);
           $experiment->setExclusions($_REQUEST['exclusions']);
+          $experiment->setManualExclusions($_REQUEST['manual_exclusions']);
           $experiment->setPerSlot($_REQUEST['per_slot']);
           $experiment->setSharedAccess($_REQUEST['shared_access'], $usernames);
           $experiment->setCalendar($_REQUEST['new_times']);
