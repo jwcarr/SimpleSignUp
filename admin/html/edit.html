@@ -44,7 +44,7 @@
 
       <h2><img src='images/exclusions.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Requirements and exclusions</h2>
 
-      <p>Participants will be required to indicate that they meet the requirements for the experiment. Before the participant is able to sign up, their email will be checked against any excluded experiments. Hold the <span style="font-variant: small-caps;">cmd</span> or <span style="font-variant: small-caps;">ctrl</span> button to select more than one experiment to exclude.</p>
+      <p>Participants will be required to indicate that they meet the requirements for the experiment. Before the participant is able to sign up, their email will be checked against any excluded experiments. Hold the <span style="font-variant: small-caps;">cmd</span> or <span style="font-variant: small-caps;">ctrl</span> button to select more than one experiment to exclude. To manually add a list of email addresses to exclude, enter them into the Excluded email addresses box, separated by commas.</p>
 
       <div id='left-column'>
 
@@ -61,6 +61,12 @@
         </p>
 
       </div>
+
+      <p>&nbsp;</p>
+
+      <p><strong>Excluded email addresses (comma separated)</strong><br />
+        <textarea name='manual_exclusions' rows='4' style='width: 100%;'><?php echo $experiment->getManualExclusions(); ?></textarea>
+      </p>
 
     </div>
 
