@@ -537,12 +537,17 @@ class Experiment {
   }
 
   public function createEmailContent($content_ref, $fill_values) {
-    $content = $this->extractElement($content_ref, $this->file->data);
-    foreach ($fill_values as $key=>$value) {
-      $content = str_replace('<'. $key .'>', $value, $content);
+    $content = $this->getEmail($content_ref);
+    if ($content == '') {
+      return False;
     }
-    $content = str_replace("\n", "\r\n", $content);
-    return $content;
+    else {
+      foreach ($fill_values as $key=>$value) {
+        $content = str_replace('<'. $key .'>', $value, $content);
+      }
+      $content = str_replace("\n", "\r\n", $content);
+      return $content;
+    }
   }
 
   private function extractElement($element, $data) {
