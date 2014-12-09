@@ -98,8 +98,15 @@ class Experiment {
   }
 
   public function setRequirements($requirements) {
-    $this->requirements = $requirements;
-    $this->changed_data[] = 'requirements';
+    $requirements = explode("\n", trim($requirements));
+    foreach ($requirements as $key=>$value) {
+      $requirements[$key] = trim($value);
+    }
+    $requirements = implode('; ', $requirements);
+    if ($requirements != $this->extractElement('requirements', $this->file->data)) {
+      $this->requirements = $requirements;
+      $this->changed_data[] = 'requirements';
+    }
   }
 
   public function getExclusions() {
