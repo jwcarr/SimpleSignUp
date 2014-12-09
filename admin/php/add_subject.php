@@ -80,4 +80,8 @@ if (isset($_REQUEST['confirm'])) {
 
 }
 
+else {
+  $experiment = new Experiment($_REQUEST['exp'], False);
+}
+
 ?>
