@@ -44,7 +44,7 @@ class Experiment {
 
   public function setName($name) {
     if ($name != $this->getName()) {
-      $this->name = $name;
+      $this->name = trim($name);
       $this->changed_data[] = 'name';
     }
   }
@@ -70,7 +70,7 @@ class Experiment {
 
   public function setDescription($description) {
     if ($description != $this->getDescription()) {
-      $this->description = $description;
+      $this->description = trim($description);
       $this->changed_data[] = 'description';
     }
   }
@@ -84,7 +84,7 @@ class Experiment {
 
   public function setLocation($location) {
     if ($location != $this->getLocation()) {
-      $this->location = $location;
+      $this->location = trim($location);
       $this->changed_data[] = 'location';
     }
   }
@@ -122,7 +122,7 @@ class Experiment {
 
   public function setPerSlot($per_slot) {
     if ($perSlot != $this->getPerSlot()) {
-      $this->per_slot = $per_slot;
+      $this->per_slot = trim($per_slot);
       $this->changed_data[] = 'per_slot';
     }
   }
@@ -196,7 +196,7 @@ class Experiment {
   public function addToSlot($date, $time, $name, $email, $phone) {
     $slot = $this->getSlot($date, $time);
     if ($phone == '') { $phone = 'Not provided'; }
-    $slot[] = array($name, $email, $phone);
+    $slot[] = array(trim($name), trim($email), trim($phone));
     $this->calendar[$date][$time] = $slot;
     $this->changed_data[] = 'calendar';
   }
@@ -232,7 +232,7 @@ class Experiment {
     $calendar = $this->getCalendar();
     $subject_email = $calendar[$date][$time][$subject_number][1];
     if ($new_timeslot == 'none') {
-      $calendar[$date][$time][$subject_number] = array($name, $email, $phone);
+      $calendar[$date][$time][$subject_number] = array(trim($name), trim($email), trim($phone));
     }
     else {
       $new_timeslot = explode('|', $new_timeslot);
@@ -244,7 +244,7 @@ class Experiment {
       }
       $current_subjects = $slot;
       if ($phone == '') { $phone = 'Not provided'; }
-      $slot[] = array($name, $email, $phone);
+      $slot[] = array(trim($name), trim($email), trim($phone));
       $calendar[$new_date][$new_time] = $slot;
       unset($calendar[$date][$time][$subject_number]);
       if (count($calendar[$date][$time]) == 0) {
