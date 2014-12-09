@@ -6,6 +6,7 @@ include_once('class.experiment.php');
 class User {
 
   private $valid_user = False;
+  private $changed_data = array();
 
   public function __construct($username, $write_access=False) {
     global $data_path;
