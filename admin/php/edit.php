@@ -14,7 +14,7 @@ if (isset($_REQUEST['confirm'])) {
   if ($experiment->saveExperimentData()) {
     include('view.php');
     $page = 'view';
-    $notification = 'Your edits have successfully been changed.';
+    $notification = 'Your changes have successfully been saved.';
     $notification_colour = 'green';
   }
   else {
