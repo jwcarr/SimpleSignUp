@@ -65,7 +65,7 @@ class User {
 
   public function setName($name) {
     if ($name != $this->getName()) {
-      $this->name = $name;
+      $this->name = trim($name);
       $this->changed_data[] = 'name';
     }
   }
@@ -79,7 +79,7 @@ class User {
 
   public function setEmail($email) {
     if ($email != $this->getName()) {
-      $this->email = $email;
+      $this->email = trim($email);
       $this->changed_data[] = 'email';
     }
   }
@@ -93,7 +93,7 @@ class User {
 
   public function setPhone($phone) {
     if ($phone != $this->getPhone()) {
-      $this->phone = $phone;
+      $this->phone = trim($phone);
       $this->changed_data[] = 'phone';
     }
   }
