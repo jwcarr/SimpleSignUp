@@ -5,11 +5,18 @@ include_once("../php/class.experiment.php");
 if (isset($_REQUEST['confirm'])) {
 
   $experiment = new Experiment($_REQUEST['exp'], True);
-
   $experiment->setName($_REQUEST['name']);
   $experiment->setDescription($_REQUEST['description']);
   $experiment->setLocation($_REQUEST['location']);
+  $experiment->setRequirements($_REQUEST['requirements']);
+  $experiment->setExclusions($_REQUEST['exclusions']);
   $experiment->setPerSlot($_REQUEST['per_slot']);
+  $experiment->setSharedAccess($_REQUEST['shared_access'], $user->getAllUsernames());
+  $experiment->setCalendar($_REQUEST['new_times']);
+  $experiment->setEmail($_REQUEST['email_conf'], 'email_conf');
+  $experiment->setEmail($_REQUEST['email_full'], 'email_full');
+  $experiment->setEmail($_REQUEST['email_conf_full'], 'email_conf_full');
+  $experiment->setEmail($_REQUEST['email_reminder'], 'email_reminder');
 
   if ($experiment->saveExperimentData()) {
     include('view.php');
