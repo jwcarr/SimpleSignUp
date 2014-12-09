@@ -445,6 +445,32 @@ class Experiment {
     return $checkboxes;
   }
 
+  public function printExclusionOptions() {
+    $experiment_data = explode("\n", $this->experiments_file->data);
+    $all_experiments = array();
+    foreach ($experiment_data as $line) {
+      if ($line != '') {
+        preg_match('/(.*?) = \{(.*?)\}/s', $line, $matches);
+        $all_experiments[$matches[2]][] = $matches[1];
+      }
+    }
+    ksort($all_experiments);
+    foreach ($all_experiments as $user=>$experiments) {
+      foreach ($experiments as $experiment) {
+        if ($experiment != $this->id) {
+          $current_exclusions = $this->getExclusions();
+          if (in_array($experiment, $current_exclusions)) {
+            $options .= '<option value="' . $experiment . '" selected>' . $user . ': ' . $experiment . '</option>';
+          }
+          else {
+            $options .= '<option value="' . $experiment . '">' . $user . ': ' . $experiment . '</option>';
+          }
+        }
+      }
+    }
+    return $options;
+  }
+
   public function getAvailableSlots($include_today=False) {
     if (isset($this->available_slots) == False) {
       $calendar = $this->getCalendar();
