@@ -226,6 +226,27 @@ class Experiment {
     return $this->calendar;
   }
 
+  public function removeTime($date, $time=False) {
+    $calendar = $this->getCalendar();
+    if ($time == False) {
+      foreach ($calendar[$date] as $time=>$slot) {
+        if (is_null($slot) == False) {
+          return False;
+        }
+      }
+      unset($calendar[$date]);
+    }
+    else {
+      if (is_null($calendar[$date][$time]) == False) {
+        return False;
+      }
+      unset($calendar[$date][$time]);
+    }
+    $this->calendar = $calendar;
+    $this->changed_data[] = 'calendar';
+    return True;
+  }
+
   private function flattenCalendar() {
     $date_array = array();
     foreach ($this->calendar as $date=>$slots) {
