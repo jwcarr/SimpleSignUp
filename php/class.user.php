@@ -144,13 +144,12 @@ class User {
     $this->changed_data[] = 'experiments';
   }
 
-  private function getExperimentObjects() {
-    if (isset($this->experiment_objects) == False) {
-      $this->experiment_objects = array();
-      foreach ($this->getExperiments() as $experiment) {
-        $this->experiment_objects[] = new Experiment($experiment, False);
-      }
+  private function getExperimentObjects($experiments) {
+    $objects = array();
+    foreach ($experiments as $experiment) {
+      $objects[] = new Experiment($experiment, False);
     }
+    return $objects;
   }
 
   public function printExperimentList($status) {
