@@ -200,7 +200,13 @@ class Experiment {
         $dates_array = array();
         foreach ($date_data as $date_datum) {
           $date_times = explode(' ~ ', $date_datum);
-          $time_data = explode('; ', $date_times[1]);
+          if ($date_times[1] == '') {
+            $date_times = explode(' ~', $date_datum);
+            $time_data = array();
+          }
+          else {
+            $time_data = explode('; ', $date_times[1]);
+          }
           $times_array = array();
           foreach ($time_data as $time_datum) {
             $time = explode(' = ', $time_datum);
