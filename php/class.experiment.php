@@ -134,7 +134,7 @@ class Experiment {
   }
 
   public function setPerSlot($per_slot) {
-    if ($perSlot != $this->getPerSlot()) {
+    if ($per_slot != $this->getPerSlot()) {
       $this->per_slot = trim($per_slot);
       $this->changed_data[] = 'per_slot';
     }
