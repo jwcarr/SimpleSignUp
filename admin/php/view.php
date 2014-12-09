@@ -19,6 +19,7 @@ if ($experiment->getCalendar() != Null) {
   foreach ($experiment->getCalendar() as $date=>$slots) {
     $unix_date = strtotime($date);
 
+    $shown_plus = False;
     $empty_date = True;
 
     if ($unix_date < $unix_today) {
@@ -55,10 +56,12 @@ if ($experiment->getCalendar() != Null) {
         if ($i == 0) {
           $show_time = $time;
           $show_plus = '<a href="index.php?page=add_subject&exp='. $experiment->id .'&date='. $date .'&time='. $time .'"><img src="images/add.png" width="16" height="16" style="vertical-align: bottom" /></a>';
+          $show_cross = '<a href="index.php?page=edit_calendar&exp='. $experiment->id .'&date='. $date .'&time='. $time .'"><img src="images/delete.png" width="16" height="16" style="vertical-align: bottom" /></a>';
         }
         else {
           $show_time = '';
           $show_plus = '';
+          $show_cross = '';
         }
         if (is_null($slot)) {
           $schedule .= '<tr>
@@ -66,7 +69,7 @@ if ($experiment->getCalendar() != Null) {
           <td width="25%">-</td>
           <td width="35%">-</td>
           <td width="20%">-</td>
-          <td width="10%">' . $show_plus . '</td>
+          <td width="10%">' . $show_plus . '&nbsp;' . $show_cross . '</td>
           </tr>';
           if ($time_point == 'future') {
             $free_slots += 1;
@@ -94,12 +97,19 @@ if ($experiment->getCalendar() != Null) {
             }
           }
           else {
+            if ($shown_plus == False) {
+              $show_plus = '<a href="index.php?page=add_subject&exp='. $experiment->id .'&date='. $date .'&time='. $time .'"><img src="images/add.png" width="16" height="16" style="vertical-align: bottom" /></a>';
+              $shown_plus = True;
+            }
+            else {
+              $show_plus = '';
+            }
             $schedule .= '<tr>
             <td width="10%">' . $show_time . '</td>
             <td width="25%">-</td>
             <td width="35%">-</td>
             <td width="20%">-</td>
-            <td width="10%"><a href="index.php?page=add_subject&exp='. $experiment->id .'&date='. $date .'&time='. $time .'"><img src="images/add.png" width="16" height="16" style="vertical-align: bottom" /></a></td>
+            <td width="10%">'. $show_plus .'</td>
             </tr>';
             if ($time_point == 'future') {
               $free_slots += 1;
