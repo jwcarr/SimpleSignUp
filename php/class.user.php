@@ -161,7 +161,7 @@ class User {
       }
     }
     if (isset($list)) {
-      echo '<ul>'. $list .'<ul>';
+      echo '<ul>'. $list .'</ul>';
     }
     else {
       echo "<p>None</p>";
