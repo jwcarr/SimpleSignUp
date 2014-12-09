@@ -66,7 +66,7 @@ if (isset($_REQUEST['confirm'])) {
       }
     }
     else {
-      $notification = 'The requested date is no longer available.';
+      $notification = 'The requested timeslot is no longer available.';
       $notification_colour = 'red';
     }
 
