@@ -518,6 +518,10 @@ class Experiment {
     return $available_times;
   }
 
+  public function getEmail($content_ref) {
+    return trim($this->extractElement($content_ref, $this->file->data));
+  }
+
   public function sendEmail($to_address, $from_name, $from_address, $content_ref, $fill_values) {
     $email_content = $this->createEmailContent($content_ref, $fill_values);
     if ($email_content === False) { return False; }
