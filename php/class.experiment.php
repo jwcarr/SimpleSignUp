@@ -117,8 +117,13 @@ class Experiment {
   }
 
   public function setExclusions($exclusions) {
-    $this->exclusions = $exclusions;
-    $this->changed_data[] = 'exclusions';
+    if (is_null($exclusions) == False) {
+      $exclusions = implode('; ', $exclusions);
+      if ($exclusions != $this->extractElement('exclusions', $this->file->data)) {
+        $this->exclusions = $exclusions;
+        $this->changed_data[] = 'exclusions';
+      }
+    }
   }
 
   public function getPerSlot() {
