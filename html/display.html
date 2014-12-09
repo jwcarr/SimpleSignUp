@@ -1,7 +1,7 @@
 <div id='content'>
 
   <h2>Description</h2>
-  <p><?php echo $experiment->getDescription(); ?></p>
+  <p><?php echo str_replace("\n", '<br />', $experiment->getDescription()); ?></p>
 
   <h2>Location</h2>
   <p><?php echo $experiment->getLocation(); ?></p>

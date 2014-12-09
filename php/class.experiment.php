@@ -63,7 +63,7 @@ class Experiment {
 
   public function getDescription() {
     if (isset($this->description) == False) {
-      $this->description = str_replace("\n", '<br />', $this->extractElement('description', $this->file->data));
+      $this->description = $this->extractElement('description', $this->file->data);
     }
     return $this->description;
   }
