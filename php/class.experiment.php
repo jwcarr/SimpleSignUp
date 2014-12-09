@@ -416,9 +416,17 @@ class Experiment {
 
   public function printRequirements() {
     $requirements = $this->getRequirements();
-    foreach ($requirements as $requirement) {
-      echo '<li>' . $requirement . '</li>';
+    if (is_null($requirements)) {
+      $output = '<p>No specific requirements. Anyone can take part.</p>';
     }
+    else {
+      $output = '<ul>';
+      foreach ($requirements as $requirement) {
+        $output .= '<li>' . $requirement . '</li>';
+      }
+      $output .= '</ul>';
+    }
+    return $output;
   }
 
   public function printRequirementCheckboxes() {
