@@ -21,6 +21,7 @@ if ($page == 'authenticate') {
   }
   else {
     $page = 'login';
+    $login_colour = 'red';
   }
 }
 elseif ($page == 'logout') {
