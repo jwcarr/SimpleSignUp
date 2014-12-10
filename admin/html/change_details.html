@@ -8,20 +8,20 @@
 
   <div id='left-column'>
 
-    <form method='post' action='index.php'>
+    <form id='change_details' method='post' action='index.php'>
       <input type='hidden' name='page' value='change_details' />
       <input type='hidden' name='confirm' value='true' />
 
       <p><strong>Name</strong><br />
-        <input type='text' name='name' value='<?php echo $user->getName(); ?>' size='30' />
+        <input type='text' name='name' id='name' value='<?php echo $user->getName(); ?>' size='30' />
       </p>
 
       <p><strong>Email</strong><br />
-        <input type='text' name='email' value='<?php echo $user->getEmail(); ?>' size='30' />
+        <input type='text' name='email' id='email' value='<?php echo $user->getEmail(); ?>' size='30' />
       </p>
 
       <p><strong>Phone</strong><br />
-        <input type='text' name='phone' value='<?php echo $user->getPhone(); ?>' size='30' />
+        <input type='text' name='phone' id='phone' value='<?php echo $user->getPhone(); ?>' size='30' />
       </p>
 
       <button type='submit' class='blue'>Save details</button>
@@ -31,20 +31,20 @@
 
   <div id='right-column'>
 
-    <form method='post' action='index.php'>
+    <form id='change_password' method='post' action='index.php'>
       <input type='hidden' name='page' value='change_password' />
       <input type='hidden' name='confirm' value='true' />
 
       <p><strong>Current password</strong><br />
-        <input type='password' name='password' size='30' />
+        <input type='password' name='password' id='password' size='30' />
       </p>
 
       <p><strong>New password</strong><br />
-        <input type='password' name='password1' size='30' />
+        <input type='password' name='password1' id='password1' size='30' />
       </p>
 
       <p><strong>Repeat new password</strong><br />
-        <input type='password' name='password2' size='30' />
+        <input type='password' name='password2' id='password2' size='30' />
       </p>
 
       <button type='submit' class='blue'>Change password</button>
@@ -59,3 +59,5 @@
   <?php echo generateMenu($user->getName(), $page); ?>
 
 </div>
+
+<?php include('js/change_details.js'); ?>
