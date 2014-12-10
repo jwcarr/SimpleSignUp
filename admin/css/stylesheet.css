@@ -50,6 +50,11 @@ input{
   font-size: 15px;
 }
 
+input.red {
+  background-color: #F5E3E6;
+  border: solid 1px #B22B3B;
+}
+
 textarea {
   border: solid 1px black;
   font-size: 15px;
