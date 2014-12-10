@@ -3,7 +3,7 @@
   <input type='hidden' name='page' value='authenticate' />
 
   <p><strong>Username</strong><br />
-    <input type='text' name='username' id='username' class='<?php echo $login_colour; ?>' style='width: 280px;' />
+    <input type='text' name='username' id='username' class='<?php echo $login_colour; ?>' style='width: 280px;' autofocus />
   </p>
 
   <p><strong>Password</strong><br />
@@ -13,9 +13,3 @@
   <p><button type='submit' class='blue'>Login</button></p>
 
 </form>
-
-<script>
-
-  $("#username").focus();
-
-</script>
