@@ -112,6 +112,7 @@ class Experiment {
   public function getExclusions() {
     if (isset($this->exclusions) == False) {
       $this->exclusions = explode('; ', $this->extractElement('exclusions', $this->file->data));
+      if ($exclusions[0] == '') { $this->exclusions = array(); }
     }
     return $this->exclusions;
   }
