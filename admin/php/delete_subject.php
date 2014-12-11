@@ -27,6 +27,10 @@ if (isset($_REQUEST['confirm'])) {
 else {
   $experiment = new Experiment($_REQUEST['exp'], False);
   $subject = $experiment->getSubject($_REQUEST['date'], $_REQUEST['time'], $_REQUEST['subject']);
+  $subject_name = str_replace(' ', '%20', $subject[0]);
+  $re_sign_link = 'http://' . $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+  preg_match('/(.*?)admin\//s', $re_sign_link, $matches);
+  $re_sign_link = $matches[1] . '?exp='. $experiment->id .'&re-sign=1&page=calendar&name='. $subject_name .'&email='. $subject[1] . '&phone='. $subject[2];
 }
 
 ?>
