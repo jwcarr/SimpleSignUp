@@ -170,10 +170,11 @@ class User {
     }
   }
 
-  private function getExperimentObjects($experiments) {
+  private function getExperimentObjects($experiments, $type) {
     $objects = array();
+    if ($type == 'mine') { $owner = $this->username; } else { $owner = False; }
     foreach ($experiments as $experiment) {
-      $objects[] = new Experiment($experiment, False);
+      $objects[] = new Experiment($experiment, False, $owner);
     }
     return $objects;
   }
@@ -185,7 +186,7 @@ class User {
     else {
       $experiments = $this->getSharedExperiments();
     }
-    $objects = $this->getExperimentObjects($experiments);
+    $objects = $this->getExperimentObjects($experiments, $type);
     foreach ($objects as $experiment) {
       if ($experiment->getStatus() == $status AND $type == 'mine') {
         $list .= '<li><a href="index.php?page=view&exp='. $experiment->id .'">'. $experiment->getName() .'</a></li>';
