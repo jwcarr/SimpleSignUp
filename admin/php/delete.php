@@ -22,6 +22,7 @@ if (isset($_REQUEST['confirm'])) {
 
   if ($user->saveUserDetails()) {
     if ($experiments_file->overwrite()) {
+      unset($experiment);
       if (unlink($data_path . 'user_data/'. $identity[0] . '/' . $_REQUEST['exp'])) {
         $page = 'main';
         $notification = 'Experiment successfully deleted';
