@@ -1,7 +1,7 @@
 <?php
 
 include_once("class.experiment.php");
-$experiment = new Experiment($_REQUEST['exp']);
+$experiment = new Experiment($_REQUEST['exp'], False, $_REQUEST['own']);
 
 $page_header = $experiment->getName();
 
@@ -21,7 +21,7 @@ else {
     $excluded_email_addresses = $experiment->getExclusionEmails();
 
     foreach ($experiment->getExclusions() as $exclusion) {
-      $alt_experiment = new Experiment($exclusion);
+      $alt_experiment = new Experiment($exclusion, False);
       $excluded_email_addresses = array_merge($excluded_email_addresses, $alt_experiment->getExclusionEmails());
     }
 
