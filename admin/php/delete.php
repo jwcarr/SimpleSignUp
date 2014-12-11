@@ -1,7 +1,7 @@
 <?php
 
 include_once("../php/class.experiment.php");
-$experiment = new Experiment($_REQUEST['exp'], False);
+$experiment = new Experiment($_REQUEST['exp'], False, $identity[0]);
 
 if (isset($_REQUEST['confirm'])) {
 
