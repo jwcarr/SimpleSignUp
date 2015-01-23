@@ -118,8 +118,15 @@ if ($experiment->getCalendar() != Null) {
         }
       }
     }
-    if ($unix_date == $unix_tomorrow AND $experiment->getAutomatedStatus() === False) {
-      $schedule .= '<tr><td colspan="2"></td><td colspan="3"><button id="reminders" class="green">Send reminder emails for tomorrow</button></td></tr>';
+    if ($unix_date == $unix_tomorrow) {
+      if ($experiment->getRemindersSent() === True) {
+        $schedule .= '<tr><td colspan="2"></td><td colspan="3" style="color: #5D9648;">Reminder emails have been sent to tomorrow’s participants</td></tr>';
+      }
+      else {
+        if ($experiment->getAutomatedStatus() === False) {
+          $schedule .= '<tr><td colspan="2"></td><td colspan="3"><button id="reminders" class="green">Send reminder emails for tomorrow</button></td></tr>';
+        }
+    }
     }
     if ($empty_date == True) {
       $schedule .= '<tr><td colspan="5"><a href="index.php?page=edit_calendar&exp='. $experiment->id .'&date='. $date .'"><img src="images/delete.png" width="16" height="16" style="vertical-align: bottom" /></a>&nbsp;Delete this date</td></tr>';
