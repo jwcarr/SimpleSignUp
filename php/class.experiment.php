@@ -571,6 +571,25 @@ class Experiment {
     $this->changed_data[] = 'automated_status';
   }
 
+  public function getLastReminders() {
+    if (isset($this->last_reminders) === False) {
+      $this->last_reminders = $this->extractElement('last_reminders', $this->file->data);
+    }
+    return strtotime($this->last_reminders);
+  }
+
+  public function setLastReminders($last_reminders) {
+    $this->last_reminders = $last_reminders;
+    $this->changed_data[] = 'last_reminders';
+  }
+
+  public function getRemindersSent() {
+    if ($this->getLastReminders() < strtotime(date('Y-m-d'))) {
+      return False;
+    }
+    return True;
+  }
+
   public function getEmail($content_ref) {
     return trim($this->extractElement($content_ref, $this->file->data));
   }
