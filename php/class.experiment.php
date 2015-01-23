@@ -556,6 +556,21 @@ class Experiment {
     return $available_times;
   }
 
+  public function getAutomatedStatus() {
+    if (isset($this->automated_status) == False) {
+      $this->automated_status = $this->extractElement('automated_status', $this->file->data);
+    }
+    if ($this->automated_status == 'on') {
+      return True;
+    }
+    return False;
+  }
+
+  public function setAutomatedStatus($automated_status) {
+    $this->automated_status = $automated_status;
+    $this->changed_data[] = 'automated_status';
+  }
+
   public function getEmail($content_ref) {
     return trim($this->extractElement($content_ref, $this->file->data));
   }
