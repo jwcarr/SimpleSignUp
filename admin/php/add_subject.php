@@ -42,19 +42,26 @@ if (isset($_REQUEST['confirm'])) {
         $formatted_date = date('l jS F', strtotime($_REQUEST['date']));
         $time = $_REQUEST['time'];
         // If this is a multi-person experiment AND the slot is now full AND the send emails box was checked...
-        if ($experiment->getPerSlot() > 1 AND $experiment->getPerSlot() == count($current_subjects)+1 AND $send_emails == True) {
-          // For each participant who already signed up...
-          foreach ($current_subjects as $subject) {
-            // Send an email to say that the experiment will go ahead as planned
-            $experiment->sendEmail($subject[1], $user->getName(), $user->getEmail(), 'email_full', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$time));
+        if ($experiment->getPerSlot() > 1 AND $experiment->getPerSlot() == count($current_subjects)+1) {
+          if ($send_emails == True) {
+            // For each participant who already signed up...
+            foreach ($current_subjects as $subject) {
+              // Send an email to say that the experiment will go ahead as planned
+              $experiment->sendEmail($subject[1], $user->getName(), $user->getEmail(), 'email_full', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$time));
+            }
           }
           // Send an email to this participant to confirm the appointment
           if ($send_conf_email == True) {
             $experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf_full', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
           }
         }
-        elseif ($send_conf_email == True) {
-          // Send an email to this participant to confirm the booking
+        elseif ($experiment->getPerSlot() == 1) {
+          if ($send_conf_email == True) {
+            // Send an email to this participant to confirm the booking
+            $experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
+          }
+        }
+        else {
           if ($send_conf_email == True) {
             $experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
           }
