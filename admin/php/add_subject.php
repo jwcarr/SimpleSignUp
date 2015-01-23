@@ -39,10 +39,10 @@ if (isset($_REQUEST['confirm'])) {
       $experiment->addExclusionEmails(array($_REQUEST['email']));
       $experiment->setExclusionEmails();
       if ($experiment->saveExperimentData()) {
+        $formatted_date = date('l jS F', strtotime($_REQUEST['date']));
+        $time = $_REQUEST['time'];
         // If this is a multi-person experiment AND the slot is now full AND the send emails box was checked...
         if ($experiment->getPerSlot() > 1 AND $experiment->getPerSlot() == count($current_subjects)+1 AND $send_emails == True) {
-          $formatted_date = date('l jS F', strtotime($_REQUEST['date']));
-          $time = $_REQUEST['time'];
           // For each participant who already signed up...
           foreach ($current_subjects as $subject) {
             // Send an email to say that the experiment will go ahead as planned
@@ -53,7 +53,7 @@ if (isset($_REQUEST['confirm'])) {
             $experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf_full', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
           }
         }
-        else {
+        elseif ($send_conf_email == True) {
           // Send an email to this participant to confirm the booking
           if ($send_conf_email == True) {
             $experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
