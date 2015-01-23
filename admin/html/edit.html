@@ -95,6 +95,11 @@
 
       <p>Enter your automated emails here. Leave blank if you don't want to send emails of a given type. You can use the &lt;NAME&gt;, &lt;DATE&gt;, and &lt;TIME&gt; tags to insert the relevant details into outgoing emails. Your email address will show up as the From address, so participants will be able to reply directly to automated emails to contact you.</p>
 
+      <p>
+        <input type='radio' name='automated_status' value='on'<?php if ($experiment->getAutomatedStatus() === True) { echo " checked"; } ?> />&nbsp;Send reminder emails automatically at 10AM the day before an experiment<br />
+        <input type='radio' name='automated_status' value='off'<?php if ($experiment->getAutomatedStatus() === False) { echo " checked"; } ?> />&nbsp;Don’t send reminder emails automatically
+      </p>
+
       <div>
 
         <div id='left-column'>

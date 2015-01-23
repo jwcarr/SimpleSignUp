@@ -14,6 +14,7 @@ if (isset($_REQUEST['confirm'])) {
   $experiment->setPerSlot($_REQUEST['per_slot']);
   $experiment->setSharedAccess($_REQUEST['shared_access'], $user->getAllUsernames());
   $experiment->setCalendar($_REQUEST['new_times']);
+  $experiment->setAutomatedStatus($_REQUEST['automated_status']);
   $experiment->setEmail($_REQUEST['email_conf'], 'email_conf');
   $experiment->setEmail($_REQUEST['email_full'], 'email_full');
   $experiment->setEmail($_REQUEST['email_conf_full'], 'email_conf_full');
