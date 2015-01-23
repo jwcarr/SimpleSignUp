@@ -1,7 +1,7 @@
 <?php
 
 include_once("../php/class.experiment.php");
-$experiment = new Experiment($_REQUEST['exp'], False);
+$experiment = new Experiment($_REQUEST['exp'], True);
 
 $tomorrow = date('Y/m/d', strtotime(date('Y-m-d')) + 86400);
 $tomorrow_slots = $experiment->getDate($tomorrow);
@@ -21,6 +21,9 @@ if ($_REQUEST['confirm'] == 'true') {
       }
     }
   }
+
+  $experiment->setLastReminders(date('Y-m-d'));
+  $experiment->saveExperimentData();
 
   $fails = implode(', ', $fails);
   if ($fails == '') {

@@ -30,26 +30,30 @@ if ($_REQUEST['p'] == 'PUT-A-PASSWORD-HERE') {
     if (count($experiments) > 0 AND $experiments[0] != '') {
       foreach ($experiments as $exp) {
         $success_count = 0;
-        $experiment = new Experiment($exp, False, $username);
-        $tomorrow_slots = $experiment->getDate($tomorrow);
-        if (count($tomorrow_slots) > 0) {
-          $fails = array();
-          foreach ($tomorrow_slots as $time=>$slot) {
-            if ($slot != Null) {
-              foreach ($slot as $subject) {
-                $result = $experiment->sendEmail($subject[1], $user->getName(), $user->getEmail(), 'email_reminder', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$time));
-                if ($result == True) { $success_count += 1; }
-                else { $fails[] = $subject_name; }
+        $experiment = new Experiment($exp, True, $username);
+        if ($experiment->getRemindersSent() === False) {
+          $tomorrow_slots = $experiment->getDate($tomorrow);
+          if (count($tomorrow_slots) > 0) {
+            $fails = array();
+            foreach ($tomorrow_slots as $time=>$slot) {
+              if ($slot != Null) {
+                foreach ($slot as $subject) {
+                  $result = $experiment->sendEmail($subject[1], $user->getName(), $user->getEmail(), 'email_reminder', array('NAME'=>$subject[0], 'DATE'=>$formatted_date, 'TIME'=>$time));
+                  if ($result == True) { $success_count += 1; }
+                  else { $fails[] = $subject_name; }
+                }
               }
             }
-          }
-          $log .= '- ' . $experiment->getName() . ' [' . $user->getName() . ']' . "\n";
-          $fails = implode(', ', $fails);
-          if ($fails == '') {
-            $log .= "  - Reminder emails were successfully sent to {$success_count} participants\n\n";
-          }
-          else {
-            $log .= '  - Emails failed to send to: ' . $fails . "\n\n";
+            $experiment->setLastReminders(date('Y-m-d'));
+            $experiment->saveExperimentData();
+            $log .= '- ' . $experiment->getName() . ' [' . $user->getName() . ']' . "\n";
+            $fails = implode(', ', $fails);
+            if ($fails == '') {
+              $log .= "  - Reminder emails were successfully sent to {$success_count} participants\n\n";
+            }
+            else {
+              $log .= '  - Emails failed to send to: ' . $fails . "\n\n";
+            }
           }
         }
         unset($experiment);
