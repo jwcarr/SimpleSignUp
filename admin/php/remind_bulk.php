@@ -10,7 +10,7 @@ if ($_REQUEST['confirm'] == 'true') {
 
   $fails = array();
 
-  $formatted_date = date('l jS F', strtotime($date));
+  $formatted_date = date('l jS F', strtotime($tomorrow));
 
   foreach ($tomorrow_slots as $time=>$slot) {
     if ($slot != Null) {
@@ -56,7 +56,7 @@ else {
 
   $name_email = implode('<br />', $name_email);
 
-  $email_content = str_replace("\r\n", "<br />", $experiment->createEmailContent('email_reminder', array('NAME'=>'&lt;NAME&gt;', 'TIME'=>'&lt;TIME&gt;')));
+  $email_content = str_replace("\r\n", "<br />", $experiment->createEmailContent('email_reminder', array('NAME'=>'&lt;NAME&gt;', 'TIME'=>'&lt;TIME&gt;', 'DATE'=>'&lt;DATE&gt;')));
 
 }
 
