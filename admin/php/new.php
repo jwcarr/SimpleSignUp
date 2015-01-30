@@ -8,6 +8,10 @@ if (isset($_REQUEST['confirm'])) {
     $notification = '<strong>Error:</strong> a code name is required to set up an experiment.';
     $notification_colour = 'red';
   }
+  elseif ($_REQUEST['name'] == '') {
+    $notification = '<strong>Error:</strong> a title is required to set up an experiment.';
+    $notification_colour = 'red';
+  }
   else {
 
     $experiments_file = new File($data_path .'experiments', True);
