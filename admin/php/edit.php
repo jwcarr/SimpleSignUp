@@ -12,13 +12,13 @@ if (isset($_REQUEST['confirm'])) {
   $experiment->setExclusions($_REQUEST['exclusions']);
   $experiment->setManualExclusions($_REQUEST['manual_exclusions']);
   $experiment->setPerSlot($_REQUEST['per_slot']);
-  $experiment->setSharedAccess($_REQUEST['shared_access'], $user->getAllUsernames());
   $experiment->setCalendar($_REQUEST['new_times']);
   $experiment->setAutomatedStatus($_REQUEST['automated_status']);
   $experiment->setEmail($_REQUEST['email_conf'], 'email_conf');
   $experiment->setEmail($_REQUEST['email_full'], 'email_full');
   $experiment->setEmail($_REQUEST['email_conf_full'], 'email_conf_full');
   $experiment->setEmail($_REQUEST['email_reminder'], 'email_reminder');
+  if ($identity[0] == $experiment->owner) { $experiment->setSharedAccess($_REQUEST['shared_access'], $user->getAllUsernames()); }
 
   if ($experiment->saveExperimentData()) {
     include('view.php');
