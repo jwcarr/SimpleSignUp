@@ -16,7 +16,7 @@ if (isset($_REQUEST['confirm'])) {
 
     $experiments_file = new File($data_path .'experiments', True);
 
-    preg_match('/'. $new_experiment_id .' = \{(.*?)\}/s', $experiments_file->data, $matches);
+    preg_match('/^'. $new_experiment_id .' = \{(.*?)\}/m', $experiments_file->data, $matches);
 
     if (count($matches) > 0) {
       $notification = '<strong>Error:</strong> this code name is already owned by "'. $matches[1] .'". Please choose something else.';
