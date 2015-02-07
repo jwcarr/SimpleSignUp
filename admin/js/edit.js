@@ -18,7 +18,8 @@ $("#per_slot").change( function() {
 $("#add_date").click( function() {
   var date = $("#new_date").val();
   if (re.test(date)) {
-    $("#new_date").val("");
+    var temp_date = date.substring(0, date.length-2);
+    $("#new_date").val(temp_date);
     $("#calendar").append("<tr><td>" + date + "</td><td><input type='text' name='new_times[" + date + "]' value='' size='30' /></td><td></td><tr>");
   }
 });

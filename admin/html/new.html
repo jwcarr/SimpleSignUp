@@ -82,7 +82,7 @@
       <p>To create a new date, enter the date in YYYY/MM/DD format and click the green plus button. To add new times, enter the times for a given date into the relevant box (separated by commas). Times should be in 24-hour format (HH:MM), including leading zeros, e.g. 09:00 or 14:30.</p>
 
       <p><strong>Add date (YYYY/MM/DD)</strong><br />
-        <input type='text' name='new_date' id='new_date' value='' size='20' />
+        <input type='text' name='new_date' id='new_date' value='<?php echo date('Y/m/'); ?>' size='20' />
         <img src='images/add.png' id='add_date' width='16' height='16' style="vertical-align: middle; cursor: pointer;" />
       </p>
 
