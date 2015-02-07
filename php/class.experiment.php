@@ -523,7 +523,12 @@ class Experiment {
           echo '<td align="center"><input type="radio" name="timeslot" value="'. $date . '|'. $time .'" /></td>';
         }
         else {
-          echo '<td align="center" style="background-color: #EAF2E8;"><input type="radio" name="timeslot" value="'. $date . '|'. $time .'" /></td>';
+          if ($this->getPerSlot() > 2) {
+            echo '<td align="center" style="background-color: #EAF2E8;"><input type="radio" name="timeslot" value="'. $date . '|'. $time .'" /> <span style="font-size: 10px;">('. $slot_count .')</span></td>';
+          }
+          else {
+            echo '<td align="center" style="background-color: #EAF2E8;"><input type="radio" name="timeslot" value="'. $date . '|'. $time .'" /></td>';
+          }
         }
       }
       echo '</tr></table>';
