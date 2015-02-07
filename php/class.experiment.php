@@ -136,8 +136,12 @@ class Experiment {
   }
 
   public function setPerSlot($per_slot) {
+    $per_slot = trim($per_slot);
+    if (is_numeric($per_slot) === False) {
+      $per_slot = 1;
+    }
     if ($per_slot != $this->getPerSlot()) {
-      $this->per_slot = trim($per_slot);
+      $this->per_slot = intval($per_slot);
       $this->changed_data[] = 'per_slot';
     }
   }
