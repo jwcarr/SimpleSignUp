@@ -18,7 +18,7 @@ if (isset($_REQUEST['confirm'])) {
   $user->removeExperiment($_REQUEST['exp']);
 
   $experiments_file = new File($data_path . 'experiments', True);
-  $experiments_file->data =str_replace($_REQUEST['exp'] . ' = {' . $identity[0] . "}\n", '', $experiments_file->data);
+  $experiments_file->data = preg_replace('/^'. $_REQUEST['exp'] .' = \{' . $identity[0] . '\}\n*/m', '', $experiments_file->data);
 
   if ($user->saveUserDetails()) {
     if ($experiments_file->overwrite()) {
