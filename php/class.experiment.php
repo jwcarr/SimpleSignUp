@@ -118,6 +118,9 @@ class Experiment {
   }
 
   public function setExclusions($exclusions) {
+    if (is_null($exclusions)) {
+      $exclusions = array();
+    }
     $exclusions = implode('; ', $exclusions);
     if ($exclusions != $this->extractElement('exclusions', $this->file->data)) {
       $this->exclusions = $exclusions;
