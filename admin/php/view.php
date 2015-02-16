@@ -19,7 +19,6 @@ if ($experiment->getCalendar() != Null) {
   foreach ($experiment->getCalendar() as $date=>$slots) {
     $unix_date = strtotime($date);
 
-    $shown_plus = False;
     $empty_date = True;
 
     if ($unix_date < $unix_today) {
@@ -52,6 +51,7 @@ if ($experiment->getCalendar() != Null) {
     if (is_null($slots)) { $slots = array(); }
 
     foreach ($slots as $time=>$slot) {
+      $shown_plus = False;
       for ($i=0; $i<$experiment->getPerSlot(); $i++) {
         if ($i == 0) {
           $show_time = $time;
