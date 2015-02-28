@@ -32,7 +32,9 @@
       </select>
     </p>
 
-    <?php if ($experiment->getPerSlot() > 1) { echo '<p><input type="checkbox" name="send_emails" value="checked" /> Email other participants if the new timeslot is completed by this change of time</p>'; } ?>
+    <div id='fyi_emails'>
+      <?php if ($experiment->getPerSlot() > 1) { echo '<p><input type="checkbox" name="send_emails" value="checked" /> Send FYI email(s) to other participants in the new timeslot if it is now full</p>'; } ?>
+    </div>
 
     <button type='submit' class='blue'>Save changes</button>
 
