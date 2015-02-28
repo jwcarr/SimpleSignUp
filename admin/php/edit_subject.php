@@ -37,7 +37,6 @@ if (isset($_REQUEST['confirm'])) {
 else {
   $experiment = new Experiment($_REQUEST['exp'], False);
   $subject = $experiment->getSubject($_REQUEST['date'], $_REQUEST['time'], $_REQUEST['subject']);
-  $current_timeslot = date('jS M', strtotime($_REQUEST['date'])) . ', ' . $_REQUEST['time'];
   $alt_timeslots = $experiment->printAltTimeslots($_REQUEST['date'], $_REQUEST['time']);
 }
 

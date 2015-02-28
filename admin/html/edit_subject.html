@@ -29,9 +29,8 @@
     </p>
 
     <p><strong>Change timeslot</strong><br />
-      <select name='new_timeslot'>
-        <option value='none'>Current: <?php echo $current_timeslot; ?></option>
-        <option value='none'>- - - - - - - - - -</option>
+      <select name='new_timeslot' id='change_timeslot'>
+        <option value='none'>Don’t change</option>
         <?php echo $alt_timeslots; ?>
       </select>
     </p>
@@ -51,3 +50,5 @@
   <?php echo generateMenu($user->getName(), $page); ?>
 
 </div>
+
+<?php include('js/edit_subject.js'); ?>
