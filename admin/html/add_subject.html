@@ -11,6 +11,10 @@
     <input type='hidden' name='date' value='<?php echo $_REQUEST['date']; ?>' />
     <input type='hidden' name='time' value='<?php echo $_REQUEST['time']; ?>' />
 
+    <p><strong>Timeslot</strong><br />
+      <?php echo date('l, jS F', strtotime($_REQUEST['date'])); ?> @ <?php echo $_REQUEST['time']; ?>
+    </p>
+
     <p><strong>Name</strong><br />
       <input type='text' name='name' size='30' id='name' autocomplete='off' value='<?php echo $subject[0]; ?>' />
     </p>
