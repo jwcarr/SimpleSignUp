@@ -508,22 +508,20 @@ class Experiment {
     return $options;
   }
 
-  public function getAvailableSlots($include_today=False) {
-    if (isset($this->available_slots) == False) {
+  public function getAvailableSlots($show_all_today=False) {
+    if (isset($this->available_slots) === False) {
       $calendar = $this->getCalendar();
       $this->available_slots = array();
-      $unix_today = strtotime(date('Y-m-d'));
-      if (is_null($calendar) == False) {
+      if (is_null($calendar) === False) {
+        if ($show_all_today === True) {
+          $cut_off_time = strtotime(date('Y-m-d'));
+        }
+        else {
+          $cut_off_time = time() + ($this->getCutOff() * 3600);
+        }
         foreach ($calendar as $date=>$slots) {
-          $unix_date = strtotime($date);
-          if ($include_today == True) {
-            $cut_off_date = $unix_today - 86400;
-          }
-          else {
-            $cut_off_date = $unix_today;
-          }
-          if ($unix_date > $cut_off_date) {
-            foreach ($slots as $time=>$slot) {
+          foreach ($slots as $time=>$slot) {
+            if (strtotime($date.' '.$time) > $cut_off_time) {
               if (is_null($slot)) { $slot_count = 0; }
               else { $slot_count = count($slot); }
               if ($slot_count < $this->getPerSlot()) {
@@ -538,7 +536,7 @@ class Experiment {
   }
 
   public function printCalendar() {
-    foreach ($this->getAvailableSlots() as $date=>$times) {
+    foreach ($this->getAvailableSlots(False) as $date=>$times) {
       echo '<h3>' . date('l, jS F Y', strtotime($date)) . '</h3>';
       echo '<table><tr>';
       foreach ($times as $time=>$slot_count) {
@@ -563,7 +561,7 @@ class Experiment {
   }
 
   public function printAvailableDates() {
-    foreach ($this->getAvailableSlots() as $date=>$times) {
+    foreach ($this->getAvailableSlots(False) as $date=>$times) {
       $available_times = array();
       foreach ($times as $time=>$slot_count) {
         $available_times[] = $time;

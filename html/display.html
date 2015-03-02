@@ -15,7 +15,7 @@
 
 <?php
 if ($experiment->getStatus() == 'open') {
-  if (count($experiment->getAvailableSlots()) == 0) {
+  if (count($experiment->getAvailableSlots(False)) == 0) {
     echo "
     <h3>Fully subscribed</h3>
     <p>Sorry – this experiment is full at the moment. Please check back later.</p>
