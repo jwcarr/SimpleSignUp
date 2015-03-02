@@ -52,6 +52,7 @@ if (isset($_REQUEST['confirm'])) {
           $experiment->setExclusions($_REQUEST['exclusions']);
           $experiment->setManualExclusions($_REQUEST['manual_exclusions']);
           $experiment->setPerSlot($_REQUEST['per_slot']);
+          $experiment->setCutOff($_REQUEST['cut_off']);
           $experiment->setSharedAccess($_REQUEST['shared_access'], $usernames);
           $experiment->setCalendar($_REQUEST['new_times']);
           $experiment->setAutomatedStatus($_REQUEST['automated_status']);
