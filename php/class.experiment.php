@@ -146,6 +146,24 @@ class Experiment {
     }
   }
 
+  public function getCutOff() {
+    if (isset($this->cut_off) === False) {
+      $this->cut_off = $this->extractElement('cut_off', $this->file->data);
+    }
+    return $this->cut_off;
+  }
+
+  public function setCutOff($cut_off) {
+    $cut_off = trim($cut_off);
+    if (is_numeric($cut_off) === False) {
+      $cut_off = 9;
+    }
+    if ($cut_off != $this->getCutOff()) {
+      $this->cut_off = intval($cut_off);
+      $this->changed_data[] = 'cut_off';
+    }
+  }
+
   public function getSharedAccess() {
     if (isset($this->shared_access) == False) {
       $this->shared_access = explode('; ', $this->extractElement('shared_access', $this->file->data));
