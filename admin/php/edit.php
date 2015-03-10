@@ -45,18 +45,22 @@ else {
 }
 
 if ($page == 'edit') {
+  $current_dates = array();
   $calendar_table = '<table style="width: 80%;" id="calendar">
   <tr>
   <td style="width: 20%;"><strong>Date</strong></td>
   <td style="width: 40%;"><strong>Add new times (comma separated)</strong></td>
   <td style="width: 40%;"><strong>Current times</strong></td>
   </tr>';
+  $date_i = 0;
   foreach ($experiment->getCalendar() as $date=>$times) {
+    $current_dates[] = $date;
     $calendar_table .= '<tr>
     <td style="width: 20%;">'. $date .'</td>
-    <td style="width: 40%;"><input type="text" name="new_times['. $date .']" value="" size="30" /></td>
+    <td style="width: 40%;"><input type="text" name="new_times['. $date .']" value="" size="30" id="new_times'. $date_i .'" onchange="ValidateTimes(\'#new_times'. $date_i .'\')" /></td>
     <td style="width: 40%;">'. implode(', ', array_keys($times)) .'</td>
     </tr>';
+    $date_i += 1;
   }
   $calendar_table .= '</table>';
 

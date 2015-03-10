@@ -128,6 +128,9 @@ if ($page == 'new') {
       }
     }
   }
+
+  $current_dates = array();
+  $date_i = 0;
 }
 
 ?>

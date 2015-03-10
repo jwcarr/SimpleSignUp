@@ -1,6 +1,10 @@
 <script>
 
-var re = /^\d{4}\/\d{2}\/\d{2}$/;
+var re_date = /^\d{4}\/(0[1-9]|1[0-2])\/(0[1-9]|[1-2][0-9]|3[0-1])$/;
+var re_time = /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/;
+
+var current_dates = <?php echo json_encode($current_dates); ?>;
+var date_count = <?php echo $date_i; ?>;
 
 if ($("#per_slot").val() < 2) {
   $("#multiperson_emails").hide();
@@ -16,12 +20,77 @@ $("#per_slot").change( function() {
 });
 
 $("#add_date").click( function() {
+  <?php if ($page == 'new') { echo '$("#calendar").show();'; }  ?>
   var date = $("#new_date").val();
-  if (re.test(date)) {
-    var temp_date = date.substring(0, date.length-2);
-    $("#new_date").val(temp_date);
-    $("#calendar").append("<tr><td>" + date + "</td><td><input type='text' name='new_times[" + date + "]' value='' size='30' /></td><td></td><tr>");
+  var date_index = $.inArray(date, current_dates);
+  if (date_index >= 0) {
+    $("#new_times" + date_index).css("background-color", "#E6ECF3");
+    setTimeout('$("#new_times' + date_index + '").css("background-color", "white")', 3000);
+  }
+  else {
+    if (ValidateDate(date)) {
+      var temp_date = date.substring(0, date.length-2);
+      $("#new_date").val(temp_date);
+      $("#calendar").append("<tr><td>" + date + "</td><td><input type='text' name='new_times[" + date + "]' id='new_times" + date_count + "' value='' size='30' onchange='ValidateTimes(\"#new_times" + date_count + "\")' style='background-color: #E6ECF3;' /></td><td></td><tr>");
+      setTimeout('$("#new_times' + date_count + '").css("background-color", "white")', 3000);
+      current_dates.push(date);
+      date_count += 1;
+    }
+    else {
+      $("#new_date").css("background-color", "#F5E3E6");
+      setTimeout('$("#new_date").css("background-color", "white")', 3000);
+    }
   }
 });
+
+function ValidateTimes(date_id) {
+  $(date_id).css("background-color", "white");
+  var time_string = $(date_id).val();
+  if (time_string != "") {
+    time_string = time_string.replace(/\s/g, '');
+    $(date_id).val(time_string);
+    var times = time_string.split(',');
+    for (i=0; i<times.length; i++) {
+      if (re_time.test(times[i]) == false) {
+        $(date_id).css("background-color", "#F5E3E6");
+      }
+    }
+  }
+}
+
+function ValidateDate(date) {
+  if (re_date.test(date)) {
+    var date = date.split('/');
+    if ($.inArray(date[1], ['01', '03', '05', '07', '08', '10', '12']) >= 0) {
+      if (date[2] <= 31) { return true; }
+    }
+    else if ($.inArray(date[1], ['04', '06', '09', '11']) >= 0) {
+      if (date[2] <= 30) { return true; }
+    }
+    else {
+      if (date[0] % 4 > 0) {
+        if (date[2] <= 28) { return true; }
+      }
+      else if (date[0] % 100 > 0) {
+        if (date[2] <= 29) { return true; }
+      }
+      else if (date[0] % 400 > 0) {
+        if (date[2] <= 28) { return true; }
+      }
+      else {
+        if (date[2] <= 29) { return true; }
+      }
+    }
+  }
+  return false;
+}
+
+<?php
+
+if ($page == 'new') {
+  echo "$('#calendar').hide();";
+}
+
+?>
 
 </script>
