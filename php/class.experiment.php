@@ -287,8 +287,10 @@ class Experiment {
             $times = explode(',', trim($time_string));
             foreach ($times as $time) {
               if ($time != '') {
-                $calendar[trim($date)][trim($time)] = Null;
-                $edit = True;
+                if (array_key_exists(trim($time), $calendar[trim($date)]) === False) {
+                  $calendar[trim($date)][trim($time)] = Null;
+                  $edit = True;
+                }
               }
             }
             ksort($calendar[trim($date)]);
