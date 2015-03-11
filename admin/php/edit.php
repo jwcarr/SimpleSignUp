@@ -57,7 +57,7 @@ if ($page == 'edit') {
     $current_dates[] = $date;
     $calendar_table .= '<tr>
     <td>'. $date .'</td>
-    <td><input type="text" name="new_times['. $date .']" value=""  style="width: 300px;" id="new_times'. $date_i .'" onchange="ValidateTimes(\'#new_times'. $date_i .'\')" /></td>
+    <td><input type="text" name="new_times['. $date .']" value="" style="width: 300px;" id="new_times'. $date_i .'" onchange="ValidateTimes(\'#new_times'. $date_i .'\')" /></td>
     <td>'. implode(', ', array_keys($times)) .'</td>
     </tr>';
     $date_i += 1;

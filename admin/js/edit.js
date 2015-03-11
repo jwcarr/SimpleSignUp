@@ -31,7 +31,7 @@ $("#add_date").click( function() {
     if (ValidateDate(date)) {
       var temp_date = date.substring(0, date.length-2);
       $("#new_date").val(temp_date);
-      $("#calendar").append("<tr><td>" + date + "</td><td><input type='text' name='new_times[" + date + "]' id='new_times" + date_count + "' value='' size='30' onchange='ValidateTimes(\"#new_times" + date_count + "\")' style='background-color: #E6ECF3;' /></td><td></td><tr>");
+      $("#calendar").append("<tr><td>" + date + "</td><td><input type='text' name='new_times[" + date + "]' id='new_times" + date_count + "' value='' style='width: 300px; background-color: #E6ECF3;' onchange='ValidateTimes(\"#new_times" + date_count + "\")' /></td><td></td><tr>");
       setTimeout('$("#new_times' + date_count + '").css("background-color", "white")', 3000);
       current_dates.push(date);
       date_count += 1;
