@@ -284,6 +284,9 @@ class Experiment {
       foreach ($new_times as $date=>$time_string) {
         if ($date != '') {
           if ($time_string != '') {
+            if (array_key_exists(trim($date), $calendar) === False) {
+              $calendar[trim($date)] = array();
+            }
             $times = explode(',', trim($time_string));
             foreach ($times as $time) {
               if ($time != '') {
