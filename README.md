@@ -23,15 +23,13 @@ You'll need a server capable of running PHP scripts. You'll need suitable permis
 Important security matter
 -------------------------
 
-To protect the personal details of your participants, you must secure SimpleSignUp's /data/ directory from unauthorized access. The best way to do this is to place the file in the webserver's root above the directory level that's world accessible. An alternate approach would be to set up a .htaccess file in the data directory. If you do not secure the data directory, anyone could grab your participants' details, and that would be bad.
+To protect the personal details of your participants, you must secure SimpleSignUp's data directory from unauthorized access. The best way to do this is to place the directory in the webserver's root above the directory level that's world accessible. An alternate approach would be to set up a .htaccess file in the data directory. If you do not secure the data directory, anyone could grab your participants' details, and that would be bad. Don't forget to update ```$data_path``` in php/globals.php and admin/php/globals.php to point to your data directory.
 
 
 Limitations
 -----------
 
-SimpleSignUp is new and has not been tested extensively. Various new features are on the books. The priority feature is an admin area so that you can add, delete, and edit your experiments more easily without having to go mess about with the raw data files.
-
-Check the issues for this repo to get an idea of the other outstanding features planned for SimpleSignUp.
+SimpleSignUp is new and has not been tested extensively. Various new features are on the books. Check the issues for this repo to get an idea of the other outstanding features planned for SimpleSignUp.
 
 
 Data format
@@ -47,13 +45,17 @@ This provides a look-up table so that you can establish the owner of a given exp
 
 ### data/users
 
-This contains the details of the users (i.e. experimentors). Each line should contain something like:
+This contains the details of the users (i.e. experimentors). The first line should contain:
 
-> *MY_USERNAME = { name = [MY_NAME], email = [MY_EMAIL_ADDRESS], phone = [MY_PHONE_NUMBER] }*
+> *all_usernames = {USERNAME_1; USERNAME_2; USERNAME_3}*
+
+and the following lines should contain something like:
+
+> *USERNAME_1 = { name = [MY_NAME], email = [MY_EMAIL_ADDRESS], phone = [MY_PHONE_NUMBER], experiments = [], shares = [], password = [PASSWORD_HASH] }*
 
 ### data/user_data/USERNAME/EXPERIMENT_ID
 
-These files contain the parameters that define an experiment. Currently, the following parameters should be set:
+These files contain the parameters that define an experiment and will contain something like this. Use the admin area to create your experiment files once you've set up a user account.
 
 - name = {The name of the experiment}
 
@@ -73,14 +75,6 @@ These files contain the parameters that define an experiment. Currently, the fol
 
 - number_of_slots = {50}
 
-- slot_time = {60}
-
 - calendar = {2014/11/01: 09:00 = 1, 10:00 = 2; 2014/11/02: 15:00 = 3}
 
 - exclusion_emails = {i_am_excluded@thatsucks.com}
-
-- slot1 = {Mary Jones, mary@jones.com, 07000222333; John Smith, john@smith.com, 07000444555}
-
-- slot2 = {}
-
-- slot3 = {}
