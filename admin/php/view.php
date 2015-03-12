@@ -90,7 +90,12 @@ if ($experiment->getCalendar() != Null) {
               $past_slots += 1;
             }
             if ($time_point == 'present') {
-              $present_slots += 1;
+              if (strtotime($date . ' ' . $time) < time()) {
+                $past_slots += 1;
+              }
+              else {
+                $present_slots += 1;
+              }
             }
             if ($time_point == 'future') {
               $future_slots += 1;
@@ -166,7 +171,7 @@ if ($percentage_past != 0) {
 
 if ($percentage_present != 0) {
   $present_div = '<div style="background-color: #3B6C9D; height: 10px; width: ' . $percentage_present . '%; float: left;"></div>';
-  $legend[] = '<span style="color: #3B6C9D">Today: ' . $present_slots . '</span>';
+  $legend[] = '<span style="color: #3B6C9D">Remaining today: ' . $present_slots . '</span>';
 }
 
 if ($percentage_future != 0) {
