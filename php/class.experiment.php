@@ -217,7 +217,7 @@ class Experiment {
       $this->calendar = array();
       $date_data = explode("\n", $this->extractElement('calendar', $this->file->data));
       if ($date_data[0] == '') {
-        $this->calendar = Null;
+        $this->calendar = array();
         return $this->calendar;
       }
       else {
