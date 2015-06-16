@@ -117,6 +117,10 @@ a:hover {
   color: black;
 }
 
+p.documentation {
+  font-size: 12px;
+}
+
 #header{
   position: absolute;
   top: 0px;

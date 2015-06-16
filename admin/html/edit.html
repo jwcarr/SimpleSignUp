@@ -11,9 +11,9 @@
 
       <h2><img src='images/basic_details.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Information</h2>
 
-      <p>General information about the experiment. These details will be shown on the experiment home page.</p>
+      <p class='documentation'>These details will be shown on your experiment signup page. Your experiment title should focus on what the participant has to do rather than what you’re testing. The experiment title does not need to be unique, although using something unique may help you, your participants, and your colleagues to disambiguate the experiment. The location field should describe the meeting location. The description field can include any details you like, but keeping it brief will encourage participants to read it fully; useful information may include: an outline of the task, participation criteria, payment details, experiment duration, any prizes on offer, and specific details about where you’ll meet the participant.</p>
 
-      <p><strong>Title</strong><br />
+      <p><strong>Experiment title</strong><br />
         <input type='text' name='name' value='<?php echo $experiment->getName(); ?>' style='width: 100%;' />
       </p>
 
@@ -32,6 +32,8 @@
 
       <h2><img src='images/parameters.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Parameters</h2>
 
+      <p class='documentation'>Enter the number of participants you need per timeslot; when participants sign up, they’ll see all available slots with partially filled slots highlighted in green. You can also specify when a timeslot will close (in hours before the experiment is due to take place). If you choose a late closing time (e.g. 1 hour), you’ll need to keep an eye on your schedule throughout the day in case people sign up at short notice.</p>
+
       <p><strong>Number of participants per time slot</strong><br />
         <input type='text' name='per_slot' id='per_slot' value='<?php echo $experiment->getPerSlot(); ?>' size='5' />
       </p>
@@ -48,7 +50,7 @@
 
       <h2><img src='images/exclusions.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Requirements and exclusions</h2>
 
-      <p>Participants will be required to indicate that they meet the requirements for the experiment. Before the participant is able to sign up, their email will be checked against any excluded experiments. Hold the <span style="font-variant: small-caps;">cmd</span> or <span style="font-variant: small-caps;">ctrl</span> button to select more than one experiment to exclude. To manually add a list of email addresses to exclude, enter them into the Excluded email addresses box, separated by commas.</p>
+      <p class='documentation'>Participants will have to indicate that they meet the requirements for your experiment by checking checkboxes. Requirements may include things like: right handed, native speaker of English, happy to be video recorded, etc. You may also want to exclude participants who have already taken part in other experiments; before a participant is able to sign up, their email address will be checked against any excluded experiments. Hold down the <span style="font-variant: small-caps;">cmd</span> or <span style="font-variant: small-caps;">ctrl</span> button to make multiple selections or to deselect an experiment. To manually add a list of email addresses to exclude, enter them into the Excluded email addresses box, separated by commas; this field will gradually be populated with all excluded email addresses as people sign up.</p>
 
       <div id='left-column'>
 
@@ -80,7 +82,7 @@
 
       <h2><img src='images/calendar.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Calendar</h2>
 
-      <p>To create a new date, enter the date in YYYY/MM/DD format and click the green plus button. To add new times, enter the times for a given date into the relevant box (separated by commas). Times should be in 24-hour format (HH:MM), including leading zeros, e.g. 09:00 or 14:30.</p>
+      <p class='documentation'>Here you can specify the dates and times of your timeslots. To add a new date, enter it in YYYY/MM/DD format and click the green plus button; this date will then appear below alongside a field where you can specify the times. Times should be in 24-hour format (HH:MM), including leading zeros, e.g. 09:00 or 14:30, and they should be separated by commas.</p>
 
       <p><strong>Add date (YYYY/MM/DD)</strong><br />
         <input type='text' name='new_date' id='new_date' value='<?php echo date('Y/m/'); ?>' size='20' />
@@ -97,11 +99,11 @@
 
       <h2><img src='images/email.png' width='32' height='32' style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Emails</h2>
 
-      <p>Enter your automated emails here. Leave blank if you don't want to send emails of a given type. You can use the &lt;NAME&gt;, &lt;DATE&gt;, and &lt;TIME&gt; tags to insert the relevant details into outgoing emails. Your email address will show up as the From address, so participants will be able to reply directly to automated emails to contact you.</p>
+      <p class='documentation'>Enter your automated emails here. The confirmation email is sent to participants immediately after they sign up. The reminder email will be sent to participants at 10AM the day before the experiment is due to take place. Leave blank if you don’t want to send emails of a given type. You can use the &lt;NAME&gt;, &lt;DATE&gt;, and &lt;TIME&gt; tags to insert the participant’s name, scheduled date, and scheduled time into your email. Your email address will show up as the From Address, so participants will be able to reply directly to automated emails to contact you. If you’re running multiple people per timeslot, you will get two additional email types: “Confirmation email (for final participant)” is a version of the confirmation email that will only be sent to the last person to sign up to a given slot; when the final participant signs up and the slot is filled, the “FYI email” will be sent to all other participants to let them know that the slot has been filled and that the experiment will go ahead as planned. This can be useful if you need exactly <em>n</em> participants per timeslot and want to send a provisional confirmation email to the first <em>n</em>-1 participants, followed by a second confirmation email (FYI) once the slot has been filled (in which case your confirmation email to the final participant will be worded slightly differently). If you do not wish to do this, leave the FYI field blank and make the two confirmation emails identical.</p>
 
       <p>
         <input type='radio' name='automated_status' value='on'<?php if ($experiment->getAutomatedStatus() === True) { echo " checked"; } ?> />&nbsp;Send reminder emails automatically at 10AM the day before an experiment<br />
-        <input type='radio' name='automated_status' value='off'<?php if ($experiment->getAutomatedStatus() === False) { echo " checked"; } ?> />&nbsp;Don’t send reminder emails automatically
+        <input type='radio' name='automated_status' value='off'<?php if ($experiment->getAutomatedStatus() === False) { echo " checked"; } ?> />&nbsp;Don’t send reminder emails automatically (you’ll still have the option to send them manually)
       </p>
 
       <div>
@@ -149,7 +151,7 @@
     <p>&nbsp;</p>
 
     <?php if ($experiment->owner == $identity[0]) {
-      echo '<div><h2><img src="images/access.png" width="32" height="32" style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Shared access</h2><p>Grant access to other users. Users with shared access will be able to view and edit, but not delete, this experiment. Hold the <span style="font-variant: small-caps;">cmd</span> or <span style="font-variant: small-caps;">ctrl</span> button to select more than one user.</p><p><select multiple name="shared_access[]" size="7" style="width: 50%;">' . $experiment->printSharedAccess($user->getAllUsernames()) . '</select></p></div><p>&nbsp;</p>';
+      echo '<div><h2><img src="images/access.png" width="32" height="32" style="vertical-align: bottom" />&nbsp;&nbsp;&nbsp;Shared access</h2> <p class="documentation">If necessary, you can give other users access to this experiment. This can be useful if you’re collaborating on an experiment with a colleague. Users who have shared access to this experiment will be able to view and edit, but not delete, the experiment. Be mindful of your participants’ privacy and don’t share access with others unnecessarily. Hold down the <span style="font-variant: small-caps;">cmd</span> or <span style="font-variant: small-caps;">ctrl</span> button to make multiple selections or to deselect a user.</p><p><select multiple name="shared_access[]" size="7" style="width: 50%;">' . $experiment->printSharedAccess($user->getAllUsernames()) . '</select></p></div><p>&nbsp;</p>';
     } ?>
 
     <button type='submit' class='blue'>Save changes</button>
