@@ -5,6 +5,8 @@ $experiment = new Experiment($_REQUEST['exp'], False, $_REQUEST['own']);
 
 $page_header = $experiment->getName();
 
+setcookie('SimpleSignUp', $_REQUEST['name'] . '|' . $_REQUEST['email'] . '|' . $_REQUEST['phone'], time()+31536000);
+
 if ($experiment->getStatus() != 'open') {
   $page = 'fully_subscribed';
 }

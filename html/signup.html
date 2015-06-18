@@ -10,15 +10,15 @@
     <p>Please input your details in the boxes below. Leaving your mobile number is optional, but doing so allows us to let you know about last minute changes.</p>
 
     <p>Full name<br />
-      <input type='text' name='name' size='30' id='name' autocomplete='off' value='<?php echo $_REQUEST['name']; ?>' />
+      <input type='text' name='name' size='30' id='name' value='<?php echo $name; ?>' />
     </p>
 
     <p>Email<br />
-      <input type='text' name='email' size='30' id='email' autocomplete='off' value='<?php echo $_REQUEST['email']; ?>' />
+      <input type='text' name='email' size='30' id='email' value='<?php echo $email; ?>' />
     </p>
 
     <p>Mobile number (optional)<br />
-      <input type='text' name='phone' size='30' id='phone' autocomplete='off' value='<?php echo $_REQUEST['phone']; ?>' />
+      <input type='text' name='phone' size='30' id='phone' value='<?php echo $phone; ?>' />
     </p>
 
     <?php echo $requirements; ?>
