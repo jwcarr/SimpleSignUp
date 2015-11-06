@@ -2,9 +2,10 @@
 
   <?php echo $notification; ?>
 
-  <h2>Change my details</h2>
 
-  <p>These details will be shown on your experiment signup pages. The email you use will show up as the From address in automated emails. You should use an email address on the ed.ac.uk domain to avoid your outgoing emails being blocked by spam filters.</p>
+  <h2>Change details</h2>
+
+  <p>Your contact details will be shown on your experiment signup pages and the email address you use will show up as the From address in automated emails. You must use an email address ending with ed.ac.uk to prevent outgoing emails being blocked by spam filters.</p>
 
   <div id='left-column'>
 
@@ -16,7 +17,7 @@
         <input type='text' name='name' id='name' value='<?php echo $user->getName(); ?>' size='30' />
       </p>
 
-      <p><strong>Email</strong><br />
+      <p><strong>Email (ending with ed.ac.uk)</strong><br />
         <input type='text' name='email' id='email' value='<?php echo $user->getEmail(); ?>' size='30' />
       </p>
 
