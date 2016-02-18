@@ -68,7 +68,7 @@ class User {
 
   public function setName($name) {
     if ($name != $this->getName()) {
-      $this->name = trim($name);
+      $this->name = str_replace("'", '’', trim($name));
       $this->changed_data[] = 'name';
     }
   }
