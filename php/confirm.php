@@ -54,6 +54,8 @@ else {
           // Send an email to this participant to confirm the booking
           $experiment->sendEmail($_REQUEST['email'], $user->getName(), $user->getEmail(), 'email_conf', array('NAME'=>$_REQUEST['name'], 'DATE'=>$formatted_date, 'TIME'=>$time));
         }
+        // If requested, send an email to the experiment owner
+        $experiment->sendAdminEmail($user->getEmail(), $_REQUEST['name'], $_REQUEST['email'], $_REQUEST['phone'], $formatted_date, $time);
       }
       else {
         $page = 'error';

@@ -604,6 +604,30 @@ class Experiment {
     $this->changed_data[] = 'automated_status';
   }
 
+  public function getAdminEmailPref() {
+    if (isset($this->admin_email_pref) == False) {
+      $this->admin_email_pref = $this->extractElement('admin_email_pref', $this->file->data);
+    }
+    if ($this->admin_email_pref == 'on') {
+      return True;
+    }
+    return False;
+  }
+
+  public function setAdminEmailPref($admin_email_pref) {
+    $this->admin_email_pref = $admin_email_pref;
+    $this->changed_data[] = 'admin_email_pref';
+  }
+
+  public function sendAdminEmail($owner_email, $name, $email, $phone, $date, $time) {
+    if ($this->getAdminEmailPref() === True) {
+      $email_headers = "From: {SimpleSignUp} <{$owner_email}>\r\nContent-Type: text/plain; charset=UTF-8";
+      $email_content = "A new participant has signed up for your experiment:\r\n\r\nName: {$name}\r\nEmail: {$email}\r\nPhone: {$phone}\r\nTimeslot: {$date} @ {$time}";
+      return mail($owner_email, $this->getName(), $email_content, $email_headers);
+    }
+    return True;
+  }
+
   public function getLastReminders() {
     if (isset($this->last_reminders) === False) {
       $this->last_reminders = $this->extractElement('last_reminders', $this->file->data);
