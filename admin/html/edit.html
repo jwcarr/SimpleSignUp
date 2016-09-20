@@ -2,7 +2,7 @@
 
   <?php echo $notification; ?>
 
-  <form method='post' action='index.php'>
+  <form method='post' action='index.php' onsubmit='return AllowSubmit();'>
     <input type='hidden' name='page' value='edit' />
     <input type='hidden' name='confirm' value='true' />
     <input type='hidden' name='exp' value='<?php echo $experiment->id; ?>' />

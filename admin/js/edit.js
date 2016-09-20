@@ -6,6 +6,8 @@ var re_time = /^([0-1][0-9]|2[0-3]):[0-5][0-9]$/;
 var current_dates = <?php echo json_encode($current_dates); ?>;
 var date_count = <?php echo $date_i; ?>;
 
+var all_times_validated = true;
+
 if ($("#per_slot").val() < 2) {
   $("#multiperson_emails").hide();
 }
@@ -44,6 +46,7 @@ $("#add_date").click( function() {
 });
 
 function ValidateTimes(date_id) {
+  all_times_validated = true;
   $(date_id).css("background-color", "white");
   var time_string = $(date_id).val();
   if (time_string != "") {
@@ -53,6 +56,7 @@ function ValidateTimes(date_id) {
     for (i=0; i<times.length; i++) {
       if (re_time.test(times[i]) == false) {
         $(date_id).css("background-color", "#F5E3E6");
+        all_times_validated = false;
       }
     }
   }
@@ -83,6 +87,14 @@ function ValidateDate(date) {
     }
   }
   return false;
+}
+
+function AllowSubmit() {
+  if (all_times_validated == false) {
+    alert('Please check that the times you have entered conform to the correct format. They should be in 24-hour format (HH:MM), including leading zeros, e.g. 09:00 or 14:30, and they should be separated by commas.');
+    return false;
+  }
+  return true;
 }
 
 <?php
