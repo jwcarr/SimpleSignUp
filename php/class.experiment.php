@@ -369,7 +369,6 @@ class Experiment {
     else {
       $calendar[$date][$time] = array_values($calendar[$date][$time]);
     }
-    print_r($calendar[$date][$time]);
     $this->calendar = $calendar;
     $this->changed_data[] = 'calendar';
     $this->removeExclusionEmail($subject_email);
