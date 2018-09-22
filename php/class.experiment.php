@@ -347,7 +347,11 @@ class Experiment {
 
   public function getDate($date) {
     $calendar = $this->getCalendar();
-    return $calendar[$date];
+    if (array_key_exists($date, $calendar)) {
+      return $calendar[$date];
+    } else {
+      return array();
+    }
   }
 
   public function getSubject($date, $time, $subject_number) {
@@ -683,13 +687,21 @@ class Experiment {
   private function extractElement($element, $data) {
     $pattern = '/' . $element . ' = \{(.*?)\}/s';
     preg_match($pattern, $data, $matches);
-    return $matches[1];
+    if (array_key_exists(1, $matches)) {
+      return $matches[1];
+    } else {
+      return '';
+    }
   }
 
   private function extractValue($value, $data) {
     $pattern = '/' . $value . ' = \[(.*?)\]/s';
     preg_match($pattern, $data, $matches);
-    return trim($matches[1]);
+    if (array_key_exists(1, $matches)) {
+      return trim($matches[1]);
+    } else {
+      return '';
+    }
   }
 
 }
