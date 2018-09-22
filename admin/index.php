@@ -17,7 +17,11 @@ if ($page == 'authenticate') {
   $password_hash = $user->authorize($_REQUEST['password'], False);
   if ($password_hash == True) {
     setcookie('SimpleSignUpAuth', $_REQUEST['username'] . ':' . $password_hash, time()+604800);
-    $page = 'main';
+    if ($user->username == 'admin') {
+      $page = 'admin';
+    } else {
+      $page = 'main';
+    }
   }
   else {
     $page = 'login';
@@ -35,6 +39,9 @@ else {
     $user = new User($identity[0], False);
     if ($user->authorize($identity[1], True) == False) {
       $page = 'login';
+    }
+    elseif ($user->username == 'admin') {
+      $page = 'admin';
     }
   }
   else {

@@ -1,7 +1,7 @@
 <?php
 
 // Valid page IDs
-$pages = array('main', 'view', 'edit', 'delete', 'change_status', 'new', 'change_details', 'change_password', 'save_password', 'save_details', 'save_edits', 'remind', 'remind_bulk', 'delete_subject', 'add_subject', 'edit_subject', 'edit_calendar');
+$pages = array('admin', 'main', 'view', 'edit', 'delete', 'change_status', 'new', 'change_details', 'change_password', 'save_password', 'save_details', 'save_edits', 'remind', 'remind_bulk', 'delete_subject', 'add_subject', 'edit_subject', 'edit_calendar');
 
 $auth_pages = array('authenticate', 'login', 'logout');
 

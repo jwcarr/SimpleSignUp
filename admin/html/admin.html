@@ -1,0 +1,61 @@
+<div id='content'>
+
+  <?php echo $notification; ?>
+
+  <h2>Add user</h2>
+
+  <p class='documentation'>This will create a new user account and automatically generate a password, which will be displayed on the next page. The username should only contain lowercase alphabetical characters and the email address must end in ed.ac.uk</p>
+
+  <form id='add_user' method='post' action='index.php'>
+    <input type='hidden' name='task' value='add_user' />
+    <p><strong>Username</strong><br /><input type='text' name='add_username' id='add_username' value='' size='30' /></p>
+    <p><strong>Name</strong><br /><input type='text' name='add_name' id='add_name' value='' size='30' /></p>
+    <p><strong>Email (ending with ed.ac.uk)</strong><br /><input type='text' name='add_email' id='add_email' value='' size='30' /></p>
+    <p><button type='submit' class='blue'>Add user</button></p>
+  </form>
+
+  <p>&nbsp;</p><hr />
+
+  <h2>Reset password</h2>
+
+  <p class='documentation'>This will create a new randomly-generated password for the user, which will be displayed on the next page.</p>
+
+  <form id='reset_password' method='post' action='index.php'>
+    <input type='hidden' name='task' value='reset_password' />
+    <select name='reset_username'><?php echo $current_usernames; ?></select>
+    <p><button type='submit' class='blue'>Reset password</button></p>
+  </form>
+
+  <p>&nbsp;</p><hr />
+
+  <h2>Transfer experiment</h2>
+
+  <p class='documentation'>This will transfer ownership of an experiment to another user. The original user will no longer have access to the experiment.</p>
+
+  <form id='transfer_experiment' method='post' action='index.php'>
+    <input type='hidden' name='task' value='transfer_experiment' />
+    <select name='trans_experiment'><?php echo $current_experiments; ?></select> → <select name='trans_username'><?php echo $current_usernames; ?></select>
+    <p><button type='submit' class='blue'>Transfer experiment</button></p>
+  </form>
+
+  <p>&nbsp;</p><hr />
+
+  <h2>Delete user</h2>
+
+  <p class='documentation'>A user can only be deleted if they do not own any experiments. If the user currently owns some experiments, the experiments must first be deleted or transferred to another user.</p>
+
+  <form id='delete_user' method='post' action='index.php'>
+    <input type='hidden' name='task' value='delete_user' />
+    <select name='del_username'><?php echo $current_usernames; ?></select>
+    <p><button type='submit' class='red'>Delete user (this action cannot be undone!)</button></p>
+  </form>
+
+</div>
+
+<div id='menu'>
+
+  <p><strong>ADMIN</strong></p>
+
+  <p><a href="index.php?page=logout" onMouseOver="document.logout.src='images/logout_black.png'" onMouseOut="document.logout.src='images/logout.png'"><img name = "logout" src="images/logout.png" width="16" height="16" style="vertical-align: bottom" />&nbsp;&nbsp;Logout</a></p>
+
+</div>
