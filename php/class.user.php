@@ -53,6 +53,10 @@ class User {
       }
       $old_piece = $this->username . ' = { ' . $this->data . ' }';
       $new_piece = $this->username . ' = { ' . $new_user_data . ' }';
+      $pattern = '/^' . $this->username . '\s=\s\{\sname\s=\s\[.+\],\semail\s=\s\[.+\],\sphone\s=\s\[.*\],\sexperiments\s=\s\[.*\],\sshares\s=\s\[.*\],\spassword\s=\s\[.+\]\s\}$/';
+      if (preg_match($pattern, $new_piece, $matches) == 0) {
+        return false;
+      }
       $this->users_file->data = str_replace($old_piece, $new_piece, $this->users_file->data);
       return $this->users_file->overwrite();
     }
@@ -132,8 +136,10 @@ class User {
 
   public function addExperiment($code_name) {
     $this->getExperiments();
-    $this->experiments[] = $code_name;
-    $this->changed_data[] = 'experiments';
+    if (in_array($code_name, $this->experiments) == False) {
+      $this->experiments[] = $code_name;
+      $this->changed_data[] = 'experiments';
+    }
   }
 
   public function removeExperiment($code_name) {
